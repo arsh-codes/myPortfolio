@@ -27,12 +27,25 @@ function App() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center">
       <Button>Click me</Button>
-      <FloatingDock items={dockItems} desktopClassName="bottom-0 absolute " mobileClassName="" />
+      <FloatingDock
+        items={dockItems}
+        desktopClassName="bottom-0 absolute "
+        mobileClassName=""
+      />
       <div className="absolute top-4 right-4">
         <ModeToggle />
       </div>
+      hello
     </div>
   );
 }
 
 export default App;
+
+// export default function App() {
+//   return (
+//     <div style={{ textAlign: "center", marginTop: "50px", fontSize: "24px" }}>
+//       🚀 Vite is Running!
+//     </div>
+//   );
+// }

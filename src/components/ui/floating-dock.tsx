@@ -1,3 +1,9 @@
+/**
+ * Note: Use position fixed according to your needs
+ * Desktop navbar is better positioned at the bottom
+ * Mobile navbar is better positioned at bottom right.
+ **/
+
 import {
   AnimatePresence,
   MotionValue,
@@ -12,24 +18,14 @@ import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
-// Define the type for individual dock items
-type DockItem = {
-  title: string;
-  icon: React.ReactNode;
-  href: string;
-};
-
-// Define props for the FloatingDock component
-interface FloatingDockProps {
-  items: DockItem[];
+export const FloatingDock = ({
+  items,
+  desktopClassName,
+  mobileClassName,
+}: {
+  items: { title: string; icon: React.ReactNode; href: string }[];
   desktopClassName?: string;
   mobileClassName?: string;
-}
-
-export const FloatingDock: React.FC<FloatingDockProps> = ({
-  items,
-  desktopClassName = "",
-  mobileClassName = "",
 }) => {
   return (
     <>
@@ -39,15 +35,12 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({
   );
 };
 
-// Define props for FloatingDockMobile and FloatingDockDesktop components
-interface FloatingDockSubProps {
-  items: DockItem[];
-  className?: string;
-}
-
-const FloatingDockMobile: React.FC<FloatingDockSubProps> = ({
+const FloatingDockMobile = ({
   items,
-  className = "",
+  className,
+}: {
+  items: { title: string; icon: React.ReactNode; href: string }[];
+  className?: string;
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -62,12 +55,22 @@ const FloatingDockMobile: React.FC<FloatingDockSubProps> = ({
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10, transition: { delay: idx * 0.05 } }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  y: 10,
+                  transition: {
+                    delay: idx * 0.05,
+                  },
+                }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
               >
                 <Link
                   to={item.href}
+                  key={item.title}
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
                 >
                   <div className="h-4 w-4">{item.icon}</div>
@@ -87,9 +90,12 @@ const FloatingDockMobile: React.FC<FloatingDockSubProps> = ({
   );
 };
 
-const FloatingDockDesktop: React.FC<FloatingDockSubProps> = ({
+const FloatingDockDesktop = ({
   items,
-  className = "",
+  className,
+}: {
+  items: { title: string; icon: React.ReactNode; href: string }[];
+  className?: string;
 }) => {
   const mouseX = useMotionValue(Infinity);
   return (
@@ -108,26 +114,28 @@ const FloatingDockDesktop: React.FC<FloatingDockSubProps> = ({
   );
 };
 
-// Define props for the IconContainer component
-interface IconContainerProps extends DockItem {
-  mouseX: MotionValue;
-}
-
-const IconContainer: React.FC<IconContainerProps> = ({
+function IconContainer({
   mouseX,
   title,
   icon,
   href,
-}) => {
+}: {
+  mouseX: MotionValue;
+  title: string;
+  icon: React.ReactNode;
+  href: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   const distance = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+
     return val - bounds.x - bounds.width / 2;
   });
 
   const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
   const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+
   const widthTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
@@ -149,6 +157,7 @@ const IconContainer: React.FC<IconContainerProps> = ({
     stiffness: 150,
     damping: 12,
   });
+
   const widthIcon = useSpring(widthTransformIcon, {
     mass: 0.1,
     stiffness: 150,
@@ -163,7 +172,7 @@ const IconContainer: React.FC<IconContainerProps> = ({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Link to={href}>
+    <Link href={href}>
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -192,4 +201,4 @@ const IconContainer: React.FC<IconContainerProps> = ({
       </motion.div>
     </Link>
   );
-};
+}
