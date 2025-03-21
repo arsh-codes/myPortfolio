@@ -8,10 +8,11 @@ import {
   Mail,
   User,
 } from "lucide-react";
+import { Route, Routes } from "react-router-dom";
 
-import { Button } from "@/components/ui/button";
-import { FloatingDock } from "@/components/ui/floating-dock";
-import { ModeToggle } from "./components/mode-toggle";
+import { FloatingDock } from "@/components/ui/FloatingDock";
+import HomePage from "@/pages/HomePage";
+import { ModeToggle } from "./components/ModeToggle";
 
 function App() {
   const dockItems = [
@@ -24,28 +25,26 @@ function App() {
     { title: "Resume", icon: <FileText />, href: "/resume" },
     { title: "Contact", icon: <Mail />, href: "/contact" },
   ];
+
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-      <FloatingDock
-        items={dockItems}
-        desktopClassName="bottom-0 absolute "
-        mobileClassName=""
-      />
+    <div className="relative flex h-full w-full">
+      {/* Mode Toggle in top-right */}
       <div className="absolute top-4 right-4">
         <ModeToggle />
       </div>
-      hello
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+
+      {/* Floating Dock */}
+      <FloatingDock
+        items={dockItems}
+        desktopClassName="fixed bottom-4 left-1/2 transform -translate-x-1/2 backdrop-blur-md p-3 rounded-2xl shadow-lg"
+        mobileClassName="fixed bottom-0 left-0 w-full  backdrop-blur-md p-2 rounded-t-2xl shadow-md"
+      />
     </div>
   );
 }
 
 export default App;
-
-// export default function App() {
-//   return (
-//     <div style={{ textAlign: "center", marginTop: "50px", fontSize: "24px" }}>
-//       🚀 Vite is Running!
-//     </div>
-//   );
-// }
