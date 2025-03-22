@@ -1,9 +1,3 @@
-/**
- * Note: Use position fixed according to your needs
- * Desktop navbar is better positioned at the bottom
- * Mobile navbar is better positioned at bottom right.
- **/
-
 import {
   AnimatePresence,
   MotionValue,
@@ -17,6 +11,12 @@ import { useRef, useState } from "react";
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+/**
+ * Note: Use position fixed according to your needs
+ * Desktop navbar is better positioned at the bottom
+ * Mobile navbar is better positioned at bottom right.
+ **/
+import { useLocation } from "react-router-dom";
 
 export const FloatingDock = ({
   items,
@@ -49,7 +49,7 @@ const FloatingDockMobile = ({
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute inset-x-0 bottom-full mb-2 flex flex-col gap-2"
+            className="absolute inset-x-0 bottom-full z-100 mb-2 flex flex-col gap-2"
           >
             {items.map((item, idx) => (
               <motion.div
@@ -170,7 +170,7 @@ function IconContainer({
   });
 
   const [hovered, setHovered] = useState(false);
-
+  const location = useLocation();
   return (
     <Link to={href}>
       <motion.div
@@ -178,7 +178,7 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative flex aspect-square items-center justify-center rounded-full bg-gray-200 dark:bg-neutral-800"
+        className={`relative flex aspect-square items-center justify-center rounded-full bg-gray-200 dark:bg-neutral-800 ${location.pathname === href && "border-foreground border-2"}`}
       >
         <AnimatePresence>
           {hovered && (

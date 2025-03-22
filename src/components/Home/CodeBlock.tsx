@@ -67,8 +67,10 @@ export const CodeBlock = ({
   // darcula,
 
   return (
-    <div className="bg-muted relative w-full rounded-lg p-4 font-mono text-sm transition-colors">
-      <div className="flex flex-col gap-2">
+    <div className="bg-muted relative w-fit overflow-hidden rounded-lg pb-4 font-mono text-sm transition-colors">
+      <div
+        className={`flex flex-col gap-2 rounded-t-lg px-4 py-2 ${theme === "dark" ? "bg-[#131c2b]" : "bg-[#cbd5e1]"}`}
+      >
         {tabsExist && (
           <div className="flex overflow-x-auto">
             {tabs.map((tab, index) => (
@@ -88,7 +90,23 @@ export const CodeBlock = ({
         )}
         {!tabsExist && filename && (
           <div className="flex items-center justify-between py-2">
-            <div className="text-muted-foreground text-xs">{filename}</div>
+            <div className="flex flex-row items-center gap-2">
+              <div className="flex gap-1">
+                <button
+                  className="h-2.5 w-2.5 rounded-full bg-red-500"
+                  title="Close"
+                />
+                <button
+                  className="h-2.5 w-2.5 rounded-full bg-yellow-500"
+                  title="Minimize"
+                />
+                <button
+                  className="h-2.5 w-2.5 rounded-full bg-green-500"
+                  title="Maximize"
+                />
+              </div>
+              <div className="text-muted-foreground text-xs">{filename}</div>
+            </div>
             <button
               onClick={copyToClipboard}
               className="text-muted-foreground hover:text-foreground flex items-center gap-1 font-sans text-xs transition-colors"
@@ -103,7 +121,7 @@ export const CodeBlock = ({
         style={syntaxStyle}
         customStyle={{
           margin: 0,
-          padding: 0,
+          padding: 10,
           background: "transparent",
           fontSize: "0.875rem",
         }}
@@ -112,7 +130,9 @@ export const CodeBlock = ({
         lineProps={(lineNumber) => ({
           style: {
             backgroundColor: activeHighlightLines.includes(lineNumber)
-              ? "rgba(255,255,255,0.1)"
+              ? theme === "dark"
+                ? "rgba(255,255,255,0.05)" // Light highlight for dark mode
+                : "rgba(0,0,0,0.05)" // Dark highlight for light mode
               : "transparent",
             display: "block",
             width: "100%",

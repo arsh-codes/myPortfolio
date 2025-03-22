@@ -1,20 +1,26 @@
-import { CodeBlock } from "@/components/Home/CodeBlock"; // Importing CodeBlock component
-import { FlipWords } from "@/components/ui/FlipWords"; // Importing FlipWords component
-import codeBlockData from "@/assets/data/codeBlockData"; // Importing code block data
+import { BackgroundGradient } from "./BackgroundGradient";
+import { CodeBlock } from "@/components/Home/CodeBlock";
+import { Download } from "lucide-react";
+import { FlipWords } from "@/components/ui/FlipWords";
+import { Link } from "react-router-dom";
+import { buttonVariants } from "@/components/ui/Button";
+import codeBlockData from "@/assets/data/codeBlockData";
+import resume from "@/assets/data/Resume Arshdeep Singh.pdf";
+
 export default function HomePage() {
   return (
     // Wrapper
-    <main className="mx-auto flex w-11/12 flex-col gap-6 p-6 lg:flex-row">
+    <main className="relative mx-auto flex w-11/12 flex-col gap-6 py-20 lg:flex-row">
       {/* Bio Section */}
-      {/* Bio Section */}
-      <section className="flex w-full flex-col items-start justify-center p-6 lg:w-1/2">
-        {/* Intro Header */}
-        <h1 className="text-primary text-3xl font-extrabold sm:text-4xl">
-          Hey! Arsh here.
-        </h1>
+      <section className="relative flex w-full flex-col items-start justify-center bg-gradient-primary p-6 lg:w-1/2">
+        <div className="relative">
+          <h1 className="text-primary font-manrope relative z-10 text-4xl sm:text-5xl">
+            Hey! Arsh here.
+          </h1>
+        </div>
 
-        {/* FlipWords Component with Improved Word Flow */}
-        <p className="text-primary mt-4 text-2xl font-bold">
+        {/* FlipWords Component */}
+        <p className="text-primary font-manrope mt-4 text-2xl">
           I make frontend beautiful, backend powerful,
           <br />
           and conversations meaningful <br />
@@ -40,17 +46,36 @@ export default function HomePage() {
             className="ml-2 inline-block"
           />
         </p>
-      </section>
 
-      {/* Codeblock Section */}
-      <section className="w-full border p-6 lg:w-1/2">
-        <CodeBlock
-          language="javascript"
-          filename="profile.js"
-          code={codeBlockData}
-          highlightLines={[2, 10, 28]}
-        />
+        {/* CTA Buttons */}
+        <div className="flex flex-row gap-2 py-4">
+          <Link
+            to="/contact-me"
+            className={buttonVariants({ variant: "default" })}
+          >
+            Contact me
+          </Link>
+          <a
+            href={resume}
+            download="Arshdeep_Singh_Resume.pdf"
+            className={buttonVariants({ variant: "secondary" })}
+          >
+            <Download />
+            Resume
+          </a>
+        </div>
       </section>
+      {/* Codeblock Section */}
+      <BackgroundGradient>
+        <section className="w-full lg:w-1/2">
+          <CodeBlock
+            language="javascript"
+            filename="profile.js"
+            code={codeBlockData}
+            highlightLines={[2, 4, 23]}
+          />
+        </section>
+      </BackgroundGradient>
     </main>
   );
 }
