@@ -4,10 +4,27 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+
 :root {
+  /* Custom Colors */
+  --gr-light-blue: #18CCFC;
+  --gr-purple: #6344F5;
+  --gr-light-purple: #AE48FF;
+
+  --custom-gradient: linear-gradient(to bottom right,
+      rgba(24, 204, 252, 0),
+      #18CCFC,
+      #6344F5 32.5%,
+      rgba(174, 72, 255, 0) 100%);
+
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.95 0 0);
+  --foreground: oklch(0.079 0.042 264.695);
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -115,6 +132,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
