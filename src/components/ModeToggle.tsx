@@ -1,7 +1,7 @@
 import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
-import buttonSound from "@/assets/flip-switch-304548.mp3";
+import buttonSound from "@/assets/modeTogglerSound.mp3";
 import { useRef } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 

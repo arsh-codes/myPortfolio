@@ -1,3 +1,11 @@
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip";
+
+import { GlowingEffect } from "../ui/GlowingEffect";
 import { IconCloudData } from "@/components/Home/skills/IconCloudData";
 import skillCardsData from "@/assets/data/skillCardsData";
 
@@ -5,53 +13,102 @@ export default function Skills() {
   // Skills Data
 
   return (
-    <div className="relative flex h-fit w-full border lg:h-screen">
-      <section className="relative mx-auto flex w-11/12 flex-col items-center gap-6 p-4">
-        <div className="flex flex-col items-center">
-          {/* Title */}
-          <h1 className="text-3xl font-bold text-neutral-800 lg:text-4xl dark:text-neutral-200">
-            💻 What’s in My Dev Arsenal?
+    <div className="relative h-fit w-full lg:h-screen">
+      <section className="mx-auto flex h-full w-11/12 flex-col items-center justify-evenly">
+        <div className="flex flex-col items-center text-center">
+          <h1 className="text-foreground text-3xl font-bold lg:text-4xl">
+            The Stack That Gets Things Done
           </h1>
-          <div className="size-100">
+          <p className="text-muted-foreground mt-2 text-lg">
+            MERN-powered, TypeScript-tuned, and Tailwind-styled.
+          </p>
+        </div>
+
+        <div className="relative flex flex-row items-center">
+          {/* Skills Grid  */}
+          <ul className="grid grid-cols-2 gap-4">
+            {skillCardsData.map((cardData, index) => {
+              const HeadingLogo = cardData.headingLogo;
+
+              return (
+                <li
+                  key={index}
+                  className={`${cardData.headingText === "Frontend Development" ? "col-span-1" : "col-span-1"}`}
+                >
+                  {/* Outer Container*/}
+                  <div className="relative h-full rounded-lg border p-3">
+                    <GlowingEffect
+                      blur={0}
+                      borderWidth={2}
+                      spread={90}
+                      glow={true}
+                      disabled={false}
+                      proximity={64}
+                      inactiveZone={0.01}
+                    />
+
+                    {/* Card Wrapper*/}
+                    <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl border p-6 shadow-[0px_0px_20px_0px_#D1D5DB] dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+                      {/*  heading logo and title */}
+                      <div className="relative flex flex-row items-center gap-3">
+                        {/* Logo Container */}
+                        <div className="border-muted-foreground w-fit rounded-lg border p-2">
+                          {HeadingLogo && (
+                            <HeadingLogo
+                              className="size-6"
+                              style={{ color: cardData.headingLogoColor }}
+                            />
+                          )}
+                        </div>
+
+                        {/* Heading Text */}
+                        <div className="">
+                          <h3 className="text-foreground text-2xl font-semibold">
+                            {cardData.headingText}
+                          </h3>
+                        </div>
+                      </div>
+
+                      {/* Skills list  */}
+                      <div className="grid grid-cols-3 gap-3 text-sm">
+                        {cardData.skills.map((skill, skillIndex) => {
+                          const SkillLogo = skill.logo;
+
+                          return (
+                            <TooltipProvider key={skillIndex}>
+                              <Tooltip>
+                                <TooltipTrigger>
+                                  <div className="flex items-center space-x-2 cursor-help">
+                                    {SkillLogo && (
+                                      <SkillLogo
+                                        className="h-5 w-5 text-inherit"
+                                        style={{ color: skill.color }}
+                                      />
+                                    )}
+                                    {/* Skill Name - Text representation of the skill */}
+                                    <p className="text-black dark:text-neutral-400">
+                                      {skill.name}
+                                    </p>
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>{skill.tooltip}</TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* // Iconcloud component */}
+          <div className="size-120">
             <IconCloudData />
           </div>
         </div>
-
-        {/* Skills Grid */}
-        <section className="grid h-fit w-full grid-cols-3 gap-4">
-          {skillCardsData.map((cardData, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center rounded-lg border p-4"
-            >
-              {/* Heading */}
-              <div className="flex items-center space-x-2 text-lg font-semibold">
-                {cardData.headingLogo && (
-                  <cardData.headingLogo
-                    className="h-6 w-6"
-                    style={{ color: cardData.skills[0]?.color || "inherit" }}
-                  />
-                )}
-                <span>{cardData.headingText}</span>
-              </div>
-
-              {/* Skills */}
-              <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
-                {cardData.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex items-center space-x-2">
-                    {skill.logo && (
-                      <skill.logo
-                        className="h-5 w-5"
-                        style={{ color: skill.color || "inherit" }}
-                      />
-                    )}
-                    <p>{skill.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </section>
       </section>
     </div>
   );
