@@ -19,7 +19,6 @@ import {
   SiOpenai,
   SiPostman,
   SiReact,
-  SiReacthookform,
   SiReactrouter,
   SiRedux,
   SiTailwindcss,

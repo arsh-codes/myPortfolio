@@ -1,7 +1,8 @@
 import AboutMe from "@/components/Home/AboutMe";
-import HeroSection from "@/components/Home/HeroSection";
-import Skills from "@/components/Home/Skills";
-
+import ContactMe from "@/components/Home/ContactMe";
+import Experience from "@/components/Home/Experience/Experience";
+import HeroSection from "@/components/Home/heroSection/HeroSection";
+import Skills from "@/components/Home/skills/Skills";
 export default function HomePage() {
   return (
     <div className="flex w-full flex-col">
@@ -10,6 +11,10 @@ export default function HomePage() {
       <AboutMe />
 
       <Skills />
+
+      <Experience />
+
+      <ContactMe />
     </div>
   );
 }

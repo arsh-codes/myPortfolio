@@ -1,40 +1,36 @@
-import { Book, Briefcase, Code, Folder, Home, Mail, User } from "lucide-react";
 import { Route, Routes } from "react-router-dom";
 
-import { FloatingDock } from "@/components/ui/FloatingDock";
+import { AnimatePresence } from "framer-motion";
 import HomePage from "@/pages/HomePage";
 import { ModeToggle } from "./components/ModeToggle";
+import Preloader from "./components/ui/Preloader";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
-  const dockItems = [
-    { title: "Home", icon: <Home />, href: "/" },
-    { title: "About Me", icon: <User />, href: "/about" },
-    { title: "Skills", icon: <Code />, href: "/skills" },
-    { title: "Projects", icon: <Folder />, href: "/projects" },
-    { title: "Experience", icon: <Briefcase />, href: "/experience" },
-    { title: "Blog", icon: <Book />, href: "/blog" },
-    { title: "Contact", icon: <Mail />, href: "/contact-me" },
-  ];
+  const [loader, setLoader] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 2250);
+  }, []);
 
   return (
-    <div className="relative flex h-full w-full scroll-smooth select-none">
-      {/* Mode Toggle in top-right */}
-      <div className="fixed top-4 right-4 z-100">
-        <ModeToggle />
+    <>
+      <AnimatePresence mode="wait">{loader && <Preloader />}</AnimatePresence>
+      <div className="relative flex h-full w-full scroll-smooth select-none">
+        {/* Mode Toggle in top-right */}
+        <div className="fixed top-4 right-4 z-10">
+          <ModeToggle />
+        </div>
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
       </div>
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-
-      {/* Floating Dock */}
-      {/* <FloatingDock
-        items={dockItems}
-        desktopClassName="fixed bottom-0 left-1/2 transform -translate-x-1/2 backdrop-blur-md p-3 rounded-2xl shadow-lg"
-        mobileClassName="fixed bottom-0 left-0 w-full  backdrop-blur-md p-2 rounded-t-2xl shadow-md"
-      /> */}
-    </div>
+    </>
   );
 }
 
 export default App;
+// ("use client");

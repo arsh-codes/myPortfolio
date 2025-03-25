@@ -5,7 +5,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
 
-import { GlowingEffect } from "../ui/GlowingEffect";
+import { GlowingEffect } from "./GlowingEffect";
 import { IconCloudData } from "@/components/Home/skills/IconCloudData";
 import skillCardsData from "@/assets/data/skillCardsData";
 
@@ -78,7 +78,7 @@ export default function Skills() {
                             <TooltipProvider key={skillIndex}>
                               <Tooltip>
                                 <TooltipTrigger>
-                                  <div className="flex items-center space-x-2 cursor-help">
+                                  <div className="flex cursor-help items-center space-x-2">
                                     {SkillLogo && (
                                       <SkillLogo
                                         className="h-5 w-5 text-inherit"

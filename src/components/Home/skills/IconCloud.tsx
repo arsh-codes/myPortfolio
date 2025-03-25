@@ -32,7 +32,7 @@ export const cloudProps: Omit<ICloud, "children"> = {
     clickToFront: 500,
     tooltipDelay: 0,
     outlineColour: "#0000",
-    maxSpeed: 0.02,
+    maxSpeed: 0.03,
     minSpeed: 0.01,
     dragControl: true,
   },
@@ -47,7 +47,6 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
     "notion",
     "steam",
     "vercel",
-    "javascript",
     "express",
     "react",
   ]);

@@ -1,13 +1,13 @@
-import { AnimatedResumeButton } from "../ui/AnimatedResumeButton";
-import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
-import { BackgroundGradient } from "@/components/ui/BackgroundGradient";
-import { CodeBlock } from "@/components/Home/CodeBlock";
-import { Download } from "lucide-react";
-import { FlipWords } from "@/components/ui/FlipWords";
+import { AnimatedResumeButton } from "./AnimatedResumeButton";
+import { BackgroundBeams } from "./BackgroundBeams";
+import { BackgroundGradient } from "@/components/Home/heroSection/BackgroundGradient";
+import { CodeBlock } from "./CodeBlock";
+import { FlipWords } from "@/components/Home/heroSection/FlipWords";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/Button";
 import codeBlockData from "@/assets/data/codeBlockData";
 import resume from "@/assets/data/Resume Arshdeep Singh.pdf";
+
 export default function HeroSection() {
   return (
     // wrapper
@@ -54,21 +54,13 @@ export default function HeroSection() {
               >
                 Contact me
               </Link>
-              {/* <a
-                href={resume}
-                download="Arshdeep_Singh_Resume.pdf"
-                className={buttonVariants({ variant: "secondary" })}
-              >
-                <Download />
-                Resume
-              </a> */}
 
               <AnimatedResumeButton resume={resume} className="custom-class" />
             </div>
           </div>
         </section>
         {/* Codeblock Section */}
-        <BackgroundGradient>
+        <BackgroundGradient containerClassName="w-fit p-[2px] ">
           <section className="w-full lg:w-1/2">
             <CodeBlock
               language="javascript"

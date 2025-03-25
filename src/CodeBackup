@@ -1,0 +1,19 @@
+import { FloatingDock } from "@/components/ui/FloatingDock";
+
+const dockItems = [
+  { title: "Home", icon: <Home />, href: "/" },
+  { title: "About Me", icon: <User />, href: "/about" },
+  { title: "Skills", icon: <Code />, href: "/skills" },
+  { title: "Projects", icon: <Folder />, href: "/projects" },
+  { title: "Experience", icon: <Briefcase />, href: "/experience" },
+  { title: "Blog", icon: <Book />, href: "/blog" },
+  { title: "Contact", icon: <Mail />, href: "/contact-me" },
+];
+
+/* Floating Dock */
+
+<FloatingDock
+  items={dockItems}
+  desktopClassName="fixed bottom-0 left-1/2 transform -translate-x-1/2 backdrop-blur-md p-3 rounded-2xl shadow-lg"
+  mobileClassName="fixed bottom-0 left-0 w-full  backdrop-blur-md p-2 rounded-t-2xl shadow-md"
+/>;
