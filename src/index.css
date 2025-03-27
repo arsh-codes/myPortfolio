@@ -9,18 +9,8 @@ html {
   overflow-y: auto;
 }
 
+
 :root {
-  /* Custom Colors */
-  --gr-light-blue: #18CCFC;
-  --gr-purple: #6344F5;
-  --gr-light-purple: #AE48FF;
-
-  --custom-gradient: linear-gradient(to bottom right,
-      rgba(24, 204, 252, 0),
-      #18CCFC,
-      #6344F5 32.5%,
-      rgba(174, 72, 255, 0) 100%);
-
   --radius: 0.625rem;
   --background: oklch(0.95 0 0);
   --foreground: oklch(0.079 0.042 264.695);
@@ -126,6 +116,66 @@ html {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* shadow for contact form input*/
+  --shadow-input:
+    0px 2px 3px -1px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px rgba(25, 28, 33, 0.02),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+
+
+  /* animation variable for meteor background */
+  --animate-meteor: meteor 5s linear infinite;
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
+    }
+
+    70% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 0;
+    }
+  }
+
+  /* animation variables for shimmer button */
+  --animate-shimmer-slide : shimmer-slide var(--speed) ease-in-out infinite alternate;
+
+
+  --animate-spin-around : spin-around calc(var(--speed) * 2) infinite linear;
+
+
+  @keyframes spin-around {
+    0% {
+      transform: translateZ(0) rotate(0);
+    }
+
+    15%,
+    35% {
+      transform: translateZ(0) rotate(90deg);
+    }
+
+    65%,
+    85% {
+      transform: translateZ(0) rotate(270deg);
+    }
+
+    100% {
+      transform: translateZ(0) rotate(360deg);
+    }
+  }
+
+  @keyframes shimmer-slide {
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+
+
 }
 
 @layer base {

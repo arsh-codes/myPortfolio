@@ -1,4 +1,4 @@
-import aboutMeImage from "@/assets/aboutMeImage.jpg";
+import aboutMeImage from "@/assets/media/aboutMeImage.jpg";
 
 export default function AboutMe() {
   return (
@@ -21,7 +21,7 @@ export default function AboutMe() {
             <p>
               Hey there! 👋 I’m{" "}
               <span className="font-semibold">Arshdeep Singh</span>, a Full
-              Stack Developer from India 🇮🇳 who writes code, fixes bugs 🐛, and
+              Stack Developer from India who writes code, fixes bugs 🐛, and
               occasionally questions reality when things break for no reason.
             </p>
             <p>

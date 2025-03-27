@@ -1,81 +1,72 @@
-import * as z from "zod";
+"use client";
 
-import { Button } from "../ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import emailjs from "@emailjs/browser";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "./contact/Input";
+import { Label } from "./contact/Label";
+import React from "react";
+import { cn } from "@/lib/utils";
 
-const schema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-type FormData = z.infer<typeof schema>;
-
-const ContactForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-  });
-
-  const [status, setStatus] = useState<string | null>(null);
-
-  const onSubmit = async (data: FormData) => {
-    try {
-      await emailjs.send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
-        data,
-        "YOUR_PUBLIC_KEY",
-      );
-      setStatus("Message sent successfully!");
-      reset();
-    } catch (error) {
-      setStatus("Failed to send message. Please try again.");
-    }
+export function SignupFormDemo() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Form submitted");
   };
-
   return (
-    <div className="bg-muted/50 mx-auto max-w-lg rounded-2xl p-6 shadow-md">
-      <h2 className="mb-4 text-2xl font-semibold">Contact Me</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div>
-          <Input placeholder="Your Name" {...register("name")} />
-          {errors.name && (
-            <p className="text-sm text-red-500">{errors.name.message}</p>
-          )}
+    <div className="shadow-input mx-auto w-full border p-4">
+      <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
+        Welcome to Aceternity
+      </h2>
+      <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
+        Login to aceternity if you can because we don&apos;t have a login flow
+        yet
+      </p>
+
+      <form className="my-8" onSubmit={handleSubmit}>
+        <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
+          <LabelInputContainer>
+            <Label htmlFor="name">Your name</Label>
+            <Input id="name" placeholder="Enter your name" type="text" />
+          </LabelInputContainer>
         </div>
-        <div>
-          <Input type="email" placeholder="Your Email" {...register("email")} />
-          {errors.email && (
-            <p className="text-sm text-red-500">{errors.email.message}</p>
-          )}
-        </div>
-        <div>
-          <Textarea
-            placeholder="Your Message"
-            rows={4}
-            {...register("message")}
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="email">Email Address</Label>
+          <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+        </LabelInputContainer>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="message">Message</Label>{" "}
+          <Input
+            id="message"
+            placeholder="Write your message..."
+            type="textarea"
           />
-          {errors.message && (
-            <p className="text-sm text-red-500">{errors.message.message}</p>
-          )}
-        </div>
-        <Button type="submit" disabled={isSubmitting} className="w-full">
-          {isSubmitting ? "Sending..." : "Send Message"}
-        </Button>
-        {status && <p className="mt-2 text-center text-sm">{status}</p>}
+        </LabelInputContainer>
+
+        <button
+          className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+          type="submit"
+        >
+          Send message &rarr;
+          <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
+          <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
+        </button>
       </form>
     </div>
   );
+}
+
+const BottomGradient = () => {
+  return <></>;
 };
 
-export default ContactForm;
+const LabelInputContainer = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div className={cn("flex w-full flex-col space-y-2", className)}>
+      {children}
+    </div>
+  );
+};
