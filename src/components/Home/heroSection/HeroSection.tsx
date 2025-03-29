@@ -2,25 +2,23 @@ import { AnimatedGradientText } from "./AnimatedGradientText";
 import { AnimatedResumeButton } from "./AnimatedResumeButton";
 import { BackgroundGradient } from "@/components/Home/heroSection/BackgroundGradient";
 import { CodeBlock } from "./CodeBlock";
-import ColorGrid from "@/components/ui/ColorGrid";
 import { FlipWords } from "@/components/Home/heroSection/FlipWords";
 import { Link } from "react-router-dom";
 import { MeteorsBackground } from "./MeteorsBackground";
 import { ShimmerButton } from "./ShimmerButton";
-import { buttonVariants } from "@/components/ui/Button";
 import codeBlockData from "@/assets/data/codeBlockData";
 import resume from "@/assets/data/Resume Arshdeep Singh.pdf";
-import { useTheme } from "@/components/ThemeProvider";
+// import { useTheme } from "@/components/ThemeProvider";
+
 export default function HeroSection() {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   return (
     // wrapper
-    <div className="relative h-fit w-full overflow-hidden lg:h-screen">
+    <div className="relative h-fit w-screen overflow-hidden lg:h-screen">
       <MeteorsBackground number={20} />
-      <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-6 py-15 lg:flex-row">
+      <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-10 py-10 lg:flex-row lg:gap-6 lg:py-15">
         {/* Bio Section */}
-
-        <section className="relative flex w-full flex-col items-center justify-center lg:w-1/2">
+        <section className="relative flex w-full flex-col items-start lg:w-1/2 lg:items-center">
           <div>
             <h1 className="text-primary font-manrope relative z-10 text-4xl leading-tight font-bold sm:text-5xl">
               Hello! <br />
@@ -62,7 +60,7 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
 
-            <div className="flex h-fit flex-row items-center gap-2 py-4">
+            <div className="flex h-fit flex-row items-center gap-4 pt-4">
               <Link to="/contact-me">
                 <ShimmerButton
                   shimmerColor="var(--secondary)"
@@ -85,16 +83,16 @@ export default function HeroSection() {
         </section>
 
         {/* Codeblock Section */}
-        <BackgroundGradient containerClassName="w-fit p-[2px] ">
-          <section className="w-full lg:w-1/2">
+        <div className="flex max-w-full items-center overflow-hidden">
+          <BackgroundGradient containerClassName="w-full p-[2px]">
             <CodeBlock
               language="javascript"
               filename="profile.js"
               code={codeBlockData}
               highlightLines={[2, 4, 23]}
             />
-          </section>
-        </BackgroundGradient>
+          </BackgroundGradient>
+        </div>
       </div>
     </div>
   );

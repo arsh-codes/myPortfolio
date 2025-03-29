@@ -1,11 +1,11 @@
 // Define the TimelineItem type
-type TimelineItem = {
-  title: string;
-  content: JSX.Element;
-};
+// type TimelineItem = {
+//   title: string;
+//   content: JSX.Element;
+// };
 
 // Timeline Data
-const timelineData: TimelineItem[] = [
+const timelineData: any[] = [
   {
     title: "Jul 2024 – Present",
     content: (

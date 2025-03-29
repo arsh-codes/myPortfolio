@@ -5,7 +5,7 @@ import { Label } from "./contact/Label";
 import React from "react";
 import { cn } from "@/lib/utils";
 
-export function SignupFormDemo() {
+export function ContactForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
@@ -52,10 +52,6 @@ export function SignupFormDemo() {
     </div>
   );
 }
-
-const BottomGradient = () => {
-  return <></>;
-};
 
 const LabelInputContainer = ({
   children,

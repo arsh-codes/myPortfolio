@@ -14,17 +14,17 @@ export default function Skills() {
 
   return (
     <div className="relative h-fit w-full lg:h-screen">
-      <section className="mx-auto flex h-full w-11/12 flex-col items-center justify-evenly">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-foreground text-3xl font-bold lg:text-4xl">
+      <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly text-left lg:items-center">
+        <div className="flex w-full flex-col text-left lg:items-center lg:text-center">
+          <h1 className="text-foreground text-2xl font-bold md:text-3xl lg:text-4xl">
             The Stack That Gets Things Done
           </h1>
-          <p className="text-muted-foreground mt-2 text-lg">
+          <p className="text-muted-foreground mt-2 lg:text-lg">
             MERN-powered, TypeScript-tuned, and Tailwind-styled.
           </p>
         </div>
 
-        <div className="relative flex flex-row items-center">
+        <div className="relative flex flex-col-reverse items-center lg:flex-row">
           {/* Skills Grid  */}
           <ul className="grid grid-cols-2 gap-4">
             {skillCardsData.map((cardData, index) => {
@@ -48,11 +48,11 @@ export default function Skills() {
                     />
 
                     {/* Card Wrapper*/}
-                    <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl border p-6 shadow-[0px_0px_20px_0px_#D1D5DB] dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+                    <div className="relative flex h-full flex-col justify-start gap-6 overflow-hidden rounded-xl border p-6 shadow-[0px_0px_20px_0px_#D1D5DB] dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
                       {/*  heading logo and title */}
-                      <div className="relative flex flex-row items-center gap-3">
+                      <div className="relative flex flex-col items-center gap-3 md:flex-row">
                         {/* Logo Container */}
-                        <div className="border-muted-foreground w-fit rounded-lg border p-2">
+                        <div className="border-muted-foreground borderp-2 w-fit rounded-lg border p-2">
                           {HeadingLogo && (
                             <HeadingLogo
                               className="size-6"
@@ -63,14 +63,14 @@ export default function Skills() {
 
                         {/* Heading Text */}
                         <div className="">
-                          <h3 className="text-foreground text-2xl font-semibold">
+                          <h3 className="text-foreground text-md text-center font-semibold md:text-left md:text-2xl">
                             {cardData.headingText}
                           </h3>
                         </div>
                       </div>
 
                       {/* Skills list  */}
-                      <div className="grid grid-cols-3 gap-3 text-sm">
+                      <div className="grid grid-cols-1 gap-3 text-sm md:grid-cols-2 lg:grid-cols-3">
                         {cardData.skills.map((skill, skillIndex) => {
                           const SkillLogo = skill.logo;
 
@@ -105,7 +105,7 @@ export default function Skills() {
           </ul>
 
           {/* // Iconcloud component */}
-          <div className="size-120">
+          <div className="my-6 lg:size-120">
             <IconCloudData />
           </div>
         </div>
