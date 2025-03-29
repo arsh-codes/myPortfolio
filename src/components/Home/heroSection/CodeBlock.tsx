@@ -68,7 +68,7 @@ export const CodeBlock = ({
   // darcula,
 
   return (
-    <div className="bg-muted relative w-fit overflow-hidden rounded-md pb-4 font-mono text-sm transition-colors">
+    <div className="bg-muted relative w-full rounded-md pb-4 font-mono text-xs transition-colors lg:max-w-fit lg:text-sm">
       <div
         className={`flex flex-col gap-2 rounded-t-lg px-4 py-2 ${theme === "dark" ? "bg-[#131c2b]" : "bg-[#cbd5e1]"}`}
       >

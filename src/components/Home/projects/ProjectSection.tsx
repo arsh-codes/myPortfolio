@@ -10,15 +10,16 @@ export default function ProjectSection() {
 
   return (
     <section className="relative flex w-full items-center justify-center py-12">
-      <div className="relative mx-auto flex w-11/12 flex-col gap-10 lg:items-center">
+      <div className="relative mx-auto flex w-11/12 flex-col items-center gap-10">
         {/* GitHub Contributions */}
-        <div className="group mx-auto flex w-fit flex-col items-center rounded-xl border border-[rgba(255,255,255,0.10)] bg-gray-100 p-8 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] dark:bg-[rgba(40,40,40,0.70)]">
+        <div className="group mx-auto flex w-full flex-col items-center rounded-xl border border-[rgba(255,255,255,0.10)] bg-gray-100 p-8 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] lg:w-fit dark:bg-[rgba(40,40,40,0.70)]">
           <h2 className="text-2xl font-bold text-gray-800 md:text-3xl dark:text-white">
             Merging Ideas, One Commit at a Time
           </h2>
           <p className="mt-2 mb-6 text-gray-600 dark:text-gray-400">
             Every green square is a moment of learning, sharing, and building.
           </p>
+
           <GitHubCalendar
             username="arsh-codes"
             colorScheme={theme == "dark" ? "dark" : "light"}
@@ -27,9 +28,9 @@ export default function ProjectSection() {
 
         {/* Project Cards */}
         <div className="flex w-10/12 flex-col gap-4">
-          <div className="my-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-              🔥 Errors Faced, Challenges Embraced
+          <div className="my-8 text-left md:text-center">
+            <h2 className="text-2xl font-bold text-gray-900 md:text-3xl dark:text-white">
+              Errors Faced, Challenges Embraced
             </h2>
             <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
               "Every project has a story—mostly about fixing what I broke!"
@@ -37,13 +38,13 @@ export default function ProjectSection() {
           </div>
           {projectsData.map((project, index) => (
             // card
-            <div className="flex h-fit flex-row items-center gap-1 rounded-lg">
+            <div className="flex h-fit flex-col items-center gap-1 rounded-lg lg:flex-row">
               {/* image section */}
-              <section className="w-1/2">
+              <section className="w-full lg:w-1/2">
                 <img src={project.image} alt="" />
               </section>
               {/* details section card */}
-              <section className="h-fit w-1/2">
+              <section className="h-fit w-full lg:w-1/2">
                 <div
                   key={index}
                   className="h-fit w-full rounded-lg border border-gray-300 bg-white p-6 shadow-lg transition hover:shadow-xl dark:border-gray-600 dark:bg-gray-900"
