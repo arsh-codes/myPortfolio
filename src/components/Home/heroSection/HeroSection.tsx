@@ -2,17 +2,16 @@ import { AnimatedGradientText } from "./AnimatedGradientText";
 import { AnimatedResumeButton } from "./AnimatedResumeButton";
 import { BackgroundGradient } from "@/components/Home/heroSection/BackgroundGradient";
 import { CodeBlock } from "./CodeBlock";
-import ColorGrid from "@/components/ui/ColorGrid";
 import { FlipWords } from "@/components/Home/heroSection/FlipWords";
 import { Link } from "react-router-dom";
 import { MeteorsBackground } from "./MeteorsBackground";
 import { ShimmerButton } from "./ShimmerButton";
-import { buttonVariants } from "@/components/ui/Button";
 import codeBlockData from "@/assets/data/codeBlockData";
 import resume from "@/assets/data/Resume Arshdeep Singh.pdf";
-import { useTheme } from "@/components/ThemeProvider";
+// import { useTheme } from "@/components/ThemeProvider";
+
 export default function HeroSection() {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   return (
     // wrapper
     <div className="relative h-fit w-screen overflow-hidden lg:h-screen">

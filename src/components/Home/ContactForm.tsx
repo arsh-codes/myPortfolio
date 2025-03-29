@@ -53,10 +53,6 @@ export function ContactForm() {
   );
 }
 
-const BottomGradient = () => {
-  return <></>;
-};
-
 const LabelInputContainer = ({
   children,
   className,

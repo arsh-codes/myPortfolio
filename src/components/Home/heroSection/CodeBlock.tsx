@@ -6,7 +6,6 @@ import {
   oneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-import { MovingBorder } from "./MovingBorder";
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { useTheme } from "@/components/ThemeProvider";
