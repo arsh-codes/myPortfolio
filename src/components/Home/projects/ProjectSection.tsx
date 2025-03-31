@@ -1,12 +1,10 @@
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 import { Button } from "@/components/ui/Button";
-import GitHubCalendar from "react-github-calendar";
 import studyNotionImage from "@/assets/media/studyNotionImage.png";
-import { useTheme } from "@/components/ThemeProvider";
 
 export default function ProjectSection() {
-  const { theme } = useTheme();
+ 
 
   return (
     <section className="relative flex h-fit w-full items-center justify-center lg:h-screen">
