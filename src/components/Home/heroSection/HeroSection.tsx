@@ -16,7 +16,7 @@ export default function HeroSection() {
     // wrapper
     <div className="relative h-fit w-screen overflow-hidden lg:h-screen">
       <MeteorsBackground number={20} />
-      <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-10 py-10 lg:flex-row lg:gap-6 lg:py-15">
+      <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-10 py-10 lg:flex-row lg:items-center lg:gap-6 lg:py-15">
         {/* Bio Section */}
         <section className="relative flex w-full flex-col items-start lg:w-1/2 lg:items-center">
           <div>

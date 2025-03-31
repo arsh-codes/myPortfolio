@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <AnimatePresence mode="wait">{loader && <Preloader />}</AnimatePresence>
+      {/* <AnimatePresence mode="wait">{loader && <Preloader />}</AnimatePresence> */}
       <div className="relative flex h-full w-full scroll-smooth select-none">
         {/* Mode Toggle in top-right */}
         <div className="fixed top-4 right-4 z-50">

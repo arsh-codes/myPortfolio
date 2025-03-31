@@ -1,8 +1,9 @@
 "use client";
 
-import { Input } from "./contact/Input";
-import { Label } from "./contact/Label";
+import { Input } from "./Input";
+import { Label } from "./Label";
 import React from "react";
+import { Textarea } from "@/components/Home/contact/Textarea";
 import { cn } from "@/lib/utils";
 
 export function ContactForm() {
@@ -11,32 +12,42 @@ export function ContactForm() {
     console.log("Form submitted");
   };
   return (
-    <div className="shadow-input mx-auto w-full border p-4">
-      <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
-        Welcome to Aceternity
-      </h2>
-      <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300">
-        Login to aceternity if you can because we don&apos;t have a login flow
-        yet
+    <div className="shadow-input mx-auto w-full">
+      <h2 className="text-2xl font-bold">Talk nerdy to me 👓</h2>
+      <p className="text-muted-foreground mt-2 w-fit">
+        Got an idea hotter than my overheated CPU? 🔥 <br />
+        Let’s talk!
       </p>
 
-      <form className="my-8" onSubmit={handleSubmit}>
+      <form className="my-6" onSubmit={handleSubmit}>
         <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
           <LabelInputContainer>
-            <Label htmlFor="name">Your name</Label>
-            <Input id="name" placeholder="Enter your name" type="text" />
+            <Label htmlFor="name">
+              Your Name <sup className="text-red-500">*</sup>
+            </Label>
+            <Input
+              id="name"
+              placeholder="Enter your name (or your secret identity!)"
+              type="text"
+            />
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+          <Input
+            id="email"
+            placeholder="Leave an email if you want to hear back!"
+            type="email"
+          />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="message">Message</Label>{" "}
-          <Input
+          <Label htmlFor="message">
+            What’s on Your Mind? <sup className="text-red-500">*</sup>
+          </Label>
+
+          <Textarea
             id="message"
-            placeholder="Write your message..."
-            type="textarea"
+            placeholder="Type your message… or just say hi!"
           />
         </LabelInputContainer>
 
