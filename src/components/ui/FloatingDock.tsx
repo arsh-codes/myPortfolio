@@ -168,7 +168,7 @@ function IconContainer({
           style={{ width, height }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          className="flex aspect-square origin-top items-center justify-center rounded-full bg-gray-200 dark:bg-neutral-800"
+          className="bg-muted flex aspect-square origin-top items-center justify-center rounded-full"
         >
           <motion.div
             style={{ width: widthIcon, height: heightIcon }}

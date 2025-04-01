@@ -34,7 +34,8 @@ export default function HeroSection() {
             {/* FlipWords Component */}
 
             <div className="text-primary font-manrope mt-4 text-2xl">
-              I make frontend beautiful ✨, <br />
+              I make frontend beautiful{" "}
+              <span className="inline-block animate-pulse">✨</span>, <br />
               backend powerful ⚡,
               <br />
               and conversations meaningful 💬 <br />
@@ -67,7 +68,7 @@ export default function HeroSection() {
                   shimmerDuration="3s"
                   borderRadius="100px"
                   background="var(--primary)"
-                  className="shadow-2xl"
+                  className="shadow-2xl hover:scale-105"
                 >
                   <span>Contact me</span>
                 </ShimmerButton>
@@ -75,7 +76,7 @@ export default function HeroSection() {
 
               <AnimatedResumeButton
                 resume={resume}
-                className="rounded-full px-6 py-[25px]"
+                className="rounded-full px-6 py-[25px] hover:scale-105 hover:border hover:shadow"
               />
             </div>
           </div>

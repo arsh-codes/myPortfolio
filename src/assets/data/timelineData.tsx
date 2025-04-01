@@ -1,158 +1,218 @@
-// Define the TimelineItem type
-// type TimelineItem = {
-//   title: string;
-//   content: JSX.Element;
-// };
+"use client";
 
-// Timeline Data
-const timelineData: any[] = [
+import { FaBriefcase, FaCode, FaGraduationCap, FaHandsHelping } from "react-icons/fa";
+
+import React from "react";
+
+// Define proper interface matching the Timeline component requirements
+interface TimelineEntry {
+  title: string;
+  date?: string;
+  content: React.ReactNode;
+  icon?: React.ReactNode;
+  borderColor?: string;
+}
+
+// Timeline Data formatted for the Timeline component
+const timelineData: TimelineEntry[] = [
   {
-    title: "Jul 2024 – Present",
+    title: "Full Stack Developer",
+    date: "Jul 2024 – Present",
+    icon: <FaBriefcase className="h-6 w-6 text-emerald-600 dark:text-[#4ade80]" />,
+    borderColor: "border-emerald-600 dark:border-[#4ade80]",
     content: (
-      <div>
+      <div className="rounded-lg bg-white/5 p-5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-emerald-600/10 dark:hover:shadow-[#4ade80]/10 dark:bg-neutral-900/50">
         <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Web Developer at Imagine School of Animation and Multimedia
+          Imagine School of Animation and Multimedia
         </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-300">
+        <p className="text-sm font-medium text-neutral-600 dark:text-neutral-300">
           Bathinda, Punjab, India
         </p>
-        <div className="mt-4 space-y-2 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-          <li>
-            Designed and developed responsive websites for small businesses,
-            ensuring seamless user experiences, optimal performance, and smooth
-            deployment and maintenance.
-          </li>
-          <li>
-            Conducted hands-on frontend development classes, mentoring students
-            in building real-world projects and enhancing their practical coding
-            skills.
-          </li>
-          <li>
-            Assisted in optimizing website accessibility and performance,
-            implementing best practices to improve load times, SEO, and user
-            engagement.
-          </li>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "2023 – 2025",
-    content: (
-      <div>
-        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Master of Computer Applications (MCA)
-        </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-300">
-          Chandigarh University
-        </p>
-        <p className="mt-2 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-          CGPA: 9 | Major: Full Stack Development
-        </p>
-        <div className="mt-4 space-y-2 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-          <p>
-            Gained a deep understanding of full stack development, learning the
-            fundamentals of the MERN (MongoDB, Express, React, Node.js) stack.
-            Worked on multiple projects in class, applying concepts of backend
-            and frontend development to build dynamic web applications.
-          </p>
-          <p>
-            Explored advanced concepts in web development, including API
-            integration, authentication, and state management. Collaborated on
-            team projects to develop scalable applications, enhancing
-            problem-solving skills and real-world development experience.
-          </p>
-        </div>
-      </div>
-    ),
-  },
-
-  {
-    title: "2022 – 2024",
-    content: (
-      <div>
-        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Front-end Developer at Deloitte USI
-        </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-300">
-          Hyderabad, Telangana, India
-        </p>
-        <div className="mt-4 space-y-2 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-          <li>
-            Developed a centralized web interface to streamline employee access
-            to portals like HCM and SCM based on authority levels, eliminating
-            the need to log into multiple platforms.
-          </li>
-          <li>
-            Gained hands-on experience in frontend development while also
-            developing an understanding of Oracle Fusion Analytics to retrieve
-            data from the Oracle database and present it effectively through
-            frontend applications.
-          </li>
-          <li>
-            Collaborated with the Oracle Data Integrator team to extract data
-            from Tableau and help create additional tables, going beyond the
-            scope of my assigned work to support company needs.
-          </li>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "2019 – 2022",
-    content: (
-      <div>
-        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-          Bachelor of Computer Applications (BCA)
-        </h3>
-        <p className="text-sm text-neutral-600 dark:text-neutral-300">
-          Punjabi University, Patiala
-        </p>
-        <p className="mt-2 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-          CGPA: 8.1
-        </p>
-        <div className="mt-4 space-y-2 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-          <p>
-            Gained a strong foundation in programming, data structures, and
-            algorithms, which laid the groundwork for my transition into web
-            development.
-          </p>
-          <p>
-            Developed multiple academic projects using Java, Python, and web
-            technologies, focusing on problem-solving and efficient coding
-            practices.
-          </p>
-          <p>
-            Explored database management systems, networking, and software
-            engineering principles, enhancing my understanding of scalable
-            applications.
-          </p>
-          <h4 className="mt-4 font-semibold">
-            Social Welfare Club (2020 – 2022)
-          </h4>
-          <ul className="list-inside list-disc space-y-1">
-            <li>
-              Served as President of the Social Welfare Club at Baba Farid
-              College, leading community-driven initiatives.
+        <div className="mt-4 space-y-2 text-neutral-800 dark:text-neutral-200">
+          <ul className="space-y-3 pl-5">
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-emerald-100 dark:bg-[#4ade80]/20 text-center text-sm font-bold leading-5 text-emerald-600 dark:text-[#4ade80]">1</span>
+              <span>
+                Designed and developed <span className="font-medium text-emerald-600 dark:text-[#4ade80]">responsive websites</span> for small businesses, ensuring seamless user experiences, optimal performance, and smooth deployment.
+              </span>
             </li>
-            <li>
-              Organized 4 blood donation drives, collecting over 1200 blood
-              units from donors.
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-emerald-100 dark:bg-[#4ade80]/20 text-center text-sm font-bold leading-5 text-emerald-600 dark:text-[#4ade80]">2</span>
+              <span>
+                Conducted hands-on <span className="font-medium text-emerald-600 dark:text-[#4ade80]">frontend development classes</span>, mentoring students in building real-world projects and enhancing practical coding skills.
+              </span>
             </li>
-            <li>
-              Collaborated with local hospitals and NGOs to ensure blood
-              donations benefited underprivileged patients at lower costs.
-            </li>
-            <li>
-              Led awareness campaigns highlighting the importance of blood
-              donation and its impact on society.
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-emerald-100 dark:bg-[#4ade80]/20 text-center text-sm font-bold leading-5 text-emerald-600 dark:text-[#4ade80]">3</span>
+              <span>
+                Optimized website <span className="font-medium text-emerald-600 dark:text-[#4ade80]">accessibility and performance</span>, implementing best practices to improve load times, SEO, and user engagement.
+              </span>
             </li>
           </ul>
         </div>
       </div>
     ),
   },
+  {
+    title: "Master of Computer Applications",
+    date: "2023 – 2025",
+    icon: <FaGraduationCap className="h-6 w-6 text-cyan-600 dark:text-[#06b6d4]" />,
+    borderColor: "border-cyan-600 dark:border-[#06b6d4]",
+    content: (
+      <div className="rounded-lg bg-white/5 p-5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-cyan-600/10 dark:hover:shadow-[#06b6d4]/10 dark:bg-neutral-900/50">
+        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+          Chandigarh University
+        </h3>
+        <p className="mt-2 text-neutral-800 dark:text-neutral-200">
+          <span className="inline-flex items-center rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 px-2.5 py-0.5 text-sm font-medium text-cyan-600 dark:text-[#06b6d4]">
+            CGPA: 9
+          </span>
+          <span className="ml-2">Major: Full Stack Development</span>
+        </p>
+        <div className="mt-4 space-y-2 text-neutral-800 dark:text-neutral-200">
+          <ul className="space-y-3 pl-5">
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">1</span>
+              <span>
+                Gained deep understanding of <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">MERN stack</span> (MongoDB, Express, React, Node.js) development.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">2</span>
+              <span>
+                Developed multiple <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">dynamic web applications</span> through course projects, applying both backend and frontend principles.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">3</span>
+              <span>
+                Mastered <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">advanced web concepts</span> including RESTful APIs, authentication systems, and state management.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">4</span>
+              <span>
+                Collaborated in <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">cross-functional teams</span> to build scalable applications, enhancing problem-solving abilities.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Front-end Developer",
+    date: "Dec 2022 – June 2024",
+    icon: <FaCode className="h-6 w-6 text-emerald-600 dark:text-[#4ade80]" />,
+    borderColor: "border-emerald-600 dark:border-[#4ade80]",
+    content: (
+      <div className="rounded-lg bg-white/5 p-5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-emerald-600/10 dark:hover:shadow-[#4ade80]/10 dark:bg-neutral-900/50">
+        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+          Deloitte USI
+        </h3>
+        <p className="text-sm font-medium text-neutral-600 dark:text-neutral-300">
+          Hyderabad, Telangana, India
+        </p>
+        <div className="mt-4 space-y-2 text-neutral-800 dark:text-neutral-200">
+          <ul className="space-y-3 pl-5">
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-emerald-100 dark:bg-[#4ade80]/20 text-center text-sm font-bold leading-5 text-emerald-600 dark:text-[#4ade80]">1</span>
+              <span>
+                Developed a <span className="font-medium text-emerald-600 dark:text-[#4ade80]">centralized web interface</span> to streamline employee access to portals like HCM and SCM based on authority levels.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-emerald-100 dark:bg-[#4ade80]/20 text-center text-sm font-bold leading-5 text-emerald-600 dark:text-[#4ade80]">2</span>
+              <span>
+                Gained hands-on experience in <span className="font-medium text-emerald-600 dark:text-[#4ade80]">frontend development</span> while also developing understanding of Oracle Fusion Analytics to retrieve and present data effectively.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-emerald-100 dark:bg-[#4ade80]/20 text-center text-sm font-bold leading-5 text-emerald-600 dark:text-[#4ade80]">3</span>
+              <span>
+                Collaborated with <span className="font-medium text-emerald-600 dark:text-[#4ade80]">Oracle Data Integrator team</span> to extract data from Tableau and help create additional tables to support company needs.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Bachelor of Computer Applications",
+    date: "2019 – 2022",
+    icon: <FaGraduationCap className="h-6 w-6 text-cyan-600 dark:text-[#06b6d4]" />,
+    borderColor: "border-cyan-600 dark:border-[#06b6d4]",
+    content: (
+      <div className="rounded-lg bg-white/5 p-5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-cyan-600/10 dark:hover:shadow-[#06b6d4]/10 dark:bg-neutral-900/50">
+        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+          Punjabi University, Patiala
+        </h3>
+        <p className="mt-2 text-neutral-800 dark:text-neutral-200">
+          <span className="inline-flex items-center rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 px-2.5 py-0.5 text-sm font-medium text-cyan-600 dark:text-[#06b6d4]">
+            CGPA: 8.1
+          </span>
+        </p>
+        <div className="mt-4 space-y-2 text-neutral-800 dark:text-neutral-200">
+          <ul className="space-y-3 pl-5">
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">1</span>
+              <span>
+                Gained a strong foundation in <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">programming, data structures, and algorithms</span>, laying groundwork for web development.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">2</span>
+              <span>
+                Developed multiple academic projects using <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">Java, Python, and web technologies</span>, focusing on problem-solving.
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">3</span>
+              <span>
+                Explored <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">database management, networking, and software engineering</span> principles for scalable applications.
+              </span>
+            </li>
+          </ul>
+
+          <div className="mt-6 rounded-lg bg-cyan-50 dark:bg-[#06b6d4]/10 p-4">
+            <div className="flex items-center gap-2">
+              <FaHandsHelping className="text-cyan-600 dark:text-[#06b6d4]" />
+              <h4 className="font-semibold text-neutral-900 dark:text-neutral-100">
+                Social Welfare Club (2020 – 2022)
+              </h4>
+            </div>
+            <ul className="mt-3 space-y-2 pl-5">
+              <li className="flex items-start gap-2">
+                <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">•</span>
+                <span>
+                  Served as <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">President</span> of the Social Welfare Club at Baba Farid College, leading community-driven initiatives.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">•</span>
+                <span>
+                  Organized <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">4 blood donation drives</span>, collecting over 1200 blood units from donors.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">•</span>
+                <span>
+                  Collaborated with <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">local hospitals and NGOs</span> to ensure blood donations benefited underprivileged patients.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="inline-block h-5 w-5 flex-shrink-0 rounded-full bg-cyan-100 dark:bg-[#06b6d4]/20 text-center text-sm font-bold leading-5 text-cyan-600 dark:text-[#06b6d4]">•</span>
+                <span>
+                  Led <span className="font-medium text-cyan-600 dark:text-[#06b6d4]">awareness campaigns</span> highlighting the importance of blood donation and its impact on society.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    ),
+  },
 ];
 
-// Export Timeline Data
 export default timelineData;
