@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { AnimatePresence } from "framer-motion";
 import HomePage from "@/pages/HomePage";
 import { ModeToggle } from "./components/ModeToggle";
+import Navbar from "./components/Navbar/Navbar";
 import Preloader from "./components/ui/Preloader";
-import { useEffect } from "react";
-import { useState } from "react";
 
 function App() {
   const [loader, setLoader] = useState(true);
@@ -14,16 +14,39 @@ function App() {
       setLoader(false);
     }, 2250);
   }, []);
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
       <AnimatePresence mode="wait">{loader && <Preloader />}</AnimatePresence>
-      <div className="relative flex h-full w-full scroll-smooth select-none">
+      <div className="relative flex h-full w-full flex-col scroll-smooth select-none">
         {/* Mode Toggle in top-right */}
-        <div className="fixed top-4 right-4 z-50">
+        <div
+          className={`fixed z-50 transition-all duration-400 ${
+            scrolling
+              ? " top-5 right-8" // After scrolling, move to right-8 top-8
+              : "top-5 right-30" // Initial position
+          }`}
+        >
           <ModeToggle />
         </div>
-
+        <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>
@@ -33,4 +56,3 @@ function App() {
 }
 
 export default App;
-// ("use client");

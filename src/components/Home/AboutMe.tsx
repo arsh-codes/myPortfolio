@@ -2,7 +2,10 @@ import aboutMeImage from "@/assets/media/aboutMeImage.jpg";
 
 export default function AboutMe() {
   return (
-    <div className="relative flex h-fit w-full items-center justify-center lg:h-screen">
+    <div
+      className="relative flex h-fit w-full items-center justify-center lg:h-screen"
+      id="about"
+    >
       <div className="relative mx-auto flex h-full w-11/12 flex-col gap-10 py-12 lg:flex-row lg:items-center">
         {/* Image Section */}
         <section className="relative flex w-full flex-col items-center justify-center lg:w-1/3">
@@ -13,7 +16,7 @@ export default function AboutMe() {
           />
         </section>
         {/* Text section */}
-        <section className="relative flex w-full flex-col items-center justify-center p-4 text-center lg:w-2/3 text-left">
+        <section className="relative flex w-full flex-col items-center justify-center p-4 text-center text-left lg:w-2/3">
           <h2 className="text-2xl font-bold text-neutral-800 lg:text-3xl dark:text-neutral-200">
             ⚡ Powered by Code, Sustained by Coffee ☕, Driven by Curiosity! 🚀
           </h2>

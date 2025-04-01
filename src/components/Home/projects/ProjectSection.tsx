@@ -7,7 +7,7 @@ export default function ProjectSection() {
  
 
   return (
-    <section className="relative flex h-fit w-full items-center justify-center lg:h-screen">
+    <section className="relative flex h-fit w-full items-center justify-center lg:h-screen" id="projects">
       <div className="justify relative mx-auto flex w-11/12 flex-col items-center gap-10">
         {/* Heading */}
         <div className="text-left md:text-center">

@@ -3,7 +3,6 @@ import { AnimatedResumeButton } from "./AnimatedResumeButton";
 import { BackgroundGradient } from "@/components/Home/heroSection/BackgroundGradient";
 import { CodeBlock } from "./CodeBlock";
 import { FlipWords } from "@/components/Home/heroSection/FlipWords";
-import { Link } from "react-router-dom";
 import { MeteorsBackground } from "./MeteorsBackground";
 import { ShimmerButton } from "./ShimmerButton";
 import codeBlockData from "@/assets/data/codeBlockData";
@@ -61,7 +60,7 @@ export default function HeroSection() {
             {/* CTA Buttons */}
 
             <div className="flex h-fit flex-row items-center gap-4 pt-4">
-              <Link to="/contact-me">
+              <a href="#contact">
                 <ShimmerButton
                   shimmerColor="var(--secondary)"
                   shimmerSize="0.15em"
@@ -72,7 +71,7 @@ export default function HeroSection() {
                 >
                   <span>Contact me</span>
                 </ShimmerButton>
-              </Link>
+              </a>
 
               <AnimatedResumeButton
                 resume={resume}

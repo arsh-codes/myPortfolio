@@ -62,7 +62,7 @@ export default function ContactMe() {
   };
 
   return (
-    <section className="relative flex w-full flex-col items-center justify-center lg:h-screen">
+    <section className="relative flex w-full flex-col items-center justify-center lg:h-screen" id="contact">
       <div className="relative mx-auto flex w-11/12 flex-col justify-center gap-10 lg:flex-row lg:items-start">
         {/* Contact Info Section */}
         <div className="">

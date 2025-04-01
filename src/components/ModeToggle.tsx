@@ -25,7 +25,12 @@ export function ModeToggle() {
       <audio ref={audioRef} src={buttonSound} preload="auto"></audio>
 
       {/* Theme Toggle Button */}
-      <Button onClick={toggleTheme} variant="outline" size="icon">
+      <Button
+        onClick={toggleTheme}
+        variant="outline"
+        size="icon"
+        className="p-5"
+      >
         {theme === "dark" ? (
           <Sun className="h-[1.2rem] w-[1.2rem] transition-all" />
         ) : (

@@ -1,84 +1,217 @@
+/* Import Google Fonts for JetBrains Mono and Ubuntu Mono */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+/* Import Tailwind CSS */
 @import "tailwindcss";
 
+/* Import Tailwind CSS plugin for animations */
 @plugin "tailwindcss-animate";
 
+/* Custom Variant for Dark Mode Styles */
 @custom-variant dark (&:is(.dark *));
 
+/* Global settings for scroll behavior and overflow */
 html {
   scroll-behavior: smooth;
+  /* Enables smooth scrolling */
   overflow-y: auto;
+  /* Allows vertical scrolling */
 }
+
 
 
 :root {
+  /* Radius for rounded corners */
   --radius: 0.625rem;
-  --background: oklch(0.95 0 0);
-  --foreground: oklch(0.079 0.042 264.695);
 
+  /* Color settings for background and foreground */
+  --background: oklch(0.95 0 0);
+  /* Light background color */
+  --foreground: oklch(0.079 0.042 264.695);
+  /* Dark foreground color */
+
+  /* Card background and foreground color */
   --card: oklch(1 0 0);
+  /* Card background color */
   --card-foreground: oklch(0.129 0.042 264.695);
+  /* Text color inside card */
+
+  /* Popover background and foreground color */
   --popover: oklch(1 0 0);
+  /* Popover background color */
   --popover-foreground: oklch(0.129 0.042 264.695);
+  /* Text color inside popover */
+
+  /* Primary color and its foreground (text) color */
   --primary: oklch(0.208 0.042 265.755);
+  /* Primary color */
   --primary-foreground: oklch(0.984 0.003 247.858);
+  /* Primary text color */
+
+  /* Secondary color and its foreground (text) color */
   --secondary: oklch(0.968 0.007 247.896);
+  /* Secondary color */
   --secondary-foreground: oklch(0.208 0.042 265.755);
+  /* Secondary text color */
+
+  /* Muted color and its foreground (text) color */
   --muted: oklch(0.968 0.007 247.896);
+  /* Muted color (usually for less emphasized elements) */
   --muted-foreground: oklch(0.554 0.046 257.417);
+  /* Text color for muted elements */
+
+  /* Accent color and its foreground (text) color */
   --accent: oklch(0.968 0.007 247.896);
+  /* Accent color */
   --accent-foreground: oklch(0.208 0.042 265.755);
+  /* Accent text color */
+
+  /* Destructive color (used for dangerous actions like delete) */
   --destructive: oklch(0.577 0.245 27.325);
+  /* Red tone for destructive actions */
+
+  /* Border color */
   --border: oklch(0.929 0.013 255.508);
+  /* Border color used throughout the UI */
+
+  /* Input field color */
   --input: oklch(0.929 0.013 255.508);
+  /* Color for input fields (borders, background) */
+
+  /* Ring color (for focus rings and outlines) */
   --ring: oklch(0.704 0.04 256.788);
+  /* Ring or outline color for focus states */
+
+  /* Color settings for charts (for visualizations or graphs) */
   --chart-1: oklch(0.646 0.222 41.116);
+  /* Color for first chart element */
   --chart-2: oklch(0.6 0.118 184.704);
+  /* Color for second chart element */
   --chart-3: oklch(0.398 0.07 227.392);
+  /* Color for third chart element */
   --chart-4: oklch(0.828 0.189 84.429);
+  /* Color for fourth chart element */
   --chart-5: oklch(0.769 0.188 70.08);
+  /* Color for fifth chart element */
+
+  /* Sidebar background and text colors */
   --sidebar: oklch(0.984 0.003 247.858);
+  /* Sidebar background color */
   --sidebar-foreground: oklch(0.129 0.042 264.695);
+  /* Sidebar text color */
   --sidebar-primary: oklch(0.208 0.042 265.755);
+  /* Primary sidebar color */
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  /* Text color for primary sidebar elements */
   --sidebar-accent: oklch(0.968 0.007 247.896);
+  /* Sidebar accent color */
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  /* Text color for sidebar accent elements */
+
+  /* Sidebar border and ring color */
   --sidebar-border: oklch(0.929 0.013 255.508);
+  /* Sidebar border color */
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  /* Sidebar focus ring color */
 }
+
 
 .dark {
+  /* Dark mode background and foreground colors */
   --background: oklch(0.129 0.042 264.695);
+  /* Dark background color */
   --foreground: oklch(0.984 0.003 247.858);
+  /* Light foreground text color */
+
+  /* Card background and foreground color */
   --card: oklch(0.208 0.042 265.755);
+  /* Dark card background */
   --card-foreground: oklch(0.984 0.003 247.858);
+  /* Light text color inside card */
+
+  /* Popover background and foreground color */
   --popover: oklch(0.208 0.042 265.755);
+  /* Dark popover background */
   --popover-foreground: oklch(0.984 0.003 247.858);
+  /* Light text color inside popover */
+
+  /* Primary color and its foreground (text) color */
   --primary: oklch(0.929 0.013 255.508);
+  /* Light primary color */
   --primary-foreground: oklch(0.208 0.042 265.755);
+  /* Dark primary text color */
+
+  /* Secondary color and its foreground (text) color */
   --secondary: oklch(0.279 0.041 260.031);
+  /* Muted secondary color */
   --secondary-foreground: oklch(0.984 0.003 247.858);
+  /* Light text color for secondary elements */
+
+  /* Muted color and its foreground (text) color */
   --muted: oklch(0.279 0.041 260.031);
+  /* Muted background color */
   --muted-foreground: oklch(0.704 0.04 256.788);
+  /* Muted text color */
+
+  /* Accent color and its foreground (text) color */
   --accent: oklch(0.279 0.041 260.031);
+  /* Muted accent color */
   --accent-foreground: oklch(0.984 0.003 247.858);
+  /* Light text color for accent elements */
+
+  /* Destructive color (used for dangerous actions like delete) */
   --destructive: oklch(0.704 0.191 22.216);
+  /* Red tone for destructive actions */
+
+  /* Border color */
   --border: oklch(1 0 0 / 10%);
+  /* Border color with low opacity */
+
+  /* Input field color */
   --input: oklch(1 0 0 / 15%);
+  /* Input field color with lower opacity */
+
+  /* Ring color (for focus rings and outlines) */
   --ring: oklch(0.551 0.027 264.364);
+  /* Focus ring color */
+
+  /* Color settings for charts (for visualizations or graphs) */
   --chart-1: oklch(0.488 0.243 264.376);
+  /* Color for first chart element */
   --chart-2: oklch(0.696 0.17 162.48);
+  /* Color for second chart element */
   --chart-3: oklch(0.769 0.188 70.08);
+  /* Color for third chart element */
   --chart-4: oklch(0.627 0.265 303.9);
+  /* Color for fourth chart element */
   --chart-5: oklch(0.645 0.246 16.439);
+  /* Color for fifth chart element */
+
+  /* Sidebar background and text colors */
   --sidebar: oklch(0.208 0.042 265.755);
+  /* Dark sidebar background */
   --sidebar-foreground: oklch(0.984 0.003 247.858);
+  /* Light sidebar text color */
+
+  /* Sidebar primary color and its foreground (text) color */
   --sidebar-primary: oklch(0.488 0.243 264.376);
+  /* Primary sidebar color */
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  /* Text color for primary sidebar elements */
+
+  /* Sidebar accent color and its foreground (text) color */
   --sidebar-accent: oklch(0.279 0.041 260.031);
+  /* Sidebar accent color */
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  /* Text color for sidebar accent elements */
+
+  /* Sidebar border and ring color */
   --sidebar-border: oklch(1 0 0 / 10%);
+  /* Sidebar border color with low opacity */
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Sidebar focus ring color */
 }
+
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -176,14 +309,48 @@ html {
   }
 
 
+
+
 }
 
+
+/* Base styles for the website */
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    /* Apply border and outline styles to all elements */
   }
 
   body {
     @apply bg-background text-foreground;
+    /* Set background and text colors based on the theme */
   }
+}
+
+
+
+
+
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }

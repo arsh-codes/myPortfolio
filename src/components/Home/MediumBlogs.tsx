@@ -43,7 +43,10 @@ export default function MediumArticles() {
   }, []);
 
   return (
-    <div className="my-10 flex h-fit w-full items-center justify-center">
+    <div
+      className="my-10 flex h-fit w-full items-center justify-center"
+      id="blogs"
+    >
       <div className="mx-auto flex h-fit w-11/12 flex-row gap-2 px-10 lg:items-center">
         {/* Header */}
         <div className="flex max-w-fit flex-col p-2">

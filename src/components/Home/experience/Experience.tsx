@@ -2,10 +2,10 @@ import { Timeline } from "./Timeline";
 import timelineData from "@/assets/data/timelineData";
 export default function Experience() {
   return (
-    <div className="mb-30 h-fit w-full">
+    <div className="mb-30 h-fit w-full" id="experience">
       <section className="mx-auto flex w-11/12 flex-col gap-0">
         {/* Heading container */}
-        <div className="bg-background flex flex-col gap-2 ">
+        <div className="bg-background flex flex-col gap-2">
           <h1 className="text-3xl font-bold lg:text-4xl">How I Got Here</h1>
           <p className="text-muted-foreground text-lg">
             A Timeline of My Professional and Academic Milestones
