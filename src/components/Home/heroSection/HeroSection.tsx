@@ -13,9 +13,9 @@ export default function HeroSection() {
   // const { theme } = useTheme();
   return (
     // wrapper
-    <div className="relative h-fit w-screen overflow-hidden lg:h-screen">
+    <div className="relative h-fit w-screen overflow-hidden">
       <MeteorsBackground number={20} />
-      <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-10 py-10 lg:flex-row lg:items-center lg:gap-6 lg:py-15">
+      <div className="relative mx-auto my-auto flex h-fit w-11/12 flex-col gap-10 lg:flex-row lg:items-center lg:gap-6 lg:py-7">
         {/* Bio Section */}
         <section className="relative flex w-full flex-col items-start lg:w-1/2 lg:items-center">
           <div>
@@ -33,7 +33,7 @@ export default function HeroSection() {
             </h1>
             {/* FlipWords Component */}
 
-            <p className="text-primary font-manrope mt-4 text-2xl">
+            <div className="text-primary font-manrope mt-4 text-2xl">
               I make frontend beautiful ✨, <br />
               backend powerful ⚡,
               <br />
@@ -55,7 +55,7 @@ export default function HeroSection() {
                 duration={3000}
                 className="ml-2 inline-block"
               />
-            </p>
+            </div>
 
             {/* CTA Buttons */}
 

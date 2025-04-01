@@ -17,6 +17,11 @@ export default function HomePage() {
       <GithubSection />
       <MediumBlogs />
       <ContactMe />
+      <div className="mt-8">
+        <footer className="absolute bottom-2 mt-10 w-full text-center text-sm text-neutral-600 dark:text-neutral-400">
+          Made with ❤️ by Arshdeep Singh | 🅮 {new Date().getFullYear()}
+        </footer>
+      </div>
     </div>
   );
 }

@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/Button";
 import studyNotionImage from "@/assets/media/studyNotionImage.png";
 
 export default function ProjectSection() {
- 
-
   return (
-    <section className="relative flex h-fit w-full items-center justify-center lg:h-screen" id="projects">
+    <section
+      className="relative flex h-fit w-full items-center justify-center lg:h-screen"
+      id="projects"
+    >
       <div className="justify relative mx-auto flex w-11/12 flex-col items-center gap-10">
         {/* Heading */}
         <div className="text-left md:text-center">
@@ -22,9 +23,12 @@ export default function ProjectSection() {
         <div className="flex w-10/12 flex-col gap-4">
           {projectsData.map((project, index) => (
             // card
-            <div className="flex h-fit flex-col items-center gap-1 rounded-lg lg:flex-row">
+            <div
+              className="flex h-fit flex-col items-center gap-1 rounded-lg lg:flex-row"
+              key={index}
+            >
               {/* image section */}
-              <section className="w-full lg:w-1/2 rounded-md overflow-hidden">
+              <section className="w-full overflow-hidden rounded-md lg:w-1/2">
                 <img src={project.image} alt="" />
               </section>
               {/* details section card */}
