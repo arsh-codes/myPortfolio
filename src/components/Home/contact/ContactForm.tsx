@@ -21,10 +21,16 @@ export function ContactForm() {
     setLoading(true);
     setStatus({ type: null, message: "" });
 
-    const form = e.currentTarget;
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
+    const form = e.currentTarget as HTMLFormElement;
+    const name = (
+      form.elements.namedItem("name") as HTMLInputElement
+    )?.value.trim();
+    const email = (
+      form.elements.namedItem("email") as HTMLInputElement
+    )?.value.trim();
+    const message = (
+      form.elements.namedItem("message") as HTMLTextAreaElement
+    )?.value.trim();
 
     // Get the current time using the Date object
     const time = new Date().toLocaleString();

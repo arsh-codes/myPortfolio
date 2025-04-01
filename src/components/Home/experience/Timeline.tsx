@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 interface TimelineEntry {
   title: string;
@@ -10,13 +10,13 @@ interface TimelineEntry {
   icon?: React.ReactNode;
 }
 
-export const Timeline = ({ 
+export const Timeline = ({
   data,
   highlightColor = "#4ade80",
   secondaryColor = "#06b6d4",
   lineWidth = 2,
-  animate = true
-}: { 
+  animate = true,
+}: {
   data: TimelineEntry[];
   highlightColor?: string;
   secondaryColor?: string;
@@ -39,7 +39,7 @@ export const Timeline = ({
 
     updateHeight();
     window.addEventListener("resize", updateHeight);
-    
+
     return () => {
       window.removeEventListener("resize", updateHeight);
     };
@@ -51,53 +51,47 @@ export const Timeline = ({
     offset: ["start 20%", "end 80%"], // Wider range for smoother animation
   });
 
-  const heightTransform = useTransform(
-    scrollYProgress, 
-    [0, 1], 
-    [0, height]
-  );
-  
-  const opacityTransform = useTransform(
-    scrollYProgress, 
-    [0, 0.1], 
-    [0, 1]
-  );
+  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
+
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   // Calculate which item is currently in view
   useEffect(() => {
     if (!animate) return;
-    
+
     const handleScroll = () => {
-      const items = document.querySelectorAll('.timeline-entry');
+      const items = document.querySelectorAll(".timeline-entry");
       const viewportHeight = window.innerHeight;
-      
+
       let closestItem = null;
       let closestDistance = Infinity;
-      
+
       items.forEach((item, index) => {
         const rect = item.getBoundingClientRect();
-        const distanceToCenter = Math.abs(rect.top + rect.height / 2 - viewportHeight / 2);
-        
+        const distanceToCenter = Math.abs(
+          rect.top + rect.height / 2 - viewportHeight / 2,
+        );
+
         if (distanceToCenter < closestDistance) {
           closestDistance = distanceToCenter;
           closestItem = index;
         }
       });
-      
+
       setActiveIndex(closestItem);
     };
-    
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial check
-    
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [animate]);
 
   return (
     // Outer container holding the timeline
-    <div className="w-full px-4 md:px-10 py-8" ref={containerRef}>
+    <div className="w-full px-4 py-8 md:px-10" ref={containerRef}>
       {/* Timeline wrapper */}
       <div ref={ref} className="relative">
         {data.map((item, index) => (
@@ -105,27 +99,30 @@ export const Timeline = ({
           <motion.div
             key={index}
             className={`timeline-entry flex justify-start pt-8 md:gap-10 md:pt-16 ${
-              activeIndex === index ? 'z-10' : 'z-0'
+              activeIndex === index ? "z-10" : "z-0"
             }`}
             initial={{ opacity: animate ? 0.5 : 1, y: animate ? 20 : 0 }}
-            whileInView={{ 
-              opacity: 1, 
+            whileInView={{
+              opacity: 1,
               y: 0,
-              transition: { 
+              transition: {
                 duration: 0.5,
-                delay: index * 0.1
-              }
+                delay: index * 0.1,
+              },
             }}
             viewport={{ once: true, margin: "-100px 0px" }}
           >
             {/* Left section containing the title */}
             <div className="sticky top-32 z-40 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm">
               {/* Circular marker on the timeline */}
-              <motion.div 
+              <motion.div
                 className="absolute left-3 flex size-10 items-center justify-center rounded-full md:left-3"
-                animate={{ 
+                animate={{
                   scale: activeIndex === index ? 1.2 : 1,
-                  backgroundColor: activeIndex === index ? 'rgba(156, 163, 175, 0.3)' : 'rgba(156, 163, 175, 0)'
+                  backgroundColor:
+                    activeIndex === index
+                      ? "rgba(156, 163, 175, 0.3)"
+                      : "rgba(156, 163, 175, 0)",
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -134,11 +131,11 @@ export const Timeline = ({
                   {item.icon || null}
                 </div>
               </motion.div>
-              
+
               {/* Title (Visible only on larger screens) */}
               <motion.div
-                className="hidden md:block md:pl-20 w-full"
-                animate={{ 
+                className="hidden w-full md:block md:pl-20"
+                animate={{
                   opacity: activeIndex === index ? 1 : 0.7,
                 }}
                 transition={{ duration: 0.3 }}
@@ -147,13 +144,13 @@ export const Timeline = ({
                   {item.title}
                 </h3>
                 {item.date && (
-                  <p className="text-sm text-neutral-500 mt-1 dark:text-neutral-400">
+                  <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
                     {item.date}
                   </p>
                 )}
               </motion.div>
             </div>
-            
+
             {/* Right section containing the content */}
             <div className="relative w-full pr-4 pl-16 md:pl-4">
               {/* Title (Visible only on small screens) */}
@@ -162,15 +159,15 @@ export const Timeline = ({
                   {item.title}
                 </h3>
                 {item.date && (
-                  <p className="text-sm text-neutral-500 mt-1 dark:text-neutral-400">
+                  <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
                     {item.date}
                   </p>
                 )}
               </div>
-              
+
               {/* Content with optional animation */}
               <motion.div
-                animate={{ 
+                animate={{
                   opacity: activeIndex === index ? 1 : 0.9,
                 }}
                 transition={{ duration: 0.3 }}
@@ -181,7 +178,7 @@ export const Timeline = ({
             </div>
           </motion.div>
         ))}
-        
+
         {/* Vertical timeline line */}
         <div
           style={{

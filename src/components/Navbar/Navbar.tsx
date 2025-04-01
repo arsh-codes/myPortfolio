@@ -7,7 +7,6 @@ import {
   IconMessage,
   IconUser,
 } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
 
 import { FloatingDock } from "../ui/FloatingDock";
 
