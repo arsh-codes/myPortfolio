@@ -6,7 +6,7 @@ import { Input } from "./Input";
 import { Label } from "./Label";
 import { Textarea } from "@/components/Home/contact/Textarea";
 import { cn } from "@/lib/utils";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
