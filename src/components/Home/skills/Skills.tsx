@@ -15,13 +15,30 @@ export default function Skills() {
   return (
     <div className="relative h-fit w-full lg:h-screen" id="skills">
       <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly text-left lg:items-center">
-        <div className="flex w-full flex-col text-left lg:items-center lg:text-center">
-          <h1 className="text-foreground text-2xl font-bold md:text-3xl lg:text-4xl">
-            The Stack That Gets Things Done
-          </h1>
-          <p className="text-muted-foreground mt-2 lg:text-lg">
-            MERN-powered, TypeScript-tuned, and Tailwind-styled.
+        <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
+          <div className="relative">
+            <h1 className="relative z-10 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+              <span className="from-emerald to-cyan bg-gradient-to-r bg-clip-text text-transparent">
+                The Stack That Gets Things Done
+              </span>
+            </h1>
+          </div>
+
+          <p className="text-muted-foreground max-w-2xl text-base leading-relaxed lg:text-lg">
+            <span className="text-foreground/90 font-semibold">
+              MERN-powered
+            </span>
+            ,<span className="text-cyan font-semibold"> TypeScript</span>-tuned,
+            and
+            <span className="text-emerald font-semibold"> Tailwind</span>
+            -styled.
           </p>
+
+          <div className="mt-1 flex items-center justify-center space-x-2">
+            <div className="bg-emerald size-1 animate-pulse rounded-full"></div>
+            <div className="bg-cyan size-1 animate-pulse rounded-full delay-150"></div>
+            <div className="bg-emerald size-1 animate-pulse rounded-full delay-300"></div>
+          </div>
         </div>
 
         <div className="relative flex flex-col-reverse items-center lg:flex-row">

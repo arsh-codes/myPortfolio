@@ -113,10 +113,14 @@ html {
   /* Sidebar border color */
   --sidebar-ring: oklch(0.704 0.04 256.788);
   /* Sidebar focus ring color */
+  --emerald: #10B981;
+  --cyan: #06A3C9;
 }
 
 
 .dark {
+  --emerald: #4ade80;
+  --cyan: #06b6d4;
   /* Dark mode background and foreground colors */
   --background: oklch(0.129 0.042 264.695);
   /* Dark background color */
@@ -214,6 +218,8 @@ html {
 
 
 @theme inline {
+  --color-cyan: var(--cyan);
+  --color-emerald: var(--emerald);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

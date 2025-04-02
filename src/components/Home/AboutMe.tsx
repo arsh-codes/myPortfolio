@@ -10,7 +10,7 @@ export default function AboutMe() {
         {/* Image Section */}
         <section className="relative flex w-full flex-col items-center justify-center lg:w-1/3">
           <div className="relative">
-            <div className="absolute -right-3 -bottom-3 h-full w-full rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 opacity-70"></div>
+            <div className="absolute -right-3 -bottom-3 h-full w-full rounded-lg bg-gradient-to-r from-emerald to-cyan opacity-70"></div>
             <img
               src={aboutMeImage}
               alt="Arshdeep Singh"
@@ -26,16 +26,14 @@ export default function AboutMe() {
           <div className="mt-4 space-y-4 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
             <p>
               Hey there! 👋 I'm{" "}
-              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-                Arshdeep Singh
-              </span>
+              <span className="text-emerald font-semibold">Arshdeep Singh</span>
               , a Full Stack Developer from India who writes code, fixes bugs
               🐛, and occasionally questions reality when things break for no
               reason.
             </p>
             <p>
               I work with{" "}
-              <span className="font-semibold text-cyan-600 dark:text-cyan-400">
+              <span className="text-cyan font-semibold">
                 MongoDB, Express, React, Node.js, TypeScript, and Tailwind CSS
               </span>{" "}
               🛠️, building clean, efficient, and user-friendly applications.
@@ -44,7 +42,7 @@ export default function AboutMe() {
             </p>
             <p>
               Outside of coding, I believe in{" "}
-              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+              <span className="text-emerald font-semibold">
                 staying active, eating well, and staying at my best, inside and
                 out
               </span>
