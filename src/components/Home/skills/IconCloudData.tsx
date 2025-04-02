@@ -15,31 +15,23 @@ const slugs = [
   "linux",
   "git",
   "python",
-  "java",
-  "adobephotoshop",
   "vite",
   "mysql",
   "vercel",
   "postman",
-  "visualstudiocode",
   "jira",
   "chakraui",
   "eslint",
   "prettier",
   "notion",
-  "windows",
   "apple",
   "steam",
   "amd",
   "openai",
-  "alexa",
-  "framermotion",
+  "amazonalexa",
   "axios",
   "reacthookform",
-  "reacthottoast",
-  "reacticons",
   "reactrouter",
-  "materialtailwind",
   "torproject",
   "googlechrome",
   "firefoxbrowser",
@@ -50,7 +42,7 @@ const slugs = [
 
 export function IconCloudData() {
   return (
-    <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg bg-transparent px-10  ">
+    <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg bg-transparent px-10">
       <IconCloud iconSlugs={slugs} />
     </div>
   );

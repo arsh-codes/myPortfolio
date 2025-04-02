@@ -9,29 +9,33 @@ import { useEffect, useState } from "react";
 
 import { ContactForm } from "./ContactForm";
 import { TypewriterEffectSmooth } from "./TypewriterEffect";
+import { motion } from "motion/react";
 
 export default function ContactMe() {
   const socialLinks = [
     {
       href: "https://www.linkedin.com/in/work-arsh/",
-      icon: <FaLinkedin className="size-8 md:size-12" />,
+      icon: <FaLinkedin className="size-8 md:size-10" />,
       label: "LinkedIn",
+      color: "hover:text-[#0077B5]",
     },
-
     {
       href: "https://discordapp.com/users/572624088783126562",
-      icon: <FaDiscord className="size-8 md:size-12" />,
+      icon: <FaDiscord className="size-8 md:size-10" />,
       label: "Discord",
+      color: "hover:text-[#7289DA]",
     },
     {
       href: "https://github.com/arsh-codes",
-      icon: <FaGithub className="size-8 md:size-12" />,
+      icon: <FaGithub className="size-8 md:size-10" />,
       label: "GitHub",
+      color: "hover:text-[#2b3137] dark:hover:text-[#fafbfc]",
     },
     {
       href: "mailto:work.arshdeep@outlook.com",
-      icon: <FaEnvelope className="size-8 md:size-12" />,
+      icon: <FaEnvelope className="size-8 md:size-10" />,
       label: "Email",
+      color: "hover:text-[#c71610]",
     },
   ];
 
@@ -62,67 +66,123 @@ export default function ContactMe() {
   };
 
   return (
-    <section className="relative flex w-full flex-col items-center justify-center lg:h-screen">
-      <div className="relative mx-auto flex w-11/12 flex-col justify-center gap-10 lg:flex-row lg:items-start">
-        {/* Contact Info Section */}
-        <div className="">
-          <TypewriterEffectSmooth
-            className="text-2xl font-bold md:text-3xl"
-            words={[
-              { text: "Let's" },
-              { text: "Build" },
-              { text: "Something" },
-              { text: "Awesome" },
-              {
-                text: "Together.",
-                className: "text-blue-500 dark:text-blue-500",
-              },
-            ]}
-            cursorClassName="bg-blue-500 dark:bg-blue-500 animate-blink"
-          />
-          <p className="text-muted-foreground max-w-2xl text-balance">
-            Got a cool idea, a job opportunity, or just want to chat about tech,
-            movies, or anime? I’m all ears! Whether you're looking for a
-            developer to join your team, a collaborator for an exciting project,
-            or just want to say hello, don’t hesitate to reach out.
+    <section
+      className="relative flex w-full flex-col items-center justify-center lg:h-screen"
+      id="contact"
+    >
+      {/* wrapper  */}
+      <div className="mx-auto flex w-11/12 flex-col items-center">
+        {/* Heading */}
+        <div className="mb-8 text-center">
+          <h2 className="mb-4 text-5xl font-bold tracking-tight sm:text-6xl">
+            <span className="bg-gradient-to-r from-[#4ade80] to-[#06b6d4] bg-clip-text text-transparent">
+              Get in Touch
+            </span>
+          </h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            Let's collaborate and bring your ideas to life
           </p>
-
-          {/* Social Links */}
-          <div className="my-6 flex justify-start space-x-6">
-            {socialLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 hover:drop-shadow-md"
-              >
-                {link.icon}
-              </a>
-            ))}
-          </div>
-
-          {/* Location & Time Info */}
-          <div className="mt-4 flex flex-col space-y-1 text-sm text-neutral-600 dark:text-neutral-300">
-            <p>
-              📍 <strong>Based in:</strong>{" "}
-              <span className="font-medium">Delhi, India 🇮🇳</span>
-            </p>
-            <p>
-              ⏳ <strong>Time Zone:</strong>{" "}
-              <span className="font-medium">IST (UTC+5:30)</span>
-            </p>
-            <p>
-              🕒 <strong>Current Time:</strong>{" "}
-              <span className="text-primary font-mono">{time}</span>
-            </p>
-          </div>
         </div>
-
-        {/* Contact Form */}
+        {/* info and form */}
         <div>
-          <ContactForm />
+          <div className="relative mx-auto flex w-11/12 flex-col justify-center gap-30 lg:flex-row lg:items-start">
+            {/* Contact Info Section */}
+            <div>
+              <TypewriterEffectSmooth
+                className="text-2xl font-bold md:text-3xl"
+                words={[
+                  { text: "Let's" },
+                  {
+                    text: "Build",
+                    className:
+                      "bg-gradient-to-r from-[#4ade80] to-[#06b6d4] bg-clip-text text-transparent",
+                  },
+                  { text: "Something" },
+                  {
+                    text: "Awesome",
+                  },
+                  {
+                    text: "Together.",
+                  },
+                ]}
+                cursorClassName="bg-[#4ade80] animate-blink"
+              />
+
+              <p className="text-muted-foreground max-w-2xl text-balance">
+                Got a cool idea, a job opportunity, or just want to chat about
+                tech, movies, or anime? I’m all ears! Whether you're looking for
+                a developer to join your team, a collaborator for an exciting
+                project, or just want to say hello, don’t hesitate to reach out.
+              </p>
+
+              {/* Social Links */}
+              <div className="my-8">
+                <h3 className="text-muted-foreground mb-4 text-sm font-medium tracking-wider uppercase">
+                  Connect With Me
+                </h3>
+                <div className="flex flex-wrap gap-6">
+                  {socialLinks.map((link, index) => (
+                    <motion.a
+                      key={index}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.label}
+                      className={`text-muted-foreground transition-all duration-200 ${link.color}`}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {link.icon}
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Location & Time Info */}
+              <div className="bg-muted/50 dark:bg-muted/20 mt-8 space-y-4 rounded-2xl p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                    📍
+                  </span>
+                  <div>
+                    <p className="text-muted-foreground text-sm font-medium">
+                      Based in
+                    </p>
+                    <p className="font-medium">Delhi, India 🇮🇳</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                    ⏳
+                  </span>
+                  <div>
+                    <p className="text-muted-foreground text-sm font-medium">
+                      Time Zone
+                    </p>
+                    <p className="font-medium">IST (UTC+5:30)</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                    🕒
+                  </span>
+                  <div>
+                    <p className="text-muted-foreground text-sm font-medium">
+                      Current Time
+                    </p>
+                    <p className="text-primary font-mono font-medium">{time}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div>
+              <ContactForm />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -135,11 +195,6 @@ export default function ContactMe() {
         <FaArrowUp className="mr-2 text-lg" />
         <span>Back to top</span>
       </button>
-
-      {/* Footer */}
-      <footer className="absolute bottom-2 mt-10 w-full text-center text-sm text-neutral-600 dark:text-neutral-400">
-        Made with ❤️ by Arshdeep Singh | 🅮 {new Date().getFullYear()}
-      </footer>
     </section>
   );
 }

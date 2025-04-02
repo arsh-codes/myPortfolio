@@ -13,7 +13,7 @@ export default function Skills() {
   // Skills Data
 
   return (
-    <div className="relative h-fit w-full lg:h-screen">
+    <div className="relative h-fit w-full lg:h-screen" id="skills">
       <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly text-left lg:items-center">
         <div className="flex w-full flex-col text-left lg:items-center lg:text-center">
           <h1 className="text-foreground text-2xl font-bold md:text-3xl lg:text-4xl">
