@@ -8,8 +8,8 @@ export default function Experience() {
         {/* Enhanced heading container */}
         <div className="relative mb-8 flex flex-col gap-3">
           <div className="flex items-center gap-2">
-            <div className="h-1 w-16 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-500"></div>
-            <h2 className="text-sm font-semibold tracking-wider text-emerald-600 uppercase dark:text-emerald-400">
+            <div className="from-emerald to-cyan h-1 w-16 rounded-full bg-gradient-to-r"></div>
+            <h2 className="text-emerald text-sm font-semibold tracking-wider uppercase">
               Career Path
             </h2>
           </div>
@@ -23,7 +23,7 @@ export default function Experience() {
           </p>
 
           {/* Decorative element for more heading emphasis */}
-          <div className="absolute -bottom-4 left-0 h-0.5 w-24 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-500"></div>
+          <div className="from-emerald to-cyan absolute -bottom-4 left-0 h-0.5 w-24 rounded-full bg-gradient-to-r"></div>
         </div>
 
         <div>

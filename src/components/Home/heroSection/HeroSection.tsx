@@ -7,13 +7,13 @@ import { MeteorsBackground } from "./MeteorsBackground";
 import { ShimmerButton } from "./ShimmerButton";
 import codeBlockData from "@/assets/data/codeBlockData";
 import resume from "@/assets/data/Resume Arshdeep Singh.pdf";
-// import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function HeroSection() {
-  // const { theme } = useTheme();
+  const { theme } = useTheme();
   return (
     // wrapper
-    <div className="relative h-fit w-screen overflow-hidden">
+    <div className="relative h-fit w-screen overflow-hidden" id="hero">
       <MeteorsBackground number={20} />
       <div className="relative mx-auto my-auto flex h-fit w-11/12 flex-col gap-10 lg:flex-row lg:items-center lg:gap-6 lg:py-7">
         {/* Bio Section */}
@@ -24,8 +24,8 @@ export default function HeroSection() {
               I'm{" "}
               <AnimatedGradientText
                 speed={1}
-                colorFrom="#4ade80"
-                colorTo="#06b6d4 "
+                colorFrom={theme === "dark" ? "#4ade80" : "#10B981"}
+                colorTo={theme === "dark" ? "#06b6d4" : "#06A3C9"}
                 className="font-bold"
               >
                 Arshdeep Singh
