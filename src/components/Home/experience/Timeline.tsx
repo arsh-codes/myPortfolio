@@ -91,7 +91,7 @@ export const Timeline = ({
 
   return (
     // Outer container holding the timeline
-    <div className="w-full px-4 py-8 md:px-10" ref={containerRef}>
+    <div className="relative w-full px-4 py-8 md:px-10" ref={containerRef}>
       {/* Timeline wrapper */}
       <div ref={ref} className="relative">
         {data.map((item, index) => (
