@@ -1,8 +1,8 @@
 import { Timeline } from "./Timeline";
 import timelineData from "@/assets/data/timelineData";
-export default function Experience() {
+export default function ExperienceSection() {
   return (
-    <div className="mb-30 h-fit w-full" id="experience">
+    <div className="h-fit w-full pb-10" id="experience">
       <section className="mx-auto flex w-11/12 flex-col gap-0">
         {/* Heading container */}
         {/* Enhanced heading container */}

@@ -1,16 +1,16 @@
 import aboutMeImage from "@/assets/media/aboutMeImage.jpg";
 
-export default function AboutMe() {
+export default function AboutSection() {
   return (
     <div
-      className="relative flex h-fit w-full items-center justify-center lg:h-screen"
+      className="relative flex h-fit min-h-[60vh] w-full items-center justify-center  py-16"
       id="about"
     >
-      <div className="relative mx-auto flex h-full w-11/12 flex-col gap-10 py-12 lg:flex-row lg:items-center">
+      <div className="relative mx-auto flex h-full w-11/12 flex-col gap-10  lg:flex-row lg:items-center ">
         {/* Image Section */}
         <section className="relative flex w-full flex-col items-center justify-center lg:w-1/3">
           <div className="relative">
-            <div className="absolute -right-3 -bottom-3 h-full w-full rounded-lg bg-gradient-to-r from-emerald to-cyan opacity-70"></div>
+            <div className="from-emerald to-cyan absolute -right-3 -bottom-3 h-full w-full rounded-lg bg-gradient-to-r opacity-70"></div>
             <img
               src={aboutMeImage}
               alt="Arshdeep Singh"

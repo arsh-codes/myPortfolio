@@ -13,7 +13,7 @@ interface MediumPost {
   image: string;
 }
 
-export default function MediumArticles() {
+export default function BlogSection() {
   const [mediumPosts, setMediumPosts] = useState<MediumPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,7 +69,7 @@ export default function MediumArticles() {
 
   return (
     <div
-      className="my-16 flex h-fit w-full items-center justify-center"
+      className="flex h-fit w-full items-center justify-center pt-30 lg:h-[90vh]"
       id="blogs"
     >
       <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-8 px-4 md:px-10 lg:flex-row lg:items-start lg:gap-4">
@@ -87,13 +87,14 @@ export default function MediumArticles() {
             </AnimatedGradientText>
           </h2>
           <p className="text-muted-foreground mt-4 text-balance">
-            Sharing insights, tutorials, and experiences in web development and software engineering.
+            Sharing insights, tutorials, and experiences in web development and
+            software engineering.
           </p>
           <a
             href="https://medium.com/@11322brar"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-cyan-500 hover:text-emerald-500 dark:text-cyan-400 dark:hover:text-emerald-400 mt-4 inline-flex items-center text-lg font-medium transition-colors duration-300"
+            className="mt-4 inline-flex items-center text-lg font-medium text-cyan-500 transition-colors duration-300 hover:text-emerald-500 dark:text-cyan-400 dark:hover:text-emerald-400"
           >
             View More on Medium
             <svg
@@ -118,7 +119,7 @@ export default function MediumArticles() {
               onClick={scrollLeft}
               variant="outline"
               size="icon"
-              className="rounded-full border-cyan-500/20 bg-background/80 backdrop-blur-sm hover:bg-cyan-500/10 dark:border-cyan-400/20 dark:hover:bg-cyan-400/10"
+              className="bg-background/80 rounded-full border-cyan-500/20 backdrop-blur-sm hover:bg-cyan-500/10 dark:border-cyan-400/20 dark:hover:bg-cyan-400/10"
               aria-label="Scroll left"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -127,7 +128,7 @@ export default function MediumArticles() {
               onClick={scrollRight}
               variant="outline"
               size="icon"
-              className="rounded-full border-emerald-500/20 bg-background/80 backdrop-blur-sm hover:bg-emerald-500/10 dark:border-emerald-400/20 dark:hover:bg-emerald-400/10"
+              className="bg-background/80 rounded-full border-emerald-500/20 backdrop-blur-sm hover:bg-emerald-500/10 dark:border-emerald-400/20 dark:hover:bg-emerald-400/10"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-5 w-5" />
@@ -138,24 +139,24 @@ export default function MediumArticles() {
         {/* Articles Cards Container */}
         <div className="relative w-full lg:w-[calc(100%-20rem)]">
           {/* Navigation Buttons - Desktop Only */}
-          <div className="absolute -left-12 top-1/2 hidden -translate-y-1/2 transform lg:block">
+          <div className="absolute top-1/2 -left-12 hidden -translate-y-1/2 transform lg:block">
             <Button
               onClick={scrollLeft}
               variant="outline"
               size="icon"
-              className="rounded-full border-cyan-500/20 bg-background/80 backdrop-blur-sm hover:bg-cyan-500/10 dark:border-cyan-400/20 dark:hover:bg-cyan-400/10"
+              className="bg-background/80 rounded-full border-cyan-500/20 backdrop-blur-sm hover:bg-cyan-500/10 dark:border-cyan-400/20 dark:hover:bg-cyan-400/10"
               aria-label="Scroll left"
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
           </div>
 
-          <div className="absolute -right-12 top-1/2 hidden -translate-y-1/2 transform lg:block">
+          <div className="absolute top-1/2 -right-12 hidden -translate-y-1/2 transform lg:block">
             <Button
               onClick={scrollRight}
               variant="outline"
               size="icon"
-              className="rounded-full border-emerald-500/20 bg-background/80 backdrop-blur-sm hover:bg-emerald-500/10 dark:border-emerald-400/20 dark:hover:bg-emerald-400/10"
+              className="bg-background/80 rounded-full border-emerald-500/20 backdrop-blur-sm hover:bg-emerald-500/10 dark:border-emerald-400/20 dark:hover:bg-emerald-400/10"
               aria-label="Scroll right"
             >
               <ChevronRight className="h-5 w-5" />
@@ -163,7 +164,7 @@ export default function MediumArticles() {
           </div>
 
           {/* Scrollable Cards Section */}
-          <div 
+          <div
             ref={scrollRef}
             className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth py-4"
           >
@@ -204,7 +205,7 @@ export default function MediumArticles() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="mt-4 min-h-[4.5rem] line-clamp-3 text-lg font-semibold leading-tight text-gray-800 dark:text-white">
+                  <h3 className="mt-4 line-clamp-3 min-h-[4.5rem] text-lg leading-tight font-semibold text-gray-800 dark:text-white">
                     {post.title}
                   </h3>
 

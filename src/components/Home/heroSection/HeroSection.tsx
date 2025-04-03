@@ -13,9 +13,12 @@ export default function HeroSection() {
   const { theme } = useTheme();
   return (
     // wrapper
-    <div className="relative h-fit w-screen overflow-hidden" id="hero">
+    <div
+      className="relative flex h-screen w-screen items-center justify-center overflow-hidden lg:pt-10"
+      id="hero"
+    >
       <MeteorsBackground number={20} />
-      <div className="relative mx-auto my-auto flex h-fit w-11/12 flex-col gap-10 lg:flex-row lg:items-center lg:gap-6 lg:py-7">
+      <div className="relative mx-auto my-auto flex w-11/12 flex-col gap-10 lg:flex-row lg:items-center lg:gap-6 lg:py-7">
         {/* Bio Section */}
         <section className="relative flex w-full flex-col items-start lg:w-1/2 lg:items-center">
           <div>
