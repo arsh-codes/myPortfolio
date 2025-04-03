@@ -11,7 +11,7 @@ import { ContactForm } from "./ContactForm";
 import { TypewriterEffectSmooth } from "./TypewriterEffect";
 import { motion } from "motion/react";
 
-export default function ContactMe() {
+export default function ContactSection() {
   const socialLinks = [
     {
       href: "https://www.linkedin.com/in/work-arsh/",
@@ -67,7 +67,7 @@ export default function ContactMe() {
 
   return (
     <section
-      className="relative flex w-full flex-col items-center justify-center lg:h-screen"
+      className="relative flex w-full flex-col items-center justify-center pt-24 lg:h-screen"
       id="contact"
     >
       {/* wrapper  */}

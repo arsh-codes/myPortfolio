@@ -9,13 +9,13 @@ import { GlowingEffect } from "./GlowingEffect";
 import { IconCloudData } from "@/components/Home/skills/IconCloudData";
 import skillCardsData from "@/assets/data/skillCardsData";
 
-export default function Skills() {
+export default function SkillSection() {
   // Skills Data
 
   return (
-    <div className="relative h-fit w-full lg:h-screen" id="skills">
+    <div className="relative h-fit w-full pt-20 lg:h-screen" id="skills">
       <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly text-left lg:items-center">
-        <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="relative">
             <h1 className="relative z-10 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               <span className="from-emerald to-cyan bg-gradient-to-r bg-clip-text text-transparent">

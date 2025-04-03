@@ -1,4 +1,4 @@
-import { FaCalendarAlt, FaClock, FaCode, FaCodeBranch, FaGithub, FaLink, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCodeBranch, FaGithub, FaLink, FaMapMarkerAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 import { AnimatedGradientText } from "@/components/Home/heroSection/AnimatedGradientText";
@@ -14,23 +14,27 @@ export default function GithubSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const username = "arsh-codes"; // Could also be stored in env or config
+  const username = "arsh-codes";
 
   useEffect(() => {
     const fetchGithubData = async () => {
       try {
         // Simple fetch for user data without metrics
-        const response = await fetch(`https://api.github.com/users/${username}`, {
-          headers: {
-            Authorization: import.meta.env.VITE_GITHUB_TOKEN ? 
-              `token ${import.meta.env.VITE_GITHUB_TOKEN}` : '',
-          }
-        });
-        
+        const response = await fetch(
+          `https://api.github.com/users/${username}`,
+          {
+            headers: {
+              Authorization: import.meta.env.VITE_GITHUB_TOKEN
+                ? `token ${import.meta.env.VITE_GITHUB_TOKEN}`
+                : "",
+            },
+          },
+        );
+
         if (!response.ok) {
           throw new Error(`GitHub API error: ${response.status}`);
         }
-        
+
         const data = await response.json();
         setUserData(data);
         setLoading(false);
@@ -55,19 +59,8 @@ export default function GithubSection() {
     visible: (i) => ({
       opacity: 1,
       scale: 1,
-      transition: { delay: 0.1 * i, duration: 0.4 }
-    })
-  };
-
-  // Format date for display
-  const formatDate = (dateString) => {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric"
-    });
+      transition: { delay: 0.1 * i, duration: 0.4 },
+    }),
   };
 
   if (loading) {
@@ -79,21 +72,36 @@ export default function GithubSection() {
       </section>
     );
   }
-
+  // make this error section better. dont log error only show the message i added with a contact button
   if (error) {
     return (
-      <section className="relative w-full overflow-hidden py-20" id="github">
+      <section
+        className="relative hidden w-full overflow-hidden py-20"
+        id="github"
+      >
         <div className="container mx-auto px-4 text-center">
           <p className="text-lg text-red-500">
-            Error loading GitHub data: {error}
+            "Oops! Looks like something went wrong while fetching my GitHub
+            data. If you're not able to see my projects here, it means the data
+            isn't loading properly. Feel free to drop me a message—I'd really
+            appreciate it! I'll check it out and get it fixed as soon as
+            possible. 🚀😊"
           </p>
+          <a href="#contact">
+            <button className="shadow-2xl hover:scale-105">
+              <span>Contact me</span>
+            </button>
+          </a>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="relative w-full overflow-hidden py-20" id="github">
+    <section
+      className="relative flex h-screen w-full items-center justify-center overflow-hidden pt-20"
+      id="github"
+    >
       {/* Background gradient elements */}
       <div className="absolute top-20 -right-64 h-96 w-96 rounded-full bg-emerald-300/20 blur-3xl filter"></div>
       <div className="absolute bottom-20 -left-64 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl filter"></div>
@@ -138,11 +146,11 @@ export default function GithubSection() {
                   variants={cardItem}
                   className="col-span-1 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/5 to-emerald-500/10 p-6 text-center lg:col-span-1"
                 >
-                  <div className="mb-4 overflow-hidden rounded-full border-2 border-cyan-500/30 p-1">
+                  <div className="mb-4 overflow-hidden rounded-full border-2 border-cyan-500/30 hover:border-cyan-500/50 p-1">
                     {userData?.avatar_url && (
-                      <img 
-                        src={userData.avatar_url} 
-                        alt={`${username}'s avatar`} 
+                      <img
+                        src={userData.avatar_url}
+                        alt={`${username}'s avatar`}
                         className="h-24 w-24 rounded-full object-cover"
                       />
                     )}
@@ -151,16 +159,16 @@ export default function GithubSection() {
                     <FaGithub className="mr-2 text-lg" />
                     {userData?.name || userData?.login || username}
                   </h3>
-                  <p className="mb-3 text-sm italic text-gray-600 dark:text-gray-300">
+                  <p className="mb-3 text-sm text-gray-600 italic dark:text-gray-300">
                     @{userData?.login}
                   </p>
-                  
+
                   {userData?.bio && (
                     <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
                       "{userData.bio}"
                     </p>
                   )}
-                  
+
                   <div className="mt-auto flex w-full flex-col gap-2">
                     {userData?.location && (
                       <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-300">
@@ -171,8 +179,12 @@ export default function GithubSection() {
                     {userData?.blog && (
                       <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-300">
                         <FaLink className="mr-2 text-cyan-500" />
-                        <a 
-                          href={userData.blog.startsWith('http') ? userData.blog : `https://${userData.blog}`}
+                        <a
+                          href={
+                            userData.blog.startsWith("http")
+                              ? userData.blog
+                              : `https://${userData.blog}`
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
                           className="hover:text-cyan-500 dark:hover:text-cyan-400"
@@ -183,12 +195,12 @@ export default function GithubSection() {
                     )}
                   </div>
                 </motion.div>
-                
+
                 {/* Contribution Activity Calendar - Now next to profile card */}
                 <motion.div
                   custom={1}
                   variants={cardItem}
-                  className="col-span-1 flex flex-col rounded-xl bg-gray-50 p-6 dark:bg-gray-800/50 lg:col-span-3"
+                  className="col-span-1 flex flex-col rounded-xl bg-gray-50 p-6 lg:col-span-3 dark:bg-gray-800/50"
                 >
                   <h4 className="mb-4 text-center text-lg font-medium text-gray-800 dark:text-white">
                     Contribution Activity
@@ -204,7 +216,8 @@ export default function GithubSection() {
                         hideColorLegend={false}
                         hideMonthLabels={false}
                         labels={{
-                          totalCount: "{{count}} contributions in the last year",
+                          totalCount:
+                            "{{count}} contributions in the last year",
                         }}
                       />
                     </div>
@@ -220,7 +233,7 @@ export default function GithubSection() {
                   onClick={() =>
                     window.open(
                       userData?.html_url || `https://github.com/${username}`,
-                      "_blank"
+                      "_blank",
                     )
                   }
                 >
@@ -230,14 +243,14 @@ export default function GithubSection() {
                     →
                   </span>
                 </Button>
-                
+
                 <Button
                   variant="outline"
                   className="group flex items-center border-2 border-cyan-500 px-6 py-3 font-medium text-cyan-500 shadow-md transition-all duration-300 hover:scale-105 hover:bg-cyan-500 hover:text-white"
                   onClick={() =>
                     window.open(
                       `https://github.com/${username}?tab=repositories`,
-                      "_blank"
+                      "_blank",
                     )
                   }
                 >

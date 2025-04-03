@@ -1,11 +1,11 @@
-import AboutMe from "@/components/Home/AboutMe";
-import ContactMe from "@/components/Home/contact/ContactMe";
-import Experience from "@/components/Home/experience/Experience";
-import GithubSection from "@/components/Home/Github/GithubSection";
+import AboutMe from "@/components/Home/AboutSection";
+import ContactMe from "@/components/Home/contact/ContactSection";
+import Experience from "@/components/Home/experience/ExperienceSection";
+import GithubSection from "@/components/Home/github/GithubSection";
 import HeroSection from "@/components/Home/heroSection/HeroSection";
-import MediumBlogs from "@/components/Home/MediumBlogs";
+import MediumBlogs from "@/components/Home/BlogSection";
 import ProjectSection from "@/components/Home/projects/ProjectSection";
-import Skills from "@/components/Home/skills/Skills";
+import Skills from "@/components/Home/skills/SkillSection";
 export default function HomePage() {
   return (
     <div className="flex w-full flex-col">
