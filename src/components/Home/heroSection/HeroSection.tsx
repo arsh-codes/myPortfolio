@@ -14,7 +14,7 @@ export default function HeroSection() {
   return (
     // wrapper
     <div
-      className="relative flex h-screen w-screen items-center justify-center overflow-hidden lg:pt-10"
+      className="relative flex h-fit lg:h-screen w-full items-center justify-center overflow-hidden pt-20 lg:pt-10"
       id="hero"
     >
       <MeteorsBackground number={20} />
@@ -22,7 +22,7 @@ export default function HeroSection() {
         {/* Bio Section */}
         <section className="relative flex w-full flex-col items-start lg:w-1/2 lg:items-center">
           <div>
-            <h1 className="text-primary font-manrope relative z-10 text-4xl leading-tight font-bold sm:text-5xl">
+            <h1 className="text-primary font-manrope relative z-10 text-3xl leading-tight font-bold lg:text-4xl">
               Hello! <br />
               I'm{" "}
               <AnimatedGradientText
@@ -36,7 +36,7 @@ export default function HeroSection() {
             </h1>
             {/* FlipWords Component */}
 
-            <div className="text-primary font-manrope mt-4 text-2xl">
+            <div className="text-primary font-manrope mt-4 text-xl lg:text-2xl">
               I make frontend beautiful{" "}
               <span className="inline-block animate-pulse">✨</span>, <br />
               backend powerful ⚡,
@@ -63,7 +63,7 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
 
-            <div className="flex h-fit flex-row items-center gap-4 pt-4">
+            <div className="flex h-fit flex-row items-center gap-4 pt-6">
               <a href="#contact">
                 <ShimmerButton
                   shimmerColor="var(--secondary)"

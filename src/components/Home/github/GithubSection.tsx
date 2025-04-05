@@ -51,7 +51,9 @@ export default function GithubSection() {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching GitHub data:", err);
-        setError(err instanceof Error ? err.message : "An unknown error occurred");
+        setError(
+          err instanceof Error ? err.message : "An unknown error occurred",
+        );
         setLoading(false);
       }
     };
@@ -83,27 +85,40 @@ export default function GithubSection() {
       </section>
     );
   }
-  
-  // make this error section better. dont log error only show the message i added with a contact button
+
   if (error) {
     return (
-      <section
-        className="relative hidden w-full overflow-hidden py-20"
-        id="github"
-      >
+      <section className="relative w-full overflow-hidden py-20" id="github">
+        <div className="absolute top-20 -right-64 h-96 w-96 rounded-full bg-red-300/20 blur-3xl filter"></div>
+        <div className="absolute bottom-20 -left-64 h-96 w-96 rounded-full bg-red-300/20 blur-3xl filter"></div>
+
         <div className="container mx-auto px-4 text-center">
-          <p className="text-lg text-red-500">
-            "Oops! Looks like something went wrong while fetching my GitHub
-            data. If you're not able to see my projects here, it means the data
-            isn't loading properly. Feel free to drop me a message—I'd really
-            appreciate it! I'll check it out and get it fixed as soon as
-            possible. 🚀😊"
-          </p>
-          <a href="#contact">
-            <button className="shadow-2xl hover:scale-105">
-              <span>Contact me</span>
-            </button>
-          </a>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="mb-4 text-3xl font-bold text-red-500">
+              Something went wrong!
+            </h2>
+            <p className="mx-auto mb-6 max-w-2xl text-lg text-gray-700 dark:text-gray-300">
+              Well, this is awkward... 🤖💥 Something went wrong while trying to
+              fetch my GitHub data — and no, this isn’t how it’s supposed to go.
+              If my contributions or projects aren’t showing up, it’s probably
+              just a tech hiccup. Feel free to reach out — I’ll jump on it
+              faster than a cat on a laser pointer! 🚀😄
+            </p>
+
+            <a href="#contact">
+              <Button
+                variant="outline"
+                className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+              >
+                Contact Me
+              </Button>
+            </a>
+          </motion.div>
         </div>
       </section>
     );
@@ -111,7 +126,7 @@ export default function GithubSection() {
 
   return (
     <section
-      className="relative flex h-screen w-full items-center justify-center overflow-hidden pt-20"
+      className="relative flex h-fit w-full items-center justify-center overflow-hidden pt-20 lg:h-screen"
       id="github"
     >
       {/* Background gradient elements */}
@@ -131,7 +146,7 @@ export default function GithubSection() {
             speed={1}
             colorFrom="#06A3C9" // cyan
             colorTo="#10B981" // emerald
-            className="mb-4 text-4xl font-bold md:text-5xl"
+            className="mb-4 text-4xl font-bold lg:text-5xl"
           >
             Merging Ideas, One Commit at a Time
           </AnimatedGradientText>
@@ -158,7 +173,7 @@ export default function GithubSection() {
                   variants={cardItem}
                   className="col-span-1 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/5 to-emerald-500/10 p-6 text-center lg:col-span-1"
                 >
-                  <div className="mb-4 overflow-hidden rounded-full border-2 border-cyan-500/30 hover:border-cyan-500/50 p-1">
+                  <div className="mb-4 overflow-hidden rounded-full border-2 border-cyan-500/30 p-1 hover:border-cyan-500/50">
                     {userData?.avatar_url && (
                       <img
                         src={userData.avatar_url}
@@ -181,7 +196,7 @@ export default function GithubSection() {
                     </p>
                   )}
 
-                  <div className="mt-auto flex w-full flex-col gap-2">
+                  <div className="mt-auto flex w-full flex-row justify-center items-center gap-4">
                     {userData?.location && (
                       <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-300">
                         <FaMapMarkerAlt className="mr-2 text-emerald-500" />
@@ -201,7 +216,7 @@ export default function GithubSection() {
                           rel="noopener noreferrer"
                           className="hover:text-cyan-500 dark:hover:text-cyan-400"
                         >
-                          Website
+                          Profile
                         </a>
                       </div>
                     )}

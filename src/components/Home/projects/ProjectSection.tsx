@@ -87,12 +87,15 @@ export default function ProjectSection() {
   };
 
   return (
-    <section id="projects" className="relative w-full overflow-hidden pt-20">
+    <section
+      id="projects"
+      className="relative h-fit w-full overflow-hidden pt-20"
+    >
       {/* Background gradient elements */}
       <div className="absolute top-40 -left-64 h-96 w-96 rounded-full bg-emerald-300/20 blur-3xl filter"></div>
       <div className="absolute -right-64 bottom-40 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl filter"></div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto w-11/12 px-4">
         {/* Section header with animated title */}
         <motion.div
           className="mb-6 text-center"
@@ -116,12 +119,12 @@ export default function ProjectSection() {
         </motion.div>
 
         {/* Project navigation tabs */}
-        <div className="mb-8 flex justify-center gap-4">
+        <div className="mb-8 flex flex-col items-center justify-center gap-4 md:flex-row">
           {projects.map((project, index) => (
             <button
               key={project.id}
               onClick={() => setActiveProject(index)}
-              className={`relative rounded-full px-6 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 ${
+              className={`relative w-fit rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-105 ${
                 activeProject === index
                   ? "from-emerald to-cyan bg-gradient-to-r font-semibold text-gray-800 shadow-lg"
                   : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
@@ -138,23 +141,23 @@ export default function ProjectSection() {
               )}
             </button>
           ))}
-          <div className="flex justify-center">
-            <Button
-              variant="outline"
-              className="group border-emerald text-emerald border-2 px-8 py-6 font-medium shadow-lg transition-all duration-300 hover:scale-105 hover:bg-emerald-500 hover:text-white"
-              onClick={() =>
-                window.open(
-                  "https://github.com/arsh-codes?tab=repositories",
-                  "_blank",
-                )
-              }
-            >
-              <span>See More Projects</span>
-              <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </Button>
-          </div>
+
+          {/* Enhanced See More Projects button */}
+          <Button
+            variant="outline"
+            className="group border-emerald text-emerald rounded-full border-2 px-7 py-5 text-sm font-medium shadow-md transition-all duration-300 hover:scale-105 hover:bg-emerald-500 hover:text-white"
+            onClick={() =>
+              window.open(
+                "https://github.com/arsh-codes?tab=repositories",
+                "_blank",
+              )
+            }
+          >
+            <span>See More Projects</span>
+            <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </Button>
         </div>
 
         {/* Featured project display with animation */}
@@ -265,7 +268,7 @@ export default function ProjectSection() {
                       </h4>
 
                       {/* Frontend technologies */}
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-start gap-3 md:items-center">
                         <FaLayerGroup className="text-cyan" />
                         <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
                           Frontend:

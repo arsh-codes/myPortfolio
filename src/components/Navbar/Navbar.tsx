@@ -123,7 +123,7 @@ export default function Navbar() {
         {/* Left Side: Logo and Text */}
         <a href="#hero" className="group flex items-center">
           <div className="flex items-center rounded-lg p-2">
-            <span className="from-emerald to-cyan flex items-center bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tighter text-transparent  ">
+            <span className="from-emerald to-cyan flex items-center bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tighter text-transparent">
               {"</>"}
             </span>
           </div>
@@ -134,7 +134,7 @@ export default function Navbar() {
         </a>
 
         {/* Navigation dock (desktop only) */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <FloatingDock items={sections} activeItem={activeSection} />
         </div>
 
@@ -145,7 +145,7 @@ export default function Navbar() {
 
           {/* Mobile menu button - only visible on small screens */}
           <button
-            className="text-primary block transition-colors hover:text-cyan-500 md:hidden"
+            className="text-primary block transition-colors hover:text-cyan-500 lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -162,7 +162,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className={`overflow-hidden md:hidden ${
+            className={`overflow-hidden lg:hidden ${
               theme === "dark"
                 ? "bg-opacity-95 bg-gray-900"
                 : "bg-opacity-95 bg-white"
