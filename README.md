@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# My Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website showcasing my skills, projects, and professional experience.
 
-Currently, two official plugins are available:
+🔗 **Live Demo**: [https://arsh-codes.web.app/](https://arsh-codes.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚧 Work in Progress
 
-## Expanding the ESLint configuration
+This project is currently under active development. Some features are still being implemented:
+- Mobile responsiveness improvements
+- Additional project sections
+- Performance optimizations
+- More interactive elements
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Built With
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **React 19** - Frontend library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and development server
+- **Tailwind CSS** - Styling
+- **Firebase** - Hosting and backend services
+- **EmailJS** - Contact form functionality
+- **React Router** - Navigation
+- **React Hook Form** - Form handling and validation
+- **Zod** - Schema validation
+- **React GitHub Calendar** - GitHub contribution visualization
+- **React Syntax Highlighter** - Code snippets display
+
+## ✨ Features
+
+- Dark/Light theme toggle
+- GitHub contributions calendar
+- Project showcase
+- Skills and technologies section
+- Contact form with email integration
+- Responsive design (in progress)
+- Modern UI with animations
+
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (latest LTS version recommended)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/myPortfolio.git
+
+# Navigate to the project directory
+cd myPortfolio
+
+# Install dependencies
+yarn install
+
+# Start the development server
+yarn dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📚 Available Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `yarn dev` - Starts the development server
+- `yarn build` - Builds the app for production
+- `yarn lint` - Runs ESLint to check code quality
+- `yarn preview` - Previews the production build locally
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🙏 Acknowledgments
+
+- All the open-source libraries and tools that made this project possible
+- Inspiration from the developer community
+
+---
+
+⭐ Feel free to star the repository if you like what you see!
