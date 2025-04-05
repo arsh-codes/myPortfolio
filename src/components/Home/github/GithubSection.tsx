@@ -8,11 +8,22 @@ import GitHubCalendar from "react-github-calendar";
 import { motion } from "framer-motion";
 import { useTheme } from "@/components/ThemeProvider";
 
+// Define TypeScript interface for GitHub API user data
+interface GitHubUserData {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+  name: string | null;
+  bio: string | null;
+  location: string | null;
+  blog: string | null;
+}
+
 export default function GithubSection() {
   const { theme } = useTheme();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<GitHubUserData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const username = "arsh-codes";
 
@@ -40,7 +51,7 @@ export default function GithubSection() {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching GitHub data:", err);
-        setError(err.message);
+        setError(err instanceof Error ? err.message : "An unknown error occurred");
         setLoading(false);
       }
     };
@@ -56,7 +67,7 @@ export default function GithubSection() {
 
   const cardItem = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: (i) => ({
+    visible: (i: number) => ({
       opacity: 1,
       scale: 1,
       transition: { delay: 0.1 * i, duration: 0.4 },
@@ -72,6 +83,7 @@ export default function GithubSection() {
       </section>
     );
   }
+  
   // make this error section better. dont log error only show the message i added with a contact button
   if (error) {
     return (
