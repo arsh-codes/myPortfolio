@@ -91,14 +91,14 @@ export const Timeline = ({
 
   return (
     // Outer container holding the timeline
-    <div className="relative w-full px-4 py-8 md:px-10" ref={containerRef}>
+    <div className="relative w-full px-4 py-8 lg:px-10" ref={containerRef}>
       {/* Timeline wrapper */}
       <div ref={ref} className="relative">
         {data.map((item, index) => (
           // Individual timeline entry
           <motion.div
             key={index}
-            className={`timeline-entry flex justify-start pt-8 md:gap-10 md:pt-16 ${
+            className={`timeline-entry flex justify-start pt-8 lg:gap-10 lg:pt-16 ${
               activeIndex === index ? "z-10" : "z-0"
             }`}
             initial={{ opacity: animate ? 0.5 : 1, y: animate ? 20 : 0 }}
@@ -113,10 +113,10 @@ export const Timeline = ({
             viewport={{ once: true, margin: "-100px 0px" }}
           >
             {/* Left section containing the title */}
-            <div className="sticky top-32 z-40 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm">
+            <div className="sticky top-32 z-40 flex max-w-xs flex-col items-center self-start lg:w-full lg:max-w-sm lg:flex-row">
               {/* Circular marker on the timeline */}
               <motion.div
-                className="absolute left-3 flex size-10 items-center justify-center rounded-full md:left-3"
+                className="absolute left-3 flex size-10 items-center justify-center rounded-full lg:left-3"
                 animate={{
                   scale: activeIndex === index ? 1.2 : 1,
                   backgroundColor:
@@ -134,13 +134,13 @@ export const Timeline = ({
 
               {/* Title (Visible only on larger screens) */}
               <motion.div
-                className="hidden w-full md:block md:pl-20"
+                className="hidden w-full lg:block lg:pl-20"
                 animate={{
                   opacity: activeIndex === index ? 1 : 0.7,
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-xl font-bold text-neutral-700 md:text-3xl lg:text-3xl dark:text-neutral-300">
+                <h3 className="text-xl font-bold text-neutral-700 lg:text-3xl dark:text-neutral-300">
                   {item.title}
                 </h3>
                 {item.date && (
@@ -152,9 +152,9 @@ export const Timeline = ({
             </div>
 
             {/* Right section containing the content */}
-            <div className="relative w-full pr-4 pl-16 md:pl-4">
+            <div className="relative w-full pr-4 pl-16 lg:pl-4">
               {/* Title (Visible only on small screens) */}
-              <div className="mb-4 block text-left md:hidden">
+              <div className="mb-4 block text-left lg:hidden">
                 <h3 className="text-2xl font-bold text-neutral-700 dark:text-neutral-300">
                   {item.title}
                 </h3>
@@ -185,7 +185,7 @@ export const Timeline = ({
             height: height + "px",
             width: `${lineWidth}px`,
           }}
-          className="absolute top-0 left-8 overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8 dark:via-neutral-700"
+          className="absolute top-0 left-8 overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] lg:left-8 dark:via-neutral-700"
         >
           {/* Animated gradient moving along the timeline */}
           {animate && (

@@ -14,8 +14,9 @@ export default function SkillSection() {
 
   return (
     <div className="relative h-fit w-full pt-20 lg:h-screen" id="skills">
-      <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly text-left lg:items-center">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+      <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly lg:items-center">
+        {/* heading section */}
+        <div className="flex flex-col items-start gap-4 text-left lg:items-center lg:justify-center lg:text-center">
           <div className="relative">
             <h1 className="relative z-10 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               <span className="from-emerald to-cyan bg-gradient-to-r bg-clip-text text-transparent">
@@ -24,7 +25,7 @@ export default function SkillSection() {
             </h1>
           </div>
 
-          <p className="text-muted-foreground max-w-2xl text-base leading-relaxed lg:text-lg">
+          <p className="text-muted-foreground lg:text-lg text-balance ">
             <span className="text-foreground/90 font-semibold">
               MERN-powered
             </span>
@@ -34,16 +35,16 @@ export default function SkillSection() {
             -styled.
           </p>
 
-          <div className="mt-1 flex items-center justify-center space-x-2">
+          <div className="mt-1 flex items-center justify-center gap-2">
             <div className="bg-emerald size-1 animate-pulse rounded-full"></div>
             <div className="bg-cyan size-1 animate-pulse rounded-full delay-150"></div>
             <div className="bg-emerald size-1 animate-pulse rounded-full delay-300"></div>
           </div>
         </div>
 
+        {/* Skills Grid  */}
         <div className="relative flex flex-col-reverse items-center lg:flex-row">
-          {/* Skills Grid  */}
-          <ul className="grid grid-cols-2 gap-4">
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {skillCardsData.map((cardData, index) => {
               const HeadingLogo = cardData.headingLogo;
 
@@ -65,7 +66,7 @@ export default function SkillSection() {
                     />
 
                     {/* Card Wrapper*/}
-                    <div className="relative flex h-full flex-col justify-start gap-6 overflow-hidden rounded-xl border p-6 shadow-[0px_0px_20px_0px_#D1D5DB] dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+                    <div className="relative flex h-full flex-col items-center justify-start gap-6 overflow-hidden rounded-xl border p-6 shadow-[0px_0px_20px_0px_#D1D5DB] md:items-start dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
                       {/*  heading logo and title */}
                       <div className="relative flex flex-col items-center gap-3 md:flex-row">
                         {/* Logo Container */}
@@ -87,7 +88,7 @@ export default function SkillSection() {
                       </div>
 
                       {/* Skills list  */}
-                      <div className="grid grid-cols-1 gap-3 text-sm md:grid-cols-2 lg:grid-cols-3">
+                      <div className="grid w-fit grid-cols-1 gap-3  text-sm md:w-full md:grid-cols-2 lg:grid-cols-3">
                         {cardData.skills.map((skill, skillIndex) => {
                           const SkillLogo = skill.logo;
 
@@ -95,10 +96,10 @@ export default function SkillSection() {
                             <TooltipProvider key={skillIndex}>
                               <Tooltip>
                                 <TooltipTrigger>
-                                  <div className="flex cursor-help items-center space-x-2">
+                                  <div className="flex cursor-help items-center justify-center space-x-2  md:justify-start w-fit">
                                     {SkillLogo && (
                                       <SkillLogo
-                                        className="h-5 w-5 text-inherit"
+                                        className="size-5 text-inherit"
                                         style={{ color: skill.color }}
                                       />
                                     )}
