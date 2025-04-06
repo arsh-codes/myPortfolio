@@ -1,9 +1,12 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 
+import AboutMe from "@/components/Home/AboutSection";
 import { AnimatePresence } from "framer-motion";
 import HeroSection from "@/components/Home/heroSection/HeroSection";
 import Navbar from "./components/Navbar/Navbar";
 import Preloader from "./components/ui/Preloader";
+import ProjectSection from "@/components/Home/projects/ProjectSection";
+import Skills from "@/components/Home/skills/SkillSection";
 
 // Lazy load components that are below the fold
 const AboutMe = lazy(() => import("@/components/Home/AboutSection"));
