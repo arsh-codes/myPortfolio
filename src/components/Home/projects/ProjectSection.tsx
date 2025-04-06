@@ -96,7 +96,6 @@ export default function ProjectSection() {
       <div className="absolute -right-64 bottom-40 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl filter"></div>
 
       <div className="container mx-auto w-11/12 px-4">
-      <div className="container mx-auto w-11/12 px-4">
         {/* Section header with animated title */}
         <motion.div
           className="mb-6 text-center"
@@ -121,12 +120,10 @@ export default function ProjectSection() {
 
         {/* Project navigation tabs */}
         <div className="mb-8 flex flex-col items-center justify-center gap-4 md:flex-row">
-        <div className="mb-8 flex flex-col items-center justify-center gap-4 md:flex-row">
           {projects.map((project, index) => (
             <button
               key={project.id}
               onClick={() => setActiveProject(index)}
-              className={`relative w-fit rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-105 ${
               className={`relative w-fit rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-105 ${
                 activeProject === index
                   ? "from-emerald to-cyan bg-gradient-to-r font-semibold text-gray-800 shadow-lg"
@@ -144,23 +141,6 @@ export default function ProjectSection() {
               )}
             </button>
           ))}
-
-          {/* Enhanced See More Projects button */}
-          <Button
-            variant="outline"
-            className="group border-emerald text-emerald rounded-full border-2 px-7 py-5 text-sm font-medium shadow-md transition-all duration-300 hover:scale-105 hover:bg-emerald-500 hover:text-white"
-            onClick={() =>
-              window.open(
-                "https://github.com/arsh-codes?tab=repositories",
-                "_blank",
-              )
-            }
-          >
-            <span>See More Projects</span>
-            <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </Button>
 
           {/* Enhanced See More Projects button */}
           <Button
@@ -289,7 +269,6 @@ export default function ProjectSection() {
                       </h4>
 
                       {/* Frontend technologies */}
-                      <div className="flex items-start gap-3 md:items-center">
                       <div className="flex items-start gap-3 md:items-center">
                         <FaLayerGroup className="text-cyan" />
                         <span className="text-xs font-medium text-gray-700 dark:text-gray-300">

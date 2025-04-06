@@ -65,7 +65,6 @@ export default function HeroSection() {
             {/* CTA Buttons */}
 
             <div className="flex h-fit flex-row items-center gap-4 pt-6">
-            <div className="flex h-fit flex-row items-center gap-4 pt-6">
               <a href="#contact">
                 <ShimmerButton
                   shimmerColor="var(--secondary)"

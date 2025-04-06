@@ -53,13 +53,10 @@ export default function ContactSection() {
         {/* Heading */}
         <div className="mb-8 md:text-center">
           <h2 className="mb-4 text-5xl font-bold tracking-tight">
-        <div className="mb-8 md:text-center">
-          <h2 className="mb-4 text-5xl font-bold tracking-tight">
             <span className="bg-gradient-to-r from-[#4ade80] to-[#06b6d4] bg-clip-text text-transparent">
               Get in Touch
             </span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl text-lg">
           <p className="text-muted-foreground max-w-2xl text-lg">
             Let's collaborate and bring your ideas to life
           </p>
@@ -67,12 +64,9 @@ export default function ContactSection() {
         {/* info and form */}
         <div className="flex flex-col lg:flex-row">
           <div className="relative flex flex-col justify-center gap-10 lg:flex-row lg:items-start lg:gap-30">
-        <div className="flex flex-col lg:flex-row">
-          <div className="relative flex flex-col justify-center gap-10 lg:flex-row lg:items-start lg:gap-30">
             {/* Contact Info Section */}
             <div>
               <TypewriterEffectSmooth
-                className="text-4xl font-bold md:text-3xl"
                 className="text-4xl font-bold md:text-3xl"
                 words={[
                   { text: "Let's" },
@@ -89,7 +83,6 @@ export default function ContactSection() {
                     text: "Together.",
                   },
                 ]}
-                cursorClassName="bg-emerald animate-blink"
                 cursorClassName="bg-emerald animate-blink"
               />
 
@@ -196,11 +189,8 @@ export default function ContactSection() {
       <button
         onClick={scrollToTop}
         className="bg-secondary hover:bg-opacity-90 text-primary absolute right-6 bottom-1.5 z-50 flex cursor-pointer items-center justify-center rounded-full p-3 text-sm shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl md:right-1.5 lg:right-10 lg:bottom-2 lg:text-base"
-        className="bg-secondary hover:bg-opacity-90 text-primary absolute right-6 bottom-1.5 z-50 flex cursor-pointer items-center justify-center rounded-full p-3 text-sm shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl md:right-1.5 lg:right-10 lg:bottom-2 lg:text-base"
         aria-label="Go to top"
       >
-        <FaArrowUp className="lg:text-lg" />
-        <span className="ml-2 hidden lg:inline">Back to top</span>
         <FaArrowUp className="lg:text-lg" />
         <span className="ml-2 hidden lg:inline">Back to top</span>
       </button>

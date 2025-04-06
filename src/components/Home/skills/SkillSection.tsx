@@ -39,7 +39,6 @@ export default function SkillSection() {
           </p>
 
           <div className="mt-1 flex items-center justify-center gap-2">
-          <div className="mt-1 flex items-center justify-center gap-2">
             <div className="bg-emerald size-1 animate-pulse rounded-full"></div>
             <div className="bg-cyan size-1 animate-pulse rounded-full delay-150"></div>
             <div className="bg-emerald size-1 animate-pulse rounded-full delay-300"></div>
@@ -47,9 +46,7 @@ export default function SkillSection() {
         </div>
 
         {/* Skills Grid  */}
-        {/* Skills Grid  */}
         <div className="relative flex flex-col-reverse items-center lg:flex-row">
-          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {skillCardsData.map((cardData, index) => {
               const HeadingLogo = cardData.headingLogo;
@@ -72,7 +69,6 @@ export default function SkillSection() {
                     />
 
                     {/* Card Wrapper*/}
-                    <div className="relative flex h-full flex-col items-center justify-start gap-6 overflow-hidden rounded-xl border p-6 shadow-[0px_0px_20px_0px_#D1D5DB] md:items-start dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
                     <div className="relative flex h-full flex-col items-center justify-start gap-6 overflow-hidden rounded-xl border p-6 shadow-[0px_0px_20px_0px_#D1D5DB] md:items-start dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
                       {/*  heading logo and title */}
                       <div className="relative flex flex-col items-center gap-3 md:flex-row">
@@ -106,7 +102,6 @@ export default function SkillSection() {
                                   <div className="flex w-fit cursor-help items-center justify-center space-x-2 md:justify-start">
                                     {SkillLogo && (
                                       <SkillLogo
-                                        className="size-5 text-inherit"
                                         className="size-5 text-inherit"
                                         style={{ color: skill.color }}
                                       />
