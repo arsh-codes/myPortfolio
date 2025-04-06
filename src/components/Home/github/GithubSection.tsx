@@ -204,20 +204,19 @@ export default function GithubSection() {
 
                   <div className="mt-auto flex w-full flex-row items-center justify-center gap-4">
                     {userData?.location && (
-                      <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-300">
+                      <a
+                        href="https://maps.app.goo.gl/H7dEy8vnVmZWUD5A6"
+                        className="flex items-center justify-center text-sm text-gray-600 hover:text-emerald-500 dark:text-gray-300 dark:hover:text-emerald-400"
+                      >
                         <FaMapMarkerAlt className="mr-2 text-emerald-500" />
                         {userData.location}
-                      </div>
+                      </a>
                     )}
                     {userData?.blog && (
                       <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-300">
                         <FaLink className="mr-2 text-cyan-500" />
                         <a
-                          href={
-                            userData.blog.startsWith("http")
-                              ? userData.blog
-                              : `https://${userData.blog}`
-                          }
+                          href={"https://github.com/arsh-codes"}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="hover:text-cyan-500 dark:hover:text-cyan-400"
@@ -238,7 +237,10 @@ export default function GithubSection() {
                   <h4 className="mb-4 text-center text-lg font-medium text-gray-800 dark:text-white">
                     Contribution Activity
                   </h4>
-                  <div className="flex flex-1 items-center justify-center overflow-x-auto py-2">
+                  <div
+                    className="flex flex-1 items-center justify-center overflow-scroll py-2"
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                  >
                     <div className="min-w-max px-4">
                       <GitHubCalendar
                         username={username}

@@ -174,6 +174,7 @@ export default function ProjectSection() {
                 {/* Project image with overlay on hover */}
                 <div className="group relative w-full overflow-hidden rounded-xl lg:w-1/2">
                   <img
+                    loading="lazy"
                     src={projects[activeProject].image}
                     alt={projects[activeProject].title}
                     className="h-full w-full object-contain object-center"

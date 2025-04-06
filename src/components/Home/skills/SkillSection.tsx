@@ -13,7 +13,10 @@ export default function SkillSection() {
   // Skills Data
 
   return (
-    <div className="relative bg-muted/60 dark:bg-muted/20 h-fit w-full py-16 md:py-20 lg:py-24" id="skills">
+    <div
+      className="bg-muted/60 dark:bg-muted/20 relative h-fit w-full py-16 md:py-20 lg:py-24"
+      id="skills"
+    >
       <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly lg:items-center">
         {/* heading section */}
         <div className="flex flex-col items-start gap-4 text-left lg:items-center lg:justify-center lg:text-center">
