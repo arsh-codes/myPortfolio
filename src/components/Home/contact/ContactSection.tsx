@@ -169,9 +169,9 @@ export default function ContactSection() {
                     <p className="text-muted-foreground text-sm font-medium">
                       Current Time
                     </p>
-                    <p className="text-primary group-hover:text-foreground font-mono font-medium">
+                    <span className="text-primary group-hover:text-foreground font-mono font-medium">
                       <SlidingNumberClock />
-                    </p>
+                    </span>
                   </div>
                 </a>
               </div>

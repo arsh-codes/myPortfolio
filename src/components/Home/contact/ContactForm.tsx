@@ -7,19 +7,15 @@ import { Label } from "./Label";
 import { Textarea } from "@/components/Home/contact/Textarea";
 import { cn } from "@/lib/utils";
 import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<{
-    type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setStatus({ type: null, message: "" });
 
     const form = e.currentTarget as HTMLFormElement;
     const name = (
@@ -36,10 +32,7 @@ export function ContactForm() {
     const time = new Date().toLocaleString();
 
     if (!name || !message) {
-      setStatus({
-        type: "error",
-        message: "Name and message are required.",
-      });
+      toast.error("Name and message are required.");
       setLoading(false);
       return;
     }
@@ -62,10 +55,7 @@ export function ContactForm() {
       );
 
       console.log(result.text); // You can use this for debugging or logging
-      setStatus({
-        type: "success",
-        message: "Message sent successfully!",
-      });
+      toast.success("Message sent successfully!");
 
       // Use the formRef instead of e.currentTarget which might be null
       if (formRef.current) {
@@ -73,10 +63,7 @@ export function ContactForm() {
       }
     } catch (error) {
       console.error("Error sending message: ", error);
-      setStatus({
-        type: "error",
-        message: "Failed to send message. Try again later.",
-      });
+      toast.error("Failed to send message. Try again later.");
     }
 
     setLoading(false);
@@ -88,19 +75,6 @@ export function ContactForm() {
       <p className="text-muted-foreground mt-2 w-fit">
         Got an idea hotter than my overheated CPU? 🔥 Let's talk!
       </p>
-
-      {status.message && (
-        <div
-          className={cn(
-            "mt-4 rounded-md p-3",
-            status.type === "success"
-              ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-              : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
-          )}
-        >
-          {status.message}
-        </div>
-      )}
 
       <form className="my-6" onSubmit={handleSubmit} ref={formRef}>
         <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">

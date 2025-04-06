@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import HeroSection from "@/components/Home/heroSection/HeroSection";
 import Navbar from "./components/Navbar/Navbar";
 import Preloader from "./components/ui/Preloader";
+import { Toaster } from "react-hot-toast";
 
 // Lazy load components that are below the fold
 const AboutMe = lazy(() => import("@/components/Home/AboutSection"));
@@ -62,12 +63,11 @@ export default function App() {
 
   return (
     <>
+      <Toaster position="top-center" />
       <AnimatePresence>{loader && <Preloader />}</AnimatePresence>
-
       {/* Components above the fold - load immediately */}
       <Navbar />
       <HeroSection />
-
       {/* Below the fold components - lazy loaded */}
       <Suspense fallback={<div className="loading-section">Loading...</div>}>
         <AboutMe />
