@@ -5,9 +5,9 @@ import {
   FaGithub,
   FaLinkedin,
 } from "react-icons/fa";
-import { useEffect, useState } from "react";
 
 import { ContactForm } from "./ContactForm";
+import { SlidingNumberClock } from "./SlidingNumberClock";
 import { TypewriterEffectSmooth } from "./TypewriterEffect";
 import { motion } from "motion/react";
 
@@ -39,35 +39,13 @@ export default function ContactSection() {
     },
   ];
 
-  const [time, setTime] = useState<string>("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTime(
-        now.toLocaleTimeString("en-IN", {
-          timeZone: "Asia/Kolkata",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        }),
-      );
-    };
-
-    updateTime(); // Initial call
-    const interval = setInterval(updateTime, 1000); // Update every second
-
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <section
-      className="relative flex h-fit w-full flex-col items-center justify-center pt-24 lg:h-screen"
+      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:py-24"
       id="contact"
     >
       {/* wrapper  */}
@@ -140,41 +118,62 @@ export default function ContactSection() {
 
               {/* Location & Time Info */}
               <div className="bg-muted/50 dark:bg-muted/20 mt-8 space-y-4 rounded-2xl p-6 backdrop-blur-sm">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                <a
+                  href="https://maps.app.goo.gl/H7dEy8vnVmZWUD5A6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40">
                     📍
                   </span>
                   <div>
                     <p className="text-muted-foreground text-sm font-medium">
                       Based in
                     </p>
-                    <p className="font-medium">Delhi, India 🇮🇳</p>
+                    <p className="group-hover:text-foreground font-medium">
+                      Punjab, India 🇮🇳
+                    </p>
                   </div>
-                </div>
+                </a>
 
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                <a
+                  href="https://www.timeanddate.com/time/zone/india"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40">
                     ⏳
                   </span>
                   <div>
                     <p className="text-muted-foreground text-sm font-medium">
                       Time Zone
                     </p>
-                    <p className="font-medium">IST (UTC+5:30)</p>
+                    <p className="group-hover:text-foreground font-medium">
+                      IST (UTC+5:30)
+                    </p>
                   </div>
-                </div>
+                </a>
 
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                <a
+                  href="https://www.timeanddate.com/worldclock/india"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40">
                     🕒
                   </span>
                   <div>
                     <p className="text-muted-foreground text-sm font-medium">
                       Current Time
                     </p>
-                    <p className="text-primary font-mono font-medium">{time}</p>
+                    <p className="text-primary group-hover:text-foreground font-mono font-medium">
+                      <SlidingNumberClock />
+                    </p>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
 

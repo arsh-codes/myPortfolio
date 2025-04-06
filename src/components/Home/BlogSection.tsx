@@ -69,7 +69,7 @@ export default function BlogSection() {
 
   return (
     <div
-      className="flex h-fit w-full items-center justify-center pt-30 lg:h-[90vh]"
+      className="flex h-fit w-full items-center justify-center py-16 md:py-20 lg:py-24"
       id="blogs"
     >
       <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-8 px-4 md:px-10 lg:flex-row lg:items-start lg:gap-4">
@@ -166,7 +166,8 @@ export default function BlogSection() {
           {/* Scrollable Cards Section */}
           <div
             ref={scrollRef}
-            className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth py-4"
+            className="scrollbar-hide flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth py-4"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {loading ? (
               // Loading Skeletons
@@ -200,6 +201,7 @@ export default function BlogSection() {
                       src={post.image}
                       alt={post.title}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
                   </div>
