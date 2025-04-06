@@ -13,7 +13,7 @@ export default function SkillSection() {
   // Skills Data
 
   return (
-    <div className="relative h-fit w-full pt-20 lg:h-screen" id="skills">
+    <div className="relative bg-muted/60 dark:bg-muted/20 h-fit w-full py-16 md:py-20 lg:py-24" id="skills">
       <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly lg:items-center">
         {/* heading section */}
         <div className="flex flex-col items-start gap-4 text-left lg:items-center lg:justify-center lg:text-center">
@@ -25,7 +25,7 @@ export default function SkillSection() {
             </h1>
           </div>
 
-          <p className="text-muted-foreground lg:text-lg text-balance ">
+          <p className="text-muted-foreground text-balance lg:text-lg">
             <span className="text-foreground/90 font-semibold">
               MERN-powered
             </span>
@@ -88,7 +88,7 @@ export default function SkillSection() {
                       </div>
 
                       {/* Skills list  */}
-                      <div className="grid w-fit grid-cols-1 gap-3  text-sm md:w-full md:grid-cols-2 lg:grid-cols-3">
+                      <div className="grid w-fit grid-cols-1 gap-3 text-sm md:w-full md:grid-cols-2 lg:grid-cols-3">
                         {cardData.skills.map((skill, skillIndex) => {
                           const SkillLogo = skill.logo;
 
@@ -96,7 +96,7 @@ export default function SkillSection() {
                             <TooltipProvider key={skillIndex}>
                               <Tooltip>
                                 <TooltipTrigger>
-                                  <div className="flex cursor-help items-center justify-center space-x-2  md:justify-start w-fit">
+                                  <div className="flex w-fit cursor-help items-center justify-center space-x-2 md:justify-start">
                                     {SkillLogo && (
                                       <SkillLogo
                                         className="size-5 text-inherit"

@@ -65,7 +65,7 @@ export default function ProjectSection() {
         backend: ["N/A"],
         tools: ["Vite", "Git", "Figma", "Netlify"],
       },
-      github: "https://github.com/arsh-codes/portfolio",
+      github: "https://github.com/arsh-codes/myPortfolio",
       liveDemo: "https://arsh-codes.web.app",
     },
   ];
@@ -89,7 +89,7 @@ export default function ProjectSection() {
   return (
     <section
       id="projects"
-      className="relative h-fit w-full overflow-hidden pt-20"
+      className="relative h-fit w-full overflow-hidden py-16 md:py-20 lg:py-24"
     >
       {/* Background gradient elements */}
       <div className="absolute top-40 -left-64 h-96 w-96 rounded-full bg-emerald-300/20 blur-3xl filter"></div>

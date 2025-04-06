@@ -3,10 +3,10 @@ import aboutMeImage from "@/assets/media/aboutMeImage.jpg";
 export default function AboutSection() {
   return (
     <div
-      className="relative flex h-fit min-h-[60vh] w-full items-center justify-center  py-16"
+      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center py-16 md:py-20 lg:py-24"
       id="about"
     >
-      <div className="relative mx-auto flex h-full w-11/12 flex-col gap-10  lg:flex-row lg:items-center ">
+      <div className="relative mx-auto flex h-full w-11/12 flex-col gap-10 lg:flex-row lg:items-center">
         {/* Image Section */}
         <section className="relative flex w-full flex-col items-center justify-center lg:w-1/3">
           <div className="relative">

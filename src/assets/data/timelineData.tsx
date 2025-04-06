@@ -41,7 +41,7 @@ const timelineData: TimelineEntry[] = [
               </span>
               <span>
                 Designed and developed{" "}
-                <span className="font-semibold text-emerald">
+                <span className="text-emerald font-semibold">
                   responsive websites
                 </span>{" "}
                 for small businesses, ensuring seamless user experiences,
@@ -54,7 +54,7 @@ const timelineData: TimelineEntry[] = [
               </span>
               <span>
                 Conducted hands-on{" "}
-                <span className="font-semibold text-emerald">
+                <span className="text-emerald font-semibold">
                   frontend development classes
                 </span>
                 , mentoring students in building real-world projects and
@@ -67,7 +67,7 @@ const timelineData: TimelineEntry[] = [
               </span>
               <span>
                 Optimized website{" "}
-                <span className="font-semibold text-emerald">
+                <span className="text-emerald font-semibold">
                   accessibility and performance
                 </span>
                 , implementing best practices to improve load times, SEO, and
@@ -90,7 +90,7 @@ const timelineData: TimelineEntry[] = [
           Chandigarh University
         </h3>
         <p className="mt-2 text-neutral-800 dark:text-neutral-200">
-          <span className="text-cyan inline-flex items-center rounded-full bg-cyan-100 px-2.5 py-0.5 text-sm font-medium dark:bg-[#06b6d4]/20">
+          <span className="text-cyan inline-flex items-center rounded-full bg-cyan-100 px-2.5 py-0.5 text-sm font-bold dark:bg-[#06b6d4]/20">
             CGPA: 9
           </span>
           <span className="ml-2">Major: Full Stack Development</span>
@@ -172,7 +172,7 @@ const timelineData: TimelineEntry[] = [
               </span>
               <span>
                 Developed a{" "}
-                <span className="font-semibold text-emerald">
+                <span className="text-emerald font-semibold">
                   centralized web interface
                 </span>{" "}
                 to streamline employee access to portals like HCM and SCM based
@@ -185,7 +185,7 @@ const timelineData: TimelineEntry[] = [
               </span>
               <span>
                 Gained hands-on experience in{" "}
-                <span className="font-semibold text-emerald">
+                <span className="text-emerald font-semibold">
                   frontend development
                 </span>{" "}
                 while also developing understanding of Oracle Fusion Analytics
@@ -198,7 +198,7 @@ const timelineData: TimelineEntry[] = [
               </span>
               <span>
                 Collaborated with{" "}
-                <span className="font-semibold text-emerald">
+                <span className="text-emerald font-semibold">
                   Oracle Data Integrator team
                 </span>{" "}
                 to extract data from Tableau and help create additional tables
@@ -221,7 +221,7 @@ const timelineData: TimelineEntry[] = [
           Punjabi University, Patiala
         </h3>
         <p className="mt-2 text-neutral-800 dark:text-neutral-200">
-          <span className="text-cyan inline-flex items-center rounded-full bg-cyan-100 px-2.5 py-0.5 text-sm font-medium dark:bg-[#06b6d4]/20">
+          <span className="text-cyan inline-flex items-center rounded-full bg-cyan-100 px-2.5 py-0.5 text-sm font-bold dark:bg-[#06b6d4]/20">
             CGPA: 8.1
           </span>
         </p>

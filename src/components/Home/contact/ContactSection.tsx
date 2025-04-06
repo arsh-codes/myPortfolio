@@ -67,7 +67,7 @@ export default function ContactSection() {
 
   return (
     <section
-      className="relative flex h-fit w-full flex-col items-center justify-center pt-24 lg:h-screen"
+      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:py-24"
       id="contact"
     >
       {/* wrapper  */}

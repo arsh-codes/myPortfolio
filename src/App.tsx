@@ -42,16 +42,43 @@ export default function App() {
   return (
     <>
       <AnimatePresence mode="wait">{loader && <Preloader />}</AnimatePresence>
-      <div className="relative flex h-full w-full flex-col scroll-smooth select-none">
+      <div className="relative flex w-full flex-col scroll-smooth select-none">
         <Navbar />
-        <HeroSection />
-        <AboutMe />
-        <Experience />
-        <Skills />
-        <ProjectSection />
-        <GithubSection />
-        <MediumBlogs />
-        <ContactMe />
+
+        {/* Hero: Full screen height */}
+        <section className="">
+          <HeroSection />
+        </section>
+
+        {/* Content sections: Adaptive height with consistent spacing */}
+        <section className="">
+          <AboutMe />
+        </section>
+
+        <section className="">
+          <Experience />
+        </section>
+
+        <section className="">
+          <Skills />
+        </section>
+
+        <section className="">
+          <ProjectSection />
+        </section>
+
+        <section className="">
+          <GithubSection />
+        </section>
+
+        <section className="">
+          <MediumBlogs />
+        </section>
+
+        <section className="">
+          <ContactMe />
+        </section>
+
         <Footer />
       </div>
     </>

@@ -2,11 +2,11 @@ import { Timeline } from "./Timeline";
 import timelineData from "@/assets/data/timelineData";
 export default function ExperienceSection() {
   return (
-    <div className="h-fit w-full pb-10" id="experience">
+    <div className="h-fit w-full py-16 md:py-20 lg:py-24" id="experience">
       <section className="mx-auto flex w-11/12 flex-col gap-0">
         {/* Heading container */}
         {/* Enhanced heading container */}
-        <div className="relative mb-8 flex flex-col gap-3">
+        <div className="relative mb-8 flex flex-col">
           <div className="flex items-center gap-2">
             <div className="from-emerald to-cyan h-1 w-16 rounded-full bg-gradient-to-r"></div>
             <h2 className="text-emerald text-sm font-semibold tracking-wider uppercase">

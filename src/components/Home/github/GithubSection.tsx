@@ -78,7 +78,10 @@ export default function GithubSection() {
 
   if (loading) {
     return (
-      <section className="relative w-full overflow-hidden py-20" id="github">
+      <section
+        className="bg-muted/60 dark:bg-muted/20 relative w-full overflow-hidden py-16 md:py-20 lg:py-24"
+        id="github"
+      >
         <div className="container mx-auto px-4 text-center">
           <p className="text-primary text-lg">Loading GitHub data...</p>
         </div>
@@ -88,7 +91,10 @@ export default function GithubSection() {
 
   if (error) {
     return (
-      <section className="relative w-full overflow-hidden py-20" id="github">
+      <section
+        className="bg-muted/60 dark:bg-muted/20 relative w-full overflow-hidden lg:py-20"
+        id="github"
+      >
         <div className="absolute top-20 -right-64 h-96 w-96 rounded-full bg-red-300/20 blur-3xl filter"></div>
         <div className="absolute bottom-20 -left-64 h-96 w-96 rounded-full bg-red-300/20 blur-3xl filter"></div>
 
@@ -126,7 +132,7 @@ export default function GithubSection() {
 
   return (
     <section
-      className="relative flex h-fit w-full items-center justify-center overflow-hidden pt-20 lg:h-screen"
+      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24"
       id="github"
     >
       {/* Background gradient elements */}
@@ -196,7 +202,7 @@ export default function GithubSection() {
                     </p>
                   )}
 
-                  <div className="mt-auto flex w-full flex-row justify-center items-center gap-4">
+                  <div className="mt-auto flex w-full flex-row items-center justify-center gap-4">
                     {userData?.location && (
                       <div className="flex items-center justify-center text-sm text-gray-600 dark:text-gray-300">
                         <FaMapMarkerAlt className="mr-2 text-emerald-500" />
