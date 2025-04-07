@@ -313,10 +313,7 @@ export default function BlogSection() {
                     delay: index * 0.1,
                     ease: [0.22, 1, 0.36, 1], // custom cubic-bezier for easeOutExpo feel
                   }}
-                  whileHover={{ 
-                    y: -8,
-                    transition: { type: "spring", stiffness: 300, damping: 15 }
-                  }}
+                
                   className="group relative flex h-[480px] w-[300px] min-w-[300px] snap-start flex-col rounded-lg border border-gray-200 bg-white p-4 shadow-md transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-cyan-400/50 dark:hover:shadow-lg dark:hover:shadow-cyan-400/5"
                 >
                   {/* Image with gradient overlay */}
