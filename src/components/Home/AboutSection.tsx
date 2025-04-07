@@ -6,6 +6,9 @@ export default function AboutSection() {
       className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center py-16 md:py-20 lg:py-24"
       id="about"
     >
+      {/* Background gradient elements */}
+      <div className="absolute top-20 -left-40 size-96 rounded-full bg-emerald-400/6 blur-3xl filter"></div>
+      <div className="absolute right-10 bottom-40 h-60 w-80 rounded-full bg-cyan-500/6 blur-3xl filter"></div>
       <div className="relative mx-auto flex h-full w-11/12 flex-col gap-10 lg:flex-row lg:items-center">
         {/* Image Section */}
         <section className="relative flex w-full flex-col items-center justify-center lg:w-1/3">

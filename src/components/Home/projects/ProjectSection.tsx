@@ -92,7 +92,10 @@ export default function ProjectSection() {
     <section
       id="projects"
       className="relative h-fit w-full overflow-hidden py-16 md:py-20 lg:py-24"
-    >
+    > {/* Background gradient elements */}
+      <div className="absolute top-20 -left-10 size-80 rounded-full bg-emerald-500/10 blur-3xl filter"></div>
+      <div className="absolute right-20 bottom-40 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl filter"></div>
+      <div className="absolute bottom-0 left-1/3 h-60 w-60 rounded-full bg-emerald-300/10 blur-3xl filter"></div>
       <div className="container mx-auto w-11/12 px-4">
         {/* Section header with animated title */}
         <motion.div
