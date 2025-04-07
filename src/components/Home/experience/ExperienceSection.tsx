@@ -1,11 +1,22 @@
 import { Timeline } from "./Timeline";
 import timelineData from "@/assets/data/timelineData";
+import { useTheme } from "@/components/ThemeProvider";
 export default function ExperienceSection() {
+  const { theme } = useTheme();
   return (
-    <div className="h-fit w-full py-16 md:py-20 lg:py-24" id="experience">
+    <div
+      className="relative h-fit w-full py-16 md:py-20 lg:py-24"
+      id="experience"
+    >
       <section className="mx-auto flex w-11/12 flex-col gap-0">
-        {/* Heading container */}
-        {/* Enhanced heading container */}
+        {/* Background gradient elements */}
+        {theme === "dark" && (
+          <>
+            <div className="absolute top-10 -left-40 z-0 size-72 rounded-full bg-cyan-400/10 blur-3xl filter"></div>
+            <div className="absolute top-1/4 left-1/2 z-0 size-72 rounded-full bg-cyan-500/10 blur-3xl filter"></div>
+            <div className="absolute -right-50 bottom-10 z-0 size-96 rounded-full bg-emerald-400/10 blur-3xl filter"></div>
+          </>
+        )}
         <div className="relative mb-8 flex flex-col">
           <div className="flex items-center gap-2">
             <div className="from-emerald to-cyan h-1 w-16 rounded-full bg-gradient-to-r"></div>

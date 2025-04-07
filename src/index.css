@@ -18,7 +18,10 @@ html {
   /* Allows vertical scrolling */
 }
 
-
+/* This is to remove underline from console in the codeblock component, syntax highlighter automatically gives console word an underline. */
+.token.console {
+  text-decoration: none !important;
+}
 
 :root {
   /* Radius for rounded corners */

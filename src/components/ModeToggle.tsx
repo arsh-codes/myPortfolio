@@ -30,7 +30,7 @@ export function ModeToggle() {
   };
 
   return (
-    <div>
+    <div className="cursor-pointer">
       {/* Hidden audio element outside the button */}
       <audio ref={audioRef} src={buttonSound} preload="auto"></audio>
 

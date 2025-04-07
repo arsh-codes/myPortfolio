@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Tooltip,
   TooltipContent,
@@ -7,19 +9,55 @@ import {
 
 import { GlowingEffect } from "./GlowingEffect";
 import { IconCloudData } from "@/components/Home/skills/IconCloudData";
+import { motion } from "framer-motion";
 import skillCardsData from "@/assets/data/skillCardsData";
+import { useTheme } from "@/components/ThemeProvider";
+
+// Animation Variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const containerStagger = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const skillCardVariant = {
+  hidden: { opacity: 0, scale: 0.9 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
+};
 
 export default function SkillSection() {
-  // Skills Data
+  const { theme } = useTheme();
 
   return (
     <div
       className="bg-muted/60 dark:bg-muted/20 relative h-fit w-full py-16 md:py-20 lg:py-24"
       id="skills"
     >
+      {/* Background gradient elements */}
+      {theme === "dark" && (
+        <>
+          <div className="absolute top-50 -left-30 size-80 rounded-full bg-emerald-500/6 blur-3xl filter"></div>
+          <div className="absolute -right-20 bottom-20 h-96 w-96 rounded-full bg-cyan-500/6 blur-3xl filter"></div>
+        </>
+      )}
+
       <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly lg:items-center">
-        {/* heading section */}
-        <div className="flex flex-col items-start gap-4 text-left lg:items-center lg:justify-center lg:text-center">
+        {/* Heading */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="flex flex-col items-start gap-4 text-left lg:items-center lg:justify-center lg:text-center"
+        >
           <div className="relative">
             <h1 className="relative z-10 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               <span className="from-emerald to-cyan bg-gradient-to-r bg-clip-text text-transparent">
@@ -29,13 +67,9 @@ export default function SkillSection() {
           </div>
 
           <p className="text-muted-foreground text-balance lg:text-lg">
-            <span className="text-foreground/90 font-semibold">
-              MERN-powered
-            </span>
-            ,<span className="text-cyan font-semibold"> TypeScript</span>-tuned,
-            and
-            <span className="text-emerald font-semibold"> Tailwind</span>
-            -styled.
+            <span className="text-foreground/90 font-semibold">MERN-powered</span>, 
+            <span className="text-cyan font-semibold"> TypeScript</span>-tuned, and 
+            <span className="text-emerald font-semibold"> Tailwind</span>-styled.
           </p>
 
           <div className="mt-1 flex items-center justify-center gap-2">
@@ -43,20 +77,28 @@ export default function SkillSection() {
             <div className="bg-cyan size-1 animate-pulse rounded-full delay-150"></div>
             <div className="bg-emerald size-1 animate-pulse rounded-full delay-300"></div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Skills Grid  */}
+        {/* Skills Grid and IconCloud */}
         <div className="relative flex flex-col-reverse items-center lg:flex-row">
-          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {/* Skill Cards */}
+          <motion.ul
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 gap-4 md:grid-cols-2"
+          >
             {skillCardsData.map((cardData, index) => {
               const HeadingLogo = cardData.headingLogo;
 
               return (
-                <li
+                <motion.li
                   key={index}
-                  className={`${cardData.headingText === "Frontend Development" ? "col-span-1" : "col-span-1"}`}
+                  variants={skillCardVariant}
+                  className="col-span-1"
                 >
-                  {/* Outer Container*/}
+                  {/* Outer Container */}
                   <div className="relative h-full rounded-lg border p-3">
                     <GlowingEffect
                       blur={0}
@@ -68,12 +110,11 @@ export default function SkillSection() {
                       inactiveZone={0.01}
                     />
 
-                    {/* Card Wrapper*/}
+                    {/* Card Content */}
                     <div className="relative flex h-full flex-col items-center justify-start gap-6 overflow-hidden rounded-xl border p-6 shadow-[0px_0px_20px_0px_#D1D5DB] md:items-start dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
-                      {/*  heading logo and title */}
+                      {/* Heading */}
                       <div className="relative flex flex-col items-center gap-3 md:flex-row">
-                        {/* Logo Container */}
-                        <div className="border-muted-foreground borderp-2 w-fit rounded-lg border p-2">
+                        <div className="border-muted-foreground w-fit rounded-lg border p-2">
                           {HeadingLogo && (
                             <HeadingLogo
                               className="size-6"
@@ -82,15 +123,14 @@ export default function SkillSection() {
                           )}
                         </div>
 
-                        {/* Heading Text */}
-                        <div className="">
+                        <div>
                           <h3 className="text-foreground text-md text-center font-semibold md:text-left md:text-2xl">
                             {cardData.headingText}
                           </h3>
                         </div>
                       </div>
 
-                      {/* Skills list  */}
+                      {/* Skills List */}
                       <div className="grid w-fit grid-cols-1 gap-3 text-sm md:w-full md:grid-cols-2 lg:grid-cols-3">
                         {cardData.skills.map((skill, skillIndex) => {
                           const SkillLogo = skill.logo;
@@ -106,7 +146,6 @@ export default function SkillSection() {
                                         style={{ color: skill.color }}
                                       />
                                     )}
-                                    {/* Skill Name - Text representation of the skill */}
                                     <p className="text-black dark:text-neutral-400">
                                       {skill.name}
                                     </p>
@@ -120,15 +159,21 @@ export default function SkillSection() {
                       </div>
                     </div>
                   </div>
-                </li>
+                </motion.li>
               );
             })}
-          </ul>
+          </motion.ul>
 
-          {/* // Iconcloud component */}
-          <div className="my-6 lg:size-120">
+          {/* IconCloud */}
+          <motion.div
+            className="my-6 lg:size-120"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <IconCloudData />
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
