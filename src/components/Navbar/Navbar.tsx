@@ -10,7 +10,7 @@ import {
   IconUser,
   IconX,
 } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { FloatingDock } from "./FloatingDock";
 import { ModeToggle } from "../ModeToggle";
@@ -73,6 +73,37 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false); // State for scroll detection
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile menu toggle
   const { theme } = useTheme(); // Get current theme from context
+  const navbarRef = useRef<HTMLElement | null>(null); // Properly typed ref for the header element
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null); // Properly typed ref for the button
+
+  // Handle clicks outside the mobile menu
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+      // Only close the menu if:
+      // 1. The menu is open
+      // 2. The click is outside the entire navbar (which contains the menu)
+      // 3. The event target is not the menu button (which has its own handler)
+      if (
+        mobileMenuOpen &&
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target as Node)
+      ) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    // Add event listener when the menu is open
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+      document.addEventListener("touchstart", handleOutsideClick);
+    }
+
+    // Clean up event listener when component unmounts or menu closes
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,7 +125,7 @@ export default function Navbar() {
   Explanation of conditions:
   - `rect.top <= 100`: This checks if the top of the section is within 100px from the top of the viewport.
     
-  - `rect.bottom >= 100`: This ensures that the section hasn’t completely scrolled out of view from the top.
+  - `rect.bottom >= 100`: This ensures that the section hasn't completely scrolled out of view from the top.
     (This condition makes sure that at least part of the section is still visible.)
 */
         return rect.top <= 100 && rect.bottom >= 100;
@@ -113,6 +144,7 @@ export default function Navbar() {
 
   return (
     <header
+      ref={navbarRef}
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
           ? `bg-opacity-80 bg-background shadow-lg backdrop-blur-md`
@@ -145,6 +177,7 @@ export default function Navbar() {
 
           {/* Mobile menu button - only visible on small screens */}
           <button
+            ref={menuButtonRef}
             className="text-primary block transition-colors hover:text-cyan-500 lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
