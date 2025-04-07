@@ -133,7 +133,7 @@ export default function ProjectSection() {
               onClick={() => setActiveProject(index)}
               className={`relative w-fit rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-105 ${
                 activeProject === index
-                  ? "from-emerald to-cyan bg-gradient-to-r font-semibold text-gray-800 shadow-lg"
+                  ? "from-emerald to-cyan bg-gradient-to-r font-semibold text-foreground shadow-lg"
                   : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
               }`}
             >
@@ -192,7 +192,7 @@ export default function ProjectSection() {
                       {/* GitHub button */}
                       <Button
                         variant="outline"
-                        className="flex items-center border-emerald-500 bg-black/70 px-4 py-2 text-sm font-medium text-white shadow-lg hover:scale-105 hover:bg-emerald-500 hover:text-white"
+                        className="flex items-center border-emerald-500 bg-black/70 px-4 py-2 text-sm font-medium text-white shadow-lg hover:scale-105 hover:bg-emerald-500 hover:text-white dark:border-emerald-400 dark:bg-white/10 dark:text-emerald-50 dark:hover:bg-emerald-600 dark:hover:text-white"
                         onClick={() =>
                           window.open(projects[activeProject].github, "_blank")
                         }
@@ -202,7 +202,7 @@ export default function ProjectSection() {
                       {/* Live demo button */}
                       <Button
                         variant="outline"
-                        className="border-cyan hover:bg-cyan flex items-center bg-black/70 px-4 py-2 text-sm font-medium text-white shadow-lg hover:scale-105 hover:text-white"
+                        className="border-cyan hover:bg-cyan flex items-center bg-black/70 px-4 py-2 text-sm font-medium text-white shadow-lg hover:scale-105 hover:text-white dark:border-cyan-400 dark:bg-white/10 dark:text-cyan-50 dark:hover:bg-cyan-600 dark:hover:text-white"
                         onClick={() =>
                           window.open(
                             projects[activeProject].liveDemo,

@@ -6,7 +6,7 @@ export default function AboutSection() {
   const { theme } = useTheme();
   return (
     <div
-      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center py-16 md:py-20 lg:py-24"
+      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:flex-row lg:py-24"
       id="about"
     >
       {/* Background gradient elements */}
@@ -18,7 +18,7 @@ export default function AboutSection() {
       )}
       {/* Image Section */}
       <motion.section
-        className="relative flex w-full flex-col items-center justify-center lg:w-1/3"
+        className="relative flex w-full flex-col items-center justify-center pb-5 lg:w-1/3 lg:pb-0"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
