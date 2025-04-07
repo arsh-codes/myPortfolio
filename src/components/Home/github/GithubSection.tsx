@@ -135,9 +135,6 @@ export default function GithubSection() {
       className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24"
       id="github"
     >
-      {/* Background gradient elements */}
-      <div className="absolute top-20 -right-64 h-96 w-96 rounded-full bg-emerald-300/20 blur-3xl filter"></div>
-      <div className="absolute bottom-20 -left-64 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl filter"></div>
 
       <div className="container mx-auto px-4">
         {/* Section header with animated title */}

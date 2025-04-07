@@ -62,7 +62,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <main className="bg-background text-foreground overflow-x-hidden scroll-smooth antialiased select-none">
       <Toaster position="top-center" />
       <AnimatePresence>{loader && <Preloader />}</AnimatePresence>
       {/* Components above the fold - load immediately */}
@@ -79,6 +79,6 @@ export default function App() {
         <ContactMe />
         <Footer />
       </Suspense>
-    </>
+    </main>
   );
 }

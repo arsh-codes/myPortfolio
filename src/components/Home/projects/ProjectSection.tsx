@@ -11,15 +11,17 @@ import { BackgroundGradient } from "@/components/Home/heroSection/BackgroundGrad
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 // Import project images
-import portfolioImage from "@/assets/media/portfolioImage.png";
+import portfolioImageDark from "@/assets/media/portfolioImageDark.webp";
+import portfolioImageLight from "@/assets/media/portfolioImageLight.webp";
 import studyNotionImage from "@/assets/media/studyNotionImage.png";
 import { useState } from "react";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function ProjectSection() {
   // Track the currently selected project
   const [activeProject, setActiveProject] = useState(0);
   // Reference to the container for scroll animations
-
+  const { theme } = useTheme();
   // Project data
   const projects = [
     {
@@ -50,7 +52,7 @@ export default function ProjectSection() {
       title: "Portfolio Website",
       description:
         "A modern, interactive developer portfolio with animated components and responsive design showcasing projects and skills.",
-      image: portfolioImage,
+      image: theme === "dark" ? portfolioImageDark : portfolioImageLight,
       tags: ["Portfolio", "Frontend", "UI/UX"],
       features: [
         "Interactive UI with smooth animations",
@@ -91,10 +93,6 @@ export default function ProjectSection() {
       id="projects"
       className="relative h-fit w-full overflow-hidden py-16 md:py-20 lg:py-24"
     >
-      {/* Background gradient elements */}
-      <div className="absolute top-40 -left-64 h-96 w-96 rounded-full bg-emerald-300/20 blur-3xl filter"></div>
-      <div className="absolute -right-64 bottom-40 h-96 w-96 rounded-full bg-cyan-300/20 blur-3xl filter"></div>
-
       <div className="container mx-auto w-11/12 px-4">
         {/* Section header with animated title */}
         <motion.div
