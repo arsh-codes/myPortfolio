@@ -72,7 +72,7 @@ export default function HeroSection() {
                   shimmerDuration="3s"
                   borderRadius="100px"
                   background="var(--primary)"
-                  className="shadow-2xl hover:scale-105"
+                  className="cursor-pointer shadow-2xl hover:scale-105"
                 >
                   <span>Contact me</span>
                 </ShimmerButton>
@@ -80,7 +80,7 @@ export default function HeroSection() {
 
               <AnimatedResumeButton
                 resume={resume}
-                className="rounded-full px-6 py-[25px] hover:scale-105 hover:border hover:shadow"
+                className="cursor-pointer rounded-full px-6 py-[25px] hover:scale-105 hover:border hover:shadow"
               />
             </div>
           </div>

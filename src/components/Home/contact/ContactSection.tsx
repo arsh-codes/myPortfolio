@@ -52,15 +52,50 @@ export default function ContactSection() {
     >
       {theme === "dark" && (
         <>
-          <div className="absolute bottom-10 -left-20 size-96 rounded-full bg-emerald-500/6 blur-3xl filter"></div>
-          <div className="absolute top-0 right-0 h-80 w-80 rounded-full bg-cyan-500/6 blur-3xl filter"></div>
+          <motion.div 
+            className="absolute bottom-10 -left-20 size-96 rounded-full bg-emerald-500/6 blur-3xl filter"
+            animate={{ 
+              opacity: [0.4, 0.6, 0.4],
+              scale: [0.95, 1.05, 0.95],
+            }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity,
+              ease: "easeInOut" 
+            }}
+          ></motion.div>
+          <motion.div 
+            className="absolute top-0 right-0 h-80 w-80 rounded-full bg-cyan-500/6 blur-3xl filter"
+            animate={{ 
+              opacity: [0.5, 0.7, 0.5],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ 
+              duration: 6, 
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          ></motion.div>
         </>
       )}
 
       {/* wrapper  */}
-      <div className="mx-auto flex w-11/12 flex-col items-center">
+      <motion.div 
+        className="mx-auto flex w-11/12 flex-col items-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         {/* Heading */}
-        <div className="mb-8 md:text-center">
+        <motion.div 
+          className="mb-8 md:text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className="mb-4 text-5xl font-bold tracking-tight">
             <span className="bg-gradient-to-r from-[#4ade80] to-[#06b6d4] bg-clip-text text-transparent">
               Get in Touch
@@ -69,12 +104,17 @@ export default function ContactSection() {
           <p className="text-muted-foreground max-w-2xl text-lg">
             Let's collaborate and bring your ideas to life
           </p>
-        </div>
+        </motion.div>
         {/* info and form */}
         <div className="flex flex-col lg:flex-row">
           <div className="relative flex flex-col justify-center gap-10 lg:flex-row lg:items-start lg:gap-30">
             {/* Contact Info Section */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <TypewriterEffectSmooth
                 className="text-4xl font-bold md:text-3xl"
                 words={[
@@ -95,15 +135,27 @@ export default function ContactSection() {
                 cursorClassName="bg-emerald animate-blink"
               />
 
-              <p className="text-muted-foreground max-w-2xl text-balance">
+              <motion.p 
+                className="text-muted-foreground max-w-2xl text-balance"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 Got a cool idea, a job opportunity, or just want to chat about
-                tech, movies, or anime? I’m all ears! Whether you're looking for
+                tech, movies, or anime? I'm all ears! Whether you're looking for
                 a developer to join your team, a collaborator for an exciting
-                project, or just want to say hello, don’t hesitate to reach out.
-              </p>
+                project, or just want to say hello, don't hesitate to reach out.
+              </motion.p>
 
               {/* Social Links */}
-              <div className="my-8">
+              <motion.div 
+                className="my-8"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <h3 className="text-muted-foreground mb-4 text-sm font-medium tracking-wider uppercase">
                   Connect With Me
                 </h3>
@@ -118,24 +170,37 @@ export default function ContactSection() {
                       className={`text-muted-foreground transition-all duration-200 ${link.color}`}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
                     >
                       {link.icon}
                     </motion.a>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Location & Time Info */}
-              <div className="bg-muted/50 dark:bg-muted/20 mt-8 space-y-4 rounded-2xl p-6 backdrop-blur-sm">
-                <a
+              <motion.div 
+                className="bg-muted/50 dark:bg-muted/20 mt-8 space-y-4 rounded-2xl p-6 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <motion.a
+                  whileHover={{ x: 5 }}
                   href="https://maps.app.goo.gl/H7dEy8vnVmZWUD5A6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="group flex items-center gap-3 transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400  w-fit"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40">
+                  <motion.span 
+                    whileHover={{ scale: 1.1 }}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40"
+                  >
                     📍
-                  </span>
+                  </motion.span>
                   <div>
                     <p className="text-muted-foreground text-sm font-medium">
                       Based in
@@ -144,17 +209,21 @@ export default function ContactSection() {
                       Punjab, India 🇮🇳
                     </p>
                   </div>
-                </a>
+                </motion.a>
 
-                <a
+                <motion.a
+                  whileHover={{ x: 5 }}
                   href="https://www.timeanddate.com/time/zone/india"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="group flex items-center gap-3 transition-colors w-fit duration-300 hover:text-blue-600 dark:hover:text-blue-400"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40">
+                  <motion.span 
+                    whileHover={{ scale: 1.1 }}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40"
+                  >
                     ⏳
-                  </span>
+                  </motion.span>
                   <div>
                     <p className="text-muted-foreground text-sm font-medium">
                       Time Zone
@@ -163,17 +232,21 @@ export default function ContactSection() {
                       IST (UTC+5:30)
                     </p>
                   </div>
-                </a>
+                </motion.a>
 
-                <a
+                <motion.a
+                  whileHover={{ x: 5 }}
                   href="https://www.timeanddate.com/worldclock/india"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="group flex items-center gap-3 transition-colors w-fit duration-300 hover:text-blue-600 dark:hover:text-blue-400"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40">
+                  <motion.span 
+                    whileHover={{ scale: 1.1 }}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-lg text-blue-600 shadow-sm transition-all duration-300 group-hover:bg-blue-200 group-hover:shadow-md dark:bg-blue-900/30 dark:text-blue-400 dark:group-hover:bg-blue-800/40"
+                  >
                     🕒
-                  </span>
+                  </motion.span>
                   <div>
                     <p className="text-muted-foreground text-sm font-medium">
                       Current Time
@@ -182,27 +255,37 @@ export default function ContactSection() {
                       <SlidingNumberClock />
                     </span>
                   </div>
-                </a>
-              </div>
-            </div>
+                </motion.a>
+              </motion.div>
+            </motion.div>
 
             {/* Contact Form */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               <ContactForm />
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Go to Top Button (Visible only in ContactMe section) */}
-      <button
+      <motion.button
         onClick={scrollToTop}
         className="bg-secondary hover:bg-opacity-90 text-primary absolute right-6 bottom-1.5 z-50 flex cursor-pointer items-center justify-center rounded-full p-3 text-sm shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl md:right-1.5 lg:right-10 lg:bottom-2 lg:text-base"
         aria-label="Go to top"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
       >
         <FaArrowUp className="lg:text-lg" />
         <span className="ml-2 hidden lg:inline">Back to top</span>
-      </button>
+      </motion.button>
     </section>
   );
 }

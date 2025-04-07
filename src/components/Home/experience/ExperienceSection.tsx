@@ -14,7 +14,7 @@ export default function ExperienceSection() {
           <>
             <div className="absolute top-10 -left-40 z-0 size-72 rounded-full bg-cyan-400/10 blur-3xl filter"></div>
             <div className="absolute top-1/4 left-1/2 z-0 size-72 rounded-full bg-cyan-500/10 blur-3xl filter"></div>
-            <div className="absolute -right-30 bottom-10 z-0 size-96 rounded-full bg-emerald-400/10 blur-3xl filter"></div>
+            <div className="absolute -right-50 bottom-10 z-0 size-96 rounded-full bg-emerald-400/10 blur-3xl filter"></div>
           </>
         )}
         <div className="relative mb-8 flex flex-col">
