@@ -8,9 +8,10 @@ import {
 import { GlowingEffect } from "./GlowingEffect";
 import { IconCloudData } from "@/components/Home/skills/IconCloudData";
 import skillCardsData from "@/assets/data/skillCardsData";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function SkillSection() {
-  // Skills Data
+  const { theme } = useTheme();
 
   return (
     <div
@@ -18,9 +19,12 @@ export default function SkillSection() {
       id="skills"
     >
       {/* Background gradient elements */}
-      <div className="absolute top-50 -left-30 size-80 rounded-full bg-emerald-500/6 blur-3xl filter"></div>
-      <div className="absolute -right-20 bottom-20 h-96 w-96 rounded-full bg-cyan-500/6 blur-3xl filter"></div>
-
+      {theme === "dark" && (
+        <>
+          <div className="absolute top-50 -left-30 size-80 rounded-full bg-emerald-500/6 blur-3xl filter"></div>
+          <div className="absolute -right-20 bottom-20 h-96 w-96 rounded-full bg-cyan-500/6 blur-3xl filter"></div>
+        </>
+      )}
       <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly lg:items-center">
         {/* heading section */}
         <div className="flex flex-col items-start gap-4 text-left lg:items-center lg:justify-center lg:text-center">

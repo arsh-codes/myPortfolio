@@ -72,10 +72,13 @@ export default function BlogSection() {
       className="relative flex h-fit w-full items-center justify-center py-16 md:py-20 lg:py-24"
       id="blogs"
     >
-      {/* Background gradient elements */}
-      <div className="absolute top-10 left-20 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl filter"></div>
-      <div className="absolute -right-20 bottom-20 size-80 rounded-full bg-emerald-500/10 blur-3xl filter"></div>
-      <div className="absolute bottom-1/4 left-1/4 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl filter"></div>
+      {theme === "dark" && (
+        <>
+          <div className="absolute top-10 left-20 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl filter"></div>
+          <div className="absolute -right-20 bottom-20 size-80 rounded-full bg-emerald-500/10 blur-3xl filter"></div>
+          <div className="absolute bottom-1/4 left-1/4 h-48 w-48 rounded-full bg-cyan-300/10 blur-3xl filter"></div>
+        </>
+      )}
 
       <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-8 px-4 md:px-10 lg:flex-row lg:items-start lg:gap-4">
         {/* Header */}

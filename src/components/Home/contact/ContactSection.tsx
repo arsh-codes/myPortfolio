@@ -10,6 +10,7 @@ import { ContactForm } from "./ContactForm";
 import { SlidingNumberClock } from "./SlidingNumberClock";
 import { TypewriterEffectSmooth } from "./TypewriterEffect";
 import { motion } from "motion/react";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function ContactSection() {
   const socialLinks = [
@@ -42,14 +43,19 @@ export default function ContactSection() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const { theme } = useTheme();
 
   return (
     <section
       className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:py-24"
       id="contact"
-    > {/* Background gradient elements */}
-      <div className="absolute bottom-10 -left-20 size-96 rounded-full bg-emerald-500/6 blur-3xl filter"></div>
-      <div className="absolute top-0 right-0 h-80 w-80 rounded-full bg-cyan-500/6 blur-3xl filter"></div>
+    >
+      {theme === "dark" && (
+        <>
+          <div className="absolute bottom-10 -left-20 size-96 rounded-full bg-emerald-500/6 blur-3xl filter"></div>
+          <div className="absolute top-0 right-0 h-80 w-80 rounded-full bg-cyan-500/6 blur-3xl filter"></div>
+        </>
+      )}
 
       {/* wrapper  */}
       <div className="mx-auto flex w-11/12 flex-col items-center">
