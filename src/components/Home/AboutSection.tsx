@@ -1,6 +1,6 @@
 import aboutMeImage from "/public/media/aboutMeImage.jpg";
 import { motion } from "framer-motion";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 export default function AboutSection() {
   const { theme } = useTheme();

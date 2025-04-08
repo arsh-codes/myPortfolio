@@ -1,6 +1,6 @@
 import { Timeline } from "./Timeline";
 import timelineData from "@/assets/data/timelineData";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 export default function ExperienceSection() {
   const { theme } = useTheme();
   return (

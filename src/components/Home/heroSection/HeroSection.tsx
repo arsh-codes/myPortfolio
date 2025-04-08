@@ -7,7 +7,7 @@ import { MeteorsBackground } from "./MeteorsBackground";
 import { ShimmerButton } from "./ShimmerButton";
 import codeBlockData from "@/assets/data/codeBlockData";
 import resume from "@/assets/data/Resume Arshdeep Singh.pdf";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 export default function HeroSection() {
   const { theme } = useTheme();

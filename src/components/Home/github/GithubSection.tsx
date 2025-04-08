@@ -6,7 +6,7 @@ import { BackgroundGradient } from "@/components/Home/heroSection/BackgroundGrad
 import { Button } from "@/components/ui/Button";
 import GitHubCalendar from "react-github-calendar";
 import { motion } from "framer-motion";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 // Define TypeScript interface for GitHub API user data
 interface GitHubUserData {
@@ -135,12 +135,11 @@ export default function GithubSection() {
       className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24"
       id="github"
     >
-
       {/* Background gradient elements */}
       {theme === "dark" && (
         <>
-           <div className="absolute -top-20 -left-40 size-96 rounded-full bg-cyan-600/6 blur-3xl filter"></div>
-           <div className="absolute top-60 right-10 h-80 w-80 rounded-full bg-emerald-400/6 blur-3xl filter"></div>
+          <div className="absolute -top-20 -left-40 size-96 rounded-full bg-cyan-600/6 blur-3xl filter"></div>
+          <div className="absolute top-60 right-10 h-80 w-80 rounded-full bg-emerald-400/6 blur-3xl filter"></div>
         </>
       )}
 

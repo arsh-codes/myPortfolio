@@ -33,15 +33,15 @@ export const FloatingDock = ({
 }: FloatingDockProps) => {
   return (
     <>
-      <FloatingDockDesktop 
-        items={items} 
-        activeItem={activeItem} 
-        className={desktopClassName} 
+      <FloatingDockDesktop
+        items={items}
+        activeItem={activeItem}
+        className={desktopClassName}
       />
-      <FloatingDockMobile 
-        items={items} 
-        activeItem={activeItem} 
-        className={mobileClassName} 
+      <FloatingDockMobile
+        items={items}
+        activeItem={activeItem}
+        className={mobileClassName}
       />
     </>
   );
@@ -57,30 +57,32 @@ const FloatingDockMobile = ({
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
-  
+
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (open && !(e.target as Element).closest('.floating-dock-mobile')) {
+      if (open && !(e.target as Element).closest(".floating-dock-mobile")) {
         setOpen(false);
       }
     };
-    
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [open]);
 
   return (
-    <div className={cn("relative block md:hidden floating-dock-mobile", className)}>
+    <div
+      className={cn("floating-dock-mobile relative block md:hidden", className)}
+    >
       <AnimatePresence>
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute inset-x-0 bottom-full mb-2 flex flex-col gap-2 items-center"
+            className="absolute inset-x-0 bottom-full mb-2 flex flex-col items-center gap-2"
           >
             {items.map((item, idx) => {
               const isActive = activeItem === item.id;
-              
+
               return (
                 <motion.div
                   key={item.title}
@@ -98,11 +100,11 @@ const FloatingDockMobile = ({
                       delay: idx * 0.05,
                     },
                   }}
-                  transition={{ 
+                  transition={{
                     type: "spring",
                     stiffness: 300,
                     damping: 20,
-                    delay: (items.length - 1 - idx) * 0.05 
+                    delay: (items.length - 1 - idx) * 0.05,
                   }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -114,13 +116,13 @@ const FloatingDockMobile = ({
                     onClick={() => setOpen(false)}
                     className={cn(
                       "relative flex h-10 w-10 items-center justify-center rounded-full",
-                      isActive 
-                        ? "bg-gradient-to-r from-emerald-400/30 to-cyan-500/30 text-cyan-500" 
-                        : "bg-gray-50 hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700"
+                      isActive
+                        ? "bg-gradient-to-r from-emerald-400/30 to-cyan-500/30 text-cyan-500"
+                        : "bg-gray-50 hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700",
                     )}
                   >
                     <div className="h-4 w-4">{item.icon}</div>
-                    <span className="absolute -right-1 -top-1 flex h-4 w-max min-w-4 items-center justify-center rounded-full bg-gray-100 px-1 text-[10px] font-semibold dark:bg-neutral-700">
+                    <span className="absolute -top-1 -right-1 flex h-4 w-max min-w-4 items-center justify-center rounded-full bg-gray-100 px-1 text-[10px] font-semibold dark:bg-neutral-700">
                       {item.title}
                     </span>
                   </a>
@@ -176,13 +178,13 @@ const FloatingDockDesktop = ({
       )}
     >
       {items.map((item) => (
-        <IconContainer 
-          mouseX={mouseX} 
-          key={item.title} 
+        <IconContainer
+          mouseX={mouseX}
+          key={item.title}
           isActive={activeItem === item.id}
           onHover={(title) => setVisibleTooltip(title)}
           visibleTooltip={visibleTooltip}
-          {...item} 
+          {...item}
         />
       ))}
     </motion.div>
@@ -216,12 +218,24 @@ function IconContainer({
   // Make the active item slightly larger by default
   const baseSize = isActive ? 50 : 40;
   const hoverSize = isActive ? 90 : 80;
-  
-  let widthTransform = useTransform(distance, [-150, 0, 150], [baseSize, hoverSize, baseSize]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [baseSize, hoverSize, baseSize]);
+
+  let widthTransform = useTransform(
+    distance,
+    [-150, 0, 150],
+    [baseSize, hoverSize, baseSize],
+  );
+  let heightTransform = useTransform(
+    distance,
+    [-150, 0, 150],
+    [baseSize, hoverSize, baseSize],
+  );
 
   let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  let heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  let heightTransformIcon = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 40, 20],
+  );
 
   let width = useSpring(widthTransform, {
     mass: 0.1,
@@ -248,10 +262,10 @@ function IconContainer({
   const showTooltip = visibleTooltip === title;
 
   return (
-    <a 
+    <a
       href={href}
       aria-label={title}
-      className="focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 rounded-full"
+      className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
     >
       <div className="relative">
         <motion.div
@@ -265,19 +279,21 @@ function IconContainer({
             "flex aspect-square origin-top items-center justify-center rounded-full transition-colors",
             isActive
               ? "bg-gradient-to-r from-emerald-400/30 to-cyan-500/30"
-              : "bg-gray-50 hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700"
+              : "bg-gray-50 hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700",
           )}
         >
           <motion.div
             style={{ width: widthIcon, height: heightIcon }}
             className={cn(
               "flex items-center justify-center",
-              isActive ? "text-cyan-500" : "text-neutral-600 dark:text-neutral-400"
+              isActive
+                ? "text-cyan-500"
+                : "text-neutral-600 dark:text-neutral-400",
             )}
           >
             {icon}
           </motion.div>
-          
+
           {isActive && (
             <motion.div
               className="absolute -bottom-1 left-1/2 h-1 w-1 translate-x-[-50%] rounded-full bg-cyan-500"
@@ -285,7 +301,7 @@ function IconContainer({
               transition={{
                 type: "spring",
                 stiffness: 300,
-                damping: 30
+                damping: 30,
               }}
             />
           )}
@@ -300,9 +316,9 @@ function IconContainer({
               transition={{
                 type: "spring",
                 stiffness: 300,
-                damping: 20
+                damping: 20,
               }}
-              className="absolute top-full left-1/2 mt-2 w-max -translate-x-1/2 rounded-md bg-gradient-to-r from-emerald-400/10 to-cyan-500/10 border border-cyan-500/20 px-3 py-1 text-xs whitespace-pre text-cyan-600 backdrop-blur-sm dark:text-cyan-400"
+              className="absolute top-full left-1/2 mt-2 w-max -translate-x-1/2 rounded-md border border-cyan-500/20 bg-gradient-to-r from-emerald-400/10 to-cyan-500/10 px-3 py-1 text-xs whitespace-pre text-cyan-600 backdrop-blur-sm dark:text-cyan-400"
             >
               {title}
             </motion.div>

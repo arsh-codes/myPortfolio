@@ -13,8 +13,8 @@ import {
 import { ReactNode, useEffect, useRef, useState } from "react";
 
 import { FloatingDock } from "./FloatingDock";
-import { ModeToggle } from "../ModeToggle";
-import { useTheme } from "@/components/ThemeProvider";
+import { ModeToggle } from "./ModeToggle";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 // Define types for the sections
 interface Section {

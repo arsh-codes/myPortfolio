@@ -11,7 +11,7 @@ import { GlowingEffect } from "./GlowingEffect";
 import { IconCloudData } from "@/components/Home/skills/IconCloudData";
 import { motion } from "framer-motion";
 import skillCardsData from "@/assets/data/skillCardsData";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 // Animation Variants
 const fadeInUp = {
@@ -67,9 +67,13 @@ export default function SkillSection() {
           </div>
 
           <p className="text-muted-foreground text-balance lg:text-lg">
-            <span className="text-foreground/90 font-semibold">MERN-powered</span>, 
-            <span className="text-cyan font-semibold"> TypeScript</span>-tuned, and 
-            <span className="text-emerald font-semibold"> Tailwind</span>-styled.
+            <span className="text-foreground/90 font-semibold">
+              MERN-powered
+            </span>
+            ,<span className="text-cyan font-semibold"> TypeScript</span>-tuned,
+            and
+            <span className="text-emerald font-semibold"> Tailwind</span>
+            -styled.
           </p>
 
           <div className="mt-1 flex items-center justify-center gap-2">

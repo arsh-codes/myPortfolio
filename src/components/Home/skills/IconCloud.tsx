@@ -9,7 +9,7 @@ import {
 } from "react-icon-cloud";
 import { useEffect, useMemo, useState } from "react";
 
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 export const cloudProps: Omit<ICloud, "children"> = {
   containerProps: {

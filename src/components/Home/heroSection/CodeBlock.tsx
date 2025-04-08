@@ -8,7 +8,7 @@ import {
 
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 type CodeBlockProps = {
   language: string;

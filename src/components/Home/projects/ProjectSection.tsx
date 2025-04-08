@@ -15,7 +15,7 @@ import portfolioImageDark from "/public/media/portfolioImageDark.webp";
 import portfolioImageLight from "/public/media/portfolioImageLight.webp";
 import studyNotionImage from "/public/media/studyNotionImage.png";
 import { useState } from "react";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 export default function ProjectSection() {
   // Track the currently selected project

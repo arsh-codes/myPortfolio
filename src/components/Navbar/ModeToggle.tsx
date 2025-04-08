@@ -1,10 +1,10 @@
 import { Moon, Sun } from "lucide-react";
 import { useRef, useState } from "react";
 
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 import buttonSound from "/public/media/modeTogglerSound.mp3";
 import { motion } from "framer-motion";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatedGradientText } from "./heroSection/AnimatedGradientText";
 import { Button } from "../ui/Button";
 import { motion } from "framer-motion";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 interface MediumPost {
   title: string;
@@ -76,32 +76,32 @@ export default function BlogSection() {
       transition: {
         staggerChildren: 0.2,
         delayChildren: 0.3,
-      }
-    }
+      },
+    },
   };
 
   const headerVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
-      } 
-    }
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
   };
 
   const buttonVariants = {
-    hover: { 
+    hover: {
       scale: 1.05,
-      transition: { 
-        type: "spring", 
-        stiffness: 400, 
-        damping: 10 
-      } 
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10,
+      },
     },
-    tap: { scale: 0.95 }
+    tap: { scale: 0.95 },
   };
 
   return (
@@ -115,19 +115,19 @@ export default function BlogSection() {
     >
       {theme === "dark" && (
         <>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
             className="absolute top-10 left-20 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl filter"
           ></motion.div>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.3 }}
             className="absolute -right-20 bottom-20 size-80 rounded-full bg-emerald-500/10 blur-3xl filter"
           ></motion.div>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.6 }}
@@ -138,7 +138,7 @@ export default function BlogSection() {
 
       <div className="relative mx-auto flex h-fit w-11/12 flex-col gap-8 px-4 md:px-10 lg:flex-row lg:items-start lg:gap-4">
         {/* Header */}
-        <motion.div 
+        <motion.div
           variants={headerVariants}
           className="flex max-w-sm flex-col p-2"
         >
@@ -153,7 +153,7 @@ export default function BlogSection() {
               Medium Articles
             </AnimatedGradientText>
           </h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -293,7 +293,7 @@ export default function BlogSection() {
                   </motion.div>
                 ))
             ) : error ? (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
@@ -362,7 +362,11 @@ export default function BlogSection() {
                           Read Article
                           <motion.svg
                             whileHover={{ x: 3 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 10,
+                            }}
                             className="ml-2 h-4 w-4"
                             fill="none"
                             stroke="currentColor"

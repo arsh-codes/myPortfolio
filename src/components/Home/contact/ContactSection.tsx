@@ -10,7 +10,7 @@ import { ContactForm } from "./ContactForm";
 import { SlidingNumberClock } from "./SlidingNumberClock";
 import { TypewriterEffectSmooth } from "./TypewriterEffect";
 import { motion } from "motion/react";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 export default function ContactSection() {
   const socialLinks = [
@@ -107,7 +107,7 @@ export default function ContactSection() {
         </motion.div>
         {/* info and form */}
 
-        <div className="relative flex h-fit flex-col justify-center gap-10  lg:flex-row lg:gap-30">
+        <div className="relative flex h-fit flex-col justify-center gap-10 lg:flex-row lg:gap-30">
           {/* Contact Info Section */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -266,7 +266,6 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-         
           >
             <ContactForm />
           </motion.div>
