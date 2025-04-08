@@ -10,14 +10,22 @@ import {
   IconUser,
   IconX,
 } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 import { FloatingDock } from "./FloatingDock";
 import { ModeToggle } from "../ModeToggle";
 import { useTheme } from "@/components/ThemeProvider";
 
+// Define types for the sections
+interface Section {
+  id: string;
+  title: string;
+  icon: ReactNode;
+  href: string;
+}
+
 // Navigation sections with icons and href links
-const sections = [
+const sections: Section[] = [
   {
     id: "hero",
     title: "Home",
@@ -74,6 +82,46 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile menu toggle
   const { theme } = useTheme(); // Get current theme from context
 
+  // Refs for outside click detection
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Close mobile menu when clicking on a link
+  const handleMobileNavClick = (sectionId: string) => {
+    setActiveSection(sectionId);
+    setMobileMenuOpen(false);
+  };
+
+  // Handle outside clicks to close the mobile menu
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+      // Only check for outside clicks when menu is open
+      if (!mobileMenuOpen) return;
+
+      // Check if the click is outside both the menu and the toggle button
+      const isClickOutsideMobileMenu =
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node);
+      const isClickOutsideButton =
+        mobileMenuButtonRef.current &&
+        !mobileMenuButtonRef.current.contains(event.target as Node);
+
+      if (isClickOutsideMobileMenu && isClickOutsideButton) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    // Add event listener to document
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+
+    // Clean up event listener
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [mobileMenuOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10); // Change navbar background on scroll
@@ -88,20 +136,12 @@ export default function Navbar() {
 
       // Determine which section is currently in view based on scroll position
       const currentSection = sectionElements.find((section) => {
-        const rect = section.element!.getBoundingClientRect(); // Get the position and size of the section relative to the viewport
-
-        /*
-  Explanation of conditions:
-  - `rect.top <= 100`: This checks if the top of the section is within 100px from the top of the viewport.
-    
-  - `rect.bottom >= 100`: This ensures that the section hasn’t completely scrolled out of view from the top.
-    (This condition makes sure that at least part of the section is still visible.)
-*/
+        if (!section.element) return false;
+        const rect = section.element.getBoundingClientRect(); // Get the position and size of the section relative to the viewport
         return rect.top <= 100 && rect.bottom >= 100;
       });
 
       // If a section is found that matches the criteria, it is considered the currently active section.
-
       if (currentSection) {
         setActiveSection(currentSection.id);
       }
@@ -109,6 +149,19 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close mobile menu when screen size changes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        // lg breakpoint
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -145,6 +198,7 @@ export default function Navbar() {
 
           {/* Mobile menu button - only visible on small screens */}
           <button
+            ref={mobileMenuButtonRef}
             className="text-primary block transition-colors hover:text-cyan-500 lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
@@ -158,15 +212,16 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className={`overflow-hidden lg:hidden ${
+            ref={mobileMenuRef}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className={`absolute top-16 left-0 z-40 w-full lg:hidden ${
               theme === "dark"
                 ? "bg-opacity-95 bg-gray-900"
                 : "bg-opacity-95 bg-white"
-            } backdrop-blur-md`}
+            } shadow-lg backdrop-blur-md`}
           >
             <nav className="flex flex-col space-y-1 p-4">
               {sections.map((item) => (
@@ -178,7 +233,7 @@ export default function Navbar() {
                       ? "bg-gradient-to-r from-emerald-400/20 to-cyan-500/20 text-cyan-500"
                       : "text-primary hover:bg-gray-100 dark:hover:bg-gray-800"
                   }`}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => handleMobileNavClick(item.id)}
                 >
                   <span className="mr-3">{item.icon}</span>
                   {item.title}
