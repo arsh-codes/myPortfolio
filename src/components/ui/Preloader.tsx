@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 
 import { motion } from "framer-motion";
@@ -58,7 +56,7 @@ export default function Preloader() {
       () => {
         setIndex(index + 1);
       },
-      index === 0 ? 1000 : 150 // Delay longer on the first word, faster on subsequent ones
+      index === 0 ? 1000 : 150, // Delay longer on the first word, faster on subsequent ones
     );
   }, [index]);
 
