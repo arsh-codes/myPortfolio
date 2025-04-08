@@ -70,13 +70,16 @@ export function ContactForm() {
   };
 
   return (
-    <div className="shadow-input mx-auto w-full rounded-lg border p-6">
-      <h2 className="text-2xl font-bold">Talk nerdy to me 👓</h2>
-      <p className="text-muted-foreground mt-2 w-fit">
-        Got an idea hotter than my overheated CPU? 🔥 Let's talk!
-      </p>
+    <div className="shadow-input mx-auto flex h-full w-full flex-col justify-between gap-5 rounded-lg border p-6">
+      <div>
+        <h2 className="text-2xl font-bold">Talk nerdy to me 👓</h2>
+        <p className="text-muted-foreground mt-2 w-fit">
+          Got an idea hotter than my overheated CPU? 🔥
+          <br /> Let's talk!
+        </p>
+      </div>
 
-      <form className="my-6" onSubmit={handleSubmit} ref={formRef}>
+      <form className="mb-2" onSubmit={handleSubmit} ref={formRef}>
         <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
           <LabelInputContainer>
             <Label htmlFor="name">
