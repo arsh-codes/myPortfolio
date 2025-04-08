@@ -1,3 +1,4 @@
+// Importing necessary icons from react-icons
 import {
   FaArrowUp,
   FaDiscord,
@@ -6,13 +7,15 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 
+// Importing custom components
 import { ContactForm } from "./ContactForm";
 import { SlidingNumberClock } from "./SlidingNumberClock";
 import { TypewriterEffectSmooth } from "./TypewriterEffect";
-import { motion } from "motion/react";
-import { useTheme } from "@/components/Navbar/ThemeProvider";
+import { motion } from "motion/react"; // Motion animation library
+import { useTheme } from "@/components/Navbar/ThemeProvider"; // Theme context
 
 export default function ContactSection() {
+  // Social media/contact links with associated icons and hover effects
   const socialLinks = [
     {
       href: "https://www.linkedin.com/in/work-arsh/",
@@ -40,16 +43,20 @@ export default function ContactSection() {
     },
   ];
 
+  // Smooth scroll-to-top functionality for the "Back to top" button
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  const { theme } = useTheme();
+
+  const { theme } = useTheme(); // Access current theme (light or dark)
 
   return (
+    // Main contact section with padding and responsive layout
     <section
       className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:py-24"
       id="contact"
     >
+      {/* Decorative blurred background blobs (only in dark mode) */}
       {theme === "dark" && (
         <>
           <motion.div
@@ -80,7 +87,7 @@ export default function ContactSection() {
         </>
       )}
 
-      {/* wrapper  */}
+      {/* Content wrapper with fade-in animation */}
       <motion.div
         className="mx-auto flex w-11/12 flex-col items-center"
         initial={{ opacity: 0, y: 20 }}
@@ -88,7 +95,7 @@ export default function ContactSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        {/* Heading */}
+        {/* Section Heading */}
         <motion.div
           className="mb-8 md:text-center"
           initial={{ opacity: 0 }}
@@ -105,10 +112,10 @@ export default function ContactSection() {
             Let's collaborate and bring your ideas to life
           </p>
         </motion.div>
-        {/* info and form */}
 
+        {/* Grid layout containing contact info and contact form */}
         <div className="relative flex h-fit flex-col justify-center gap-10 lg:flex-row lg:gap-30">
-          {/* Contact Info Section */}
+          {/* Left: Contact Info and Social Links */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -116,6 +123,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="h-fit"
           >
+            {/* Animated intro message using typewriter effect */}
             <TypewriterEffectSmooth
               className="text-4xl font-bold md:text-3xl"
               words={[
@@ -126,16 +134,13 @@ export default function ContactSection() {
                     "bg-gradient-to-r from-[#4ade80] to-[#06b6d4] bg-clip-text text-transparent",
                 },
                 { text: "Something" },
-                {
-                  text: "Awesome",
-                },
-                {
-                  text: "Together.",
-                },
+                { text: "Awesome" },
+                { text: "Together." },
               ]}
               cursorClassName="bg-emerald animate-blink"
             />
 
+            {/* Short pitch or invitation message */}
             <motion.p
               className="text-muted-foreground max-w-2xl text-balance"
               initial={{ opacity: 0 }}
@@ -149,7 +154,7 @@ export default function ContactSection() {
               project, or just want to say hello, don't hesitate to reach out.
             </motion.p>
 
-            {/* Social Links */}
+            {/* Social media/contact icons */}
             <motion.div
               className="my-8"
               initial={{ opacity: 0 }}
@@ -161,6 +166,7 @@ export default function ContactSection() {
                 Connect With Me
               </h3>
               <div className="flex flex-wrap gap-6">
+                {/* Mapping through social links to display each icon */}
                 {socialLinks.map((link, index) => (
                   <motion.a
                     key={index}
@@ -181,7 +187,7 @@ export default function ContactSection() {
               </div>
             </motion.div>
 
-            {/* Location & Time Info */}
+            {/* Location and time info block */}
             <motion.div
               className="bg-muted/50 dark:bg-muted/20 mt-8 space-y-4 rounded-2xl p-6 backdrop-blur-sm"
               initial={{ opacity: 0, y: 20 }}
@@ -189,6 +195,7 @@ export default function ContactSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
+              {/* Location info */}
               <motion.a
                 whileHover={{ x: 5 }}
                 href="https://maps.app.goo.gl/H7dEy8vnVmZWUD5A6"
@@ -212,6 +219,7 @@ export default function ContactSection() {
                 </div>
               </motion.a>
 
+              {/* Time zone info */}
               <motion.a
                 whileHover={{ x: 5 }}
                 href="https://www.timeanddate.com/time/zone/india"
@@ -235,6 +243,7 @@ export default function ContactSection() {
                 </div>
               </motion.a>
 
+              {/* Live clock displaying current time */}
               <motion.a
                 whileHover={{ x: 5 }}
                 href="https://www.timeanddate.com/worldclock/india"
@@ -260,7 +269,7 @@ export default function ContactSection() {
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Right: Contact form component */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -272,7 +281,7 @@ export default function ContactSection() {
         </div>
       </motion.div>
 
-      {/* Go to Top Button (Visible only in ContactMe section) */}
+      {/* Floating "Back to top" button at the bottom of the section */}
       <motion.button
         onClick={scrollToTop}
         className="bg-secondary hover:bg-opacity-90 text-primary absolute right-6 bottom-1.5 z-50 flex cursor-pointer items-center justify-center rounded-full p-3 text-sm shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl md:right-1.5 lg:right-10 lg:bottom-2 lg:text-base"

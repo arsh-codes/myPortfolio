@@ -20,17 +20,17 @@ interface GitHubUserData {
 }
 
 export default function GithubSection() {
-  const { theme } = useTheme();
-  const [userData, setUserData] = useState<GitHubUserData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { theme } = useTheme(); // Access current theme (light/dark)
+  const [userData, setUserData] = useState<GitHubUserData | null>(null); // Store GitHub user data
+  const [loading, setLoading] = useState(true); // Manage loading state
+  const [error, setError] = useState<string | null>(null); // Manage error state
 
-  const username = "arsh-codes";
+  const username = "arsh-codes"; // GitHub username to fetch data for
 
   useEffect(() => {
     const fetchGithubData = async () => {
       try {
-        // Simple fetch for user data without metrics
+        // Fetch GitHub user data using API
         const response = await fetch(
           `https://api.github.com/users/${username}`,
           {
@@ -42,14 +42,17 @@ export default function GithubSection() {
           },
         );
 
+        // Handle non-OK responses
         if (!response.ok) {
           throw new Error(`GitHub API error: ${response.status}`);
         }
 
+        // Parse and set the response data
         const data = await response.json();
         setUserData(data);
         setLoading(false);
       } catch (err) {
+        // Handle fetch errors
         console.error("Error fetching GitHub data:", err);
         setError(
           err instanceof Error ? err.message : "An unknown error occurred",
@@ -58,15 +61,16 @@ export default function GithubSection() {
       }
     };
 
-    fetchGithubData();
+    fetchGithubData(); // Trigger data fetch on mount
   }, [username]);
 
-  // Animation variants
+  // Framer Motion animation for fade-in effect
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
+  // Framer Motion animation for staggered card entrance
   const cardItem = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: (i: number) => ({
@@ -76,6 +80,7 @@ export default function GithubSection() {
     }),
   };
 
+  // Render loading state UI
   if (loading) {
     return (
       <section
@@ -89,12 +94,14 @@ export default function GithubSection() {
     );
   }
 
+  // Render error state UI
   if (error) {
     return (
       <section
         className="bg-muted/60 dark:bg-muted/20 relative w-full overflow-hidden lg:py-20"
         id="github"
       >
+        {/* Decorative blurred background elements */}
         <div className="absolute top-20 -right-64 h-96 w-96 rounded-full bg-red-300/20 blur-3xl filter"></div>
         <div className="absolute bottom-20 -left-64 h-96 w-96 rounded-full bg-red-300/20 blur-3xl filter"></div>
 
@@ -130,12 +137,13 @@ export default function GithubSection() {
     );
   }
 
+  // Render GitHub profile and contributions section
   return (
     <section
       className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24"
       id="github"
     >
-      {/* Background gradient elements */}
+      {/* Decorative gradient background for dark mode */}
       {theme === "dark" && (
         <>
           <div className="absolute -top-20 -left-40 size-96 rounded-full bg-cyan-600/6 blur-3xl filter"></div>
@@ -144,7 +152,7 @@ export default function GithubSection() {
       )}
 
       <div className="container mx-auto px-4">
-        {/* Section header with animated title */}
+        {/* Section heading with animated text and subtitle */}
         <motion.div
           className="mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -154,8 +162,8 @@ export default function GithubSection() {
         >
           <AnimatedGradientText
             speed={1}
-            colorFrom="#06A3C9" // cyan
-            colorTo="#10B981" // emerald
+            colorFrom="#06A3C9"
+            colorTo="#10B981"
             className="mb-4 text-4xl font-bold lg:text-5xl"
           >
             Merging Ideas, One Commit at a Time
@@ -166,7 +174,7 @@ export default function GithubSection() {
           </p>
         </motion.div>
 
-        {/* GitHub Card with better layout */}
+        {/* GitHub profile card and contributions calendar */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
@@ -175,14 +183,15 @@ export default function GithubSection() {
         >
           <BackgroundGradient containerClassName="w-full p-[1px] rounded-2xl overflow-hidden">
             <div className="rounded-2xl bg-white p-6 dark:bg-gray-900">
-              {/* GitHub Content - Profile and Calendar in one row */}
+              {/* Grid layout: GitHub profile card (left) + contribution calendar (right) */}
               <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-4">
-                {/* Profile Card - Kept as is */}
+                {/* GitHub profile card */}
                 <motion.div
                   custom={0}
                   variants={cardItem}
                   className="col-span-1 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/5 to-emerald-500/10 p-6 text-center lg:col-span-1"
                 >
+                  {/* Avatar image */}
                   <div className="mb-4 overflow-hidden rounded-full border-2 border-cyan-500/30 p-1 hover:border-cyan-500/50">
                     {userData?.avatar_url && (
                       <img
@@ -192,6 +201,8 @@ export default function GithubSection() {
                       />
                     )}
                   </div>
+
+                  {/* Name and username */}
                   <h3 className="mb-1 flex items-center text-xl font-bold text-gray-800 dark:text-white">
                     <FaGithub className="mr-2 text-lg" />
                     {userData?.name || userData?.login || username}
@@ -200,12 +211,14 @@ export default function GithubSection() {
                     @{userData?.login}
                   </p>
 
+                  {/* Bio (if available) */}
                   {userData?.bio && (
                     <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
                       "{userData.bio}"
                     </p>
                   )}
 
+                  {/* Location and profile link */}
                   <div className="mt-auto flex w-full flex-row items-center justify-center gap-4">
                     {userData?.location && (
                       <a
@@ -232,7 +245,7 @@ export default function GithubSection() {
                   </div>
                 </motion.div>
 
-                {/* Contribution Activity Calendar - Now next to profile card */}
+                {/* GitHub contributions calendar */}
                 <motion.div
                   custom={1}
                   variants={cardItem}
@@ -241,6 +254,8 @@ export default function GithubSection() {
                   <h4 className="mb-4 text-center text-lg font-medium text-gray-800 dark:text-white">
                     Contribution Activity
                   </h4>
+
+                  {/* Responsive container for GitHubCalendar */}
                   <div
                     className="flex flex-1 items-center justify-center overflow-scroll py-2"
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
@@ -264,7 +279,7 @@ export default function GithubSection() {
                 </motion.div>
               </div>
 
-              {/* Action Buttons */}
+              {/* CTA buttons: view profile and repositories */}
               <div className="flex flex-wrap justify-center gap-4">
                 <Button
                   variant="outline"

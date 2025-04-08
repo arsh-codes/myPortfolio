@@ -11,9 +11,9 @@ import { BackgroundGradient } from "@/components/Home/heroSection/BackgroundGrad
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 // Import project images
-import portfolioImageDark from "/public/media/portfolioImageDark.webp";
-import portfolioImageLight from "/public/media/portfolioImageLight.webp";
-import studyNotionImage from "/public/media/studyNotionImage.png";
+import portfolioImageDark from "@/assets/media/portfolioImageDark.webp";
+import portfolioImageLight from "@/assets/media/portfolioImageLight.webp";
+import studyNotionImage from "@/assets/media/studyNotionImage.webp";
 import { useState } from "react";
 import { useTheme } from "@/components/Navbar/ThemeProvider";
 

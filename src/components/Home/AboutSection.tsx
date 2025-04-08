@@ -1,22 +1,25 @@
-import aboutMeImage from "/public/media/aboutMeImage.jpg";
+import aboutMeImage from "@/assets/media/aboutMeImage.webp";
 import { motion } from "framer-motion";
 import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 export default function AboutSection() {
   const { theme } = useTheme();
+
   return (
+    // Main container for the About section
     <div
       className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:flex-row lg:py-24"
       id="about"
     >
-      {/* Background gradient elements */}
+      {/* Decorative background gradients — rendered only in dark mode for visual flair */}
       {theme === "dark" && (
         <>
           <div className="absolute top-20 -left-40 size-96 rounded-full bg-emerald-400/6 blur-3xl filter"></div>
           <div className="absolute right-10 bottom-40 h-60 w-80 rounded-full bg-cyan-500/6 blur-3xl filter"></div>
         </>
       )}
-      {/* Image Section */}
+
+      {/* Left Section: Profile image with entrance animation */}
       <motion.section
         className="relative flex w-full flex-col items-center justify-center pb-5 lg:w-1/3 lg:pb-0"
         initial={{ opacity: 0, y: 30 }}
@@ -24,7 +27,10 @@ export default function AboutSection() {
         transition={{ duration: 0.6 }}
       >
         <div className="relative">
+          {/* Gradient border behind the profile image */}
           <div className="from-emerald to-cyan absolute -right-3 -bottom-3 h-full w-full rounded-lg bg-gradient-to-r opacity-70"></div>
+
+          {/* Profile image */}
           <img
             src={aboutMeImage}
             alt="Arshdeep Singh"
@@ -32,16 +38,20 @@ export default function AboutSection() {
           />
         </div>
       </motion.section>
-      {/* Text section */}
+
+      {/* Right Section: About Me text content with animation */}
       <motion.section
         className="relative flex w-full flex-col items-center justify-center p-4 text-left lg:w-2/3"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
+        {/* Section headline */}
         <h2 className="text-2xl font-bold text-neutral-800 lg:text-3xl dark:text-neutral-200">
           ⚡ Powered by Code, Sustained by Coffee ☕, Driven by Curiosity! 🚀
         </h2>
+
+        {/* Paragraph content describing background, skills, and personal interests */}
         <div className="mt-4 space-y-4 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
           <p>
             Hey there! 👋 I'm{" "}

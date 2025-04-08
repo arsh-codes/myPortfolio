@@ -1,5 +1,3 @@
-"use client";
-
 import { IconCheck, IconCopy } from "@tabler/icons-react";
 import {
   atomDark,
@@ -10,26 +8,28 @@ import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { useTheme } from "@/components/Navbar/ThemeProvider";
 
+// Props definition for the CodeBlock component
 type CodeBlockProps = {
-  language: string;
-  filename: string;
-  highlightLines?: number[];
-} & (
-  | {
-      code: string;
+  language: string; // Default language for syntax highlighting
+  filename: string; // Filename to display in single-file mode
+  highlightLines?: number[]; // Optional list of line numbers to highlight
+} & // Either a single code block or a tabbed interface with multiple code blocks
+(| {
+      code: string; // Code string for single-file mode
       tabs?: never;
     }
   | {
       code?: never;
       tabs: Array<{
-        name: string;
-        code: string;
-        language?: string;
-        highlightLines?: number[];
+        name: string; // Tab name
+        code: string; // Code string for the tab
+        language?: string; // Optional language override per tab
+        highlightLines?: number[]; // Optional line highlights per tab
       }>;
     }
 );
 
+// Main CodeBlock component definition
 export const CodeBlock = ({
   language,
   filename,
@@ -37,21 +37,23 @@ export const CodeBlock = ({
   highlightLines = [],
   tabs = [],
 }: CodeBlockProps) => {
-  const { theme } = useTheme();
-  const [copied, setCopied] = React.useState(false);
-  const [activeTab, setActiveTab] = React.useState(0);
+  const { theme } = useTheme(); // Get current theme (light/dark)
+  const [copied, setCopied] = React.useState(false); // Clipboard copy state
+  const [activeTab, setActiveTab] = React.useState(0); // Index of currently active tab
 
-  const tabsExist = tabs.length > 0;
+  const tabsExist = tabs.length > 0; // Determine if tabs are present
 
+  // Handles copying code to clipboard
   const copyToClipboard = async () => {
     const textToCopy = tabsExist ? tabs[activeTab].code : code;
     if (textToCopy) {
       await navigator.clipboard.writeText(textToCopy);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
     }
   };
 
+  // Determine active values based on tab state
   const activeCode = tabsExist ? tabs[activeTab].code : code;
   const activeLanguage = tabsExist
     ? tabs[activeTab].language || language
@@ -60,17 +62,17 @@ export const CodeBlock = ({
     ? tabs[activeTab].highlightLines || []
     : highlightLines;
 
-  // Choose style based on theme
+  // Select syntax highlighting theme based on current UI theme
   const syntaxStyle = theme === "dark" ? atomDark : oneLight;
 
-  // atomDark,
-  // darcula,
-
   return (
+    // Root container for the code block
     <div className="bg-muted relative w-full rounded-md pb-4 text-sm transition-colors lg:max-w-fit lg:text-sm">
+      {/* Header section for tabs or filename */}
       <div
         className={`flex flex-col gap-2 rounded-t-lg px-4 py-2 ${theme === "dark" ? "bg-[#131c2b]" : "bg-[#cbd5e1]"}`}
       >
+        {/* Render tab buttons if multiple tabs are present */}
         {tabsExist && (
           <div className="flex overflow-x-auto">
             {tabs.map((tab, index) => (
@@ -88,9 +90,12 @@ export const CodeBlock = ({
             ))}
           </div>
         )}
+
+        {/* Render filename bar and copy button in single-file mode */}
         {!tabsExist && filename && (
           <div className="flex items-center justify-between py-2">
             <div className="flex flex-row items-center gap-2">
+              {/* Simulated macOS-style window controls */}
               <div className="flex gap-1">
                 <button
                   className="h-2.5 w-2.5 rounded-full bg-red-500"
@@ -105,8 +110,10 @@ export const CodeBlock = ({
                   title="Maximize"
                 />
               </div>
+              {/* Filename display */}
               <div className="text-muted-foreground text-xs">{filename}</div>
             </div>
+            {/* Clipboard copy button */}
             <button
               onClick={copyToClipboard}
               className="text-muted-foreground hover:text-foreground flex items-center gap-1 font-sans text-xs transition-colors"
@@ -116,6 +123,8 @@ export const CodeBlock = ({
           </div>
         )}
       </div>
+
+      {/* Syntax highlighter block for rendering code */}
       <SyntaxHighlighter
         language={activeLanguage}
         style={syntaxStyle}
@@ -132,8 +141,8 @@ export const CodeBlock = ({
           style: {
             backgroundColor: activeHighlightLines.includes(lineNumber)
               ? theme === "dark"
-                ? "rgba(255,255,255,0.05)" // Light highlight for dark mode
-                : "rgba(0,0,0,0.05)" // Dark highlight for light mode
+                ? "rgba(255,255,255,0.05)" // Highlight color for dark theme
+                : "rgba(0,0,0,0.05)" // Highlight color for light theme
               : "transparent",
             display: "block",
             width: "100%",
