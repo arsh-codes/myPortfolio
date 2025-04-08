@@ -11,9 +11,9 @@ import { BackgroundGradient } from "@/components/Home/heroSection/BackgroundGrad
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 // Import project images
-import portfolioImageDark from "@/assets/media/portfolioImageDark.webp";
-import portfolioImageLight from "@/assets/media/portfolioImageLight.webp";
-import studyNotionImage from "@/assets/media/studyNotionImage.png";
+import portfolioImageDark from "/public/media/portfolioImageDark.webp";
+import portfolioImageLight from "/public/media/portfolioImageLight.webp";
+import studyNotionImage from "/public/media/studyNotionImage.png";
 import { useState } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -133,7 +133,7 @@ export default function ProjectSection() {
               onClick={() => setActiveProject(index)}
               className={`relative w-fit rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-105 ${
                 activeProject === index
-                  ? "from-emerald to-cyan bg-gradient-to-r font-semibold text-foreground shadow-lg"
+                  ? "from-emerald to-cyan text-foreground bg-gradient-to-r font-semibold shadow-lg"
                   : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
               }`}
             >
