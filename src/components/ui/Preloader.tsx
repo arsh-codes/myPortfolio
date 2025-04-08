@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { motion } from "framer-motion";
 
-// Animation for fading in text
+// Animation variants for fading in the text
 const opacity = {
   initial: {
     opacity: 0,
@@ -15,7 +15,7 @@ const opacity = {
   },
 };
 
-// Animation for sliding the preloader up and out of view
+// Animation variants for sliding the preloader screen up and out of view
 const slideUp = {
   initial: {
     top: 0,
@@ -26,7 +26,7 @@ const slideUp = {
   },
 };
 
-// Array of words to display during preloading
+// Array of multilingual greetings to cycle through during preload
 const words = [
   "Hello",
   "Ciao",
@@ -40,30 +40,35 @@ const words = [
 ];
 
 export default function Preloader() {
-  const [index, setIndex] = useState(0); // Tracks the index of the current word
-  const [dimension, setDimension] = useState({ width: 0, height: 0 }); // Stores viewport dimensions
+  const [index, setIndex] = useState(0); // Tracks the current index in the words array
+  const [dimension, setDimension] = useState({ width: 0, height: 0 }); // Stores current viewport dimensions
 
-  // Set viewport dimensions on mount
+  // On mount: set the viewport width and height
   useEffect(() => {
     setDimension({ width: window.innerWidth, height: window.innerHeight });
   }, []);
 
-  // Cycle through words in the `words` array with a delay
+  // Cycles through the `words` array with controlled timing
   useEffect(() => {
-    if (index === words.length - 1) return; // Stop once the last word is displayed
+    // Stop cycling once the last word has been shown
+    if (index === words.length - 1) return;
+
+    // Increment the word index after a timeout
     setTimeout(
       () => {
         setIndex(index + 1);
       },
-      index === 0 ? 1000 : 150, // Longer delay for first word, shorter for others
+      index === 0 ? 1000 : 150 // Delay longer on the first word, faster on subsequent ones
     );
   }, [index]);
 
-  // Define the initial and target paths for the SVG animation
+  // Initial path definition for animated SVG wave
   const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height + 300} 0 ${dimension.height}  L0 0`;
+
+  // Final path after animation (flatter curve)
   const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width / 2} ${dimension.height} 0 ${dimension.height}  L0 0`;
 
-  // Animation for the SVG path transition
+  // Animation variants for morphing the SVG path
   const curve = {
     initial: {
       d: initialPath,
@@ -76,15 +81,17 @@ export default function Preloader() {
   };
 
   return (
+    // Fullscreen overlay preloader container with exit animation
     <motion.div
       variants={slideUp}
       initial="initial"
       exit="exit"
       className="fixed top-0 left-0 z-[99] flex h-[100vh] w-[100vw] items-center justify-center bg-black"
     >
+      {/* Render content only once dimensions are available */}
       {dimension.width > 0 && (
         <>
-          {/* Animated text displaying different words */}
+          {/* Greeting word animation with gradient-filled text */}
           <motion.p
             variants={opacity}
             initial="initial"
@@ -95,14 +102,14 @@ export default function Preloader() {
             {words[index]}
           </motion.p>
 
-          {/* Animated SVG path that morphs and disappears */}
+          {/* SVG wave animation morphing out during preloader exit */}
           <svg className="h-[calc(100% + 200px)] absolute top-0 w-[100%]">
             <motion.path
               variants={curve}
               initial="initial"
               exit="exit"
               fill="#000"
-            ></motion.path>
+            />
           </svg>
         </>
       )}

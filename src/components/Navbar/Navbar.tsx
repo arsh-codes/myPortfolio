@@ -16,7 +16,7 @@ import { FloatingDock } from "./FloatingDock";
 import { ModeToggle } from "./ModeToggle";
 import { useTheme } from "@/components/Navbar/ThemeProvider";
 
-// Define types for the sections
+// Define type for navigation sections
 interface Section {
   id: string;
   title: string;
@@ -24,84 +24,89 @@ interface Section {
   href: string;
 }
 
-// Navigation sections with icons and href links
+// Navigation sections definition with title, icon, and target anchor
 const sections: Section[] = [
   {
     id: "hero",
     title: "Home",
-    icon: <IconDeviceDesktop size={25} />, // Desktop icon
-    href: "#hero", // Link to section
+    icon: <IconDeviceDesktop size={25} />,
+    href: "#hero",
   },
   {
     id: "about",
     title: "About Me",
-    icon: <IconUser size={25} />, // User icon
+    icon: <IconUser size={25} />,
     href: "#about",
   },
   {
     id: "experience",
     title: "Experience",
-    icon: <IconBriefcase size={25} />, // Briefcase icon
+    icon: <IconBriefcase size={25} />,
     href: "#experience",
   },
   {
     id: "skills",
     title: "Skills",
-    icon: <IconCode size={25} />, // Code icon
+    icon: <IconCode size={25} />,
     href: "#skills",
   },
   {
     id: "projects",
     title: "Projects",
-    icon: <IconDeviceDesktop size={25} />, // Desktop icon for projects
+    icon: <IconDeviceDesktop size={25} />,
     href: "#projects",
   },
   {
     id: "github",
     title: "GitHub",
-    icon: <IconBrandGithub size={25} />, // GitHub icon
+    icon: <IconBrandGithub size={25} />,
     href: "#github",
   },
   {
     id: "blogs",
     title: "Blogs",
-    icon: <IconBook size={25} />, // Book icon
+    icon: <IconBook size={25} />,
     href: "#blogs",
   },
   {
     id: "contact",
     title: "Contact",
-    icon: <IconMessage size={25} />, // Message icon
+    icon: <IconMessage size={25} />,
     href: "#contact",
   },
 ];
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState("hero"); // State for active section
-  const [isScrolled, setIsScrolled] = useState(false); // State for scroll detection
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile menu toggle
-  const { theme } = useTheme(); // Get current theme from context
+  // Tracks currently active section
+  const [activeSection, setActiveSection] = useState("hero");
 
-  // Refs for outside click detection
+  // Tracks whether the page is scrolled for styling purposes
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Controls mobile menu visibility
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { theme } = useTheme(); // Access current theme from context
+
+  // References for detecting clicks outside mobile menu and button
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Close mobile menu when clicking on a link
+  // Handle click on a mobile nav item: update active section and close menu
   const handleMobileNavClick = (sectionId: string) => {
     setActiveSection(sectionId);
     setMobileMenuOpen(false);
   };
 
-  // Handle outside clicks to close the mobile menu
+  // Detect clicks outside the mobile menu to close it
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
-      // Only check for outside clicks when menu is open
       if (!mobileMenuOpen) return;
 
-      // Check if the click is outside both the menu and the toggle button
       const isClickOutsideMobileMenu =
         mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target as Node);
+
       const isClickOutsideButton =
         mobileMenuButtonRef.current &&
         !mobileMenuButtonRef.current.contains(event.target as Node);
@@ -111,60 +116,60 @@ export default function Navbar() {
       }
     };
 
-    // Add event listener to document
+    // Attach listeners
     document.addEventListener("mousedown", handleOutsideClick);
     document.addEventListener("touchstart", handleOutsideClick);
 
-    // Clean up event listener
+    // Clean up listeners
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("touchstart", handleOutsideClick);
     };
   }, [mobileMenuOpen]);
 
+  // Handle scroll events to track active section and navbar styling
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10); // Change navbar background on scroll
+      setIsScrolled(window.scrollY > 10); // Add shadow/background on scroll
 
-      // Get all sections by their ID and retrieve corresponding DOM elements
       const sectionElements = sections
         .map((section) => ({
-          id: section.id, // Store the section ID
-          element: document.getElementById(section.id), // Find the actual section element in the DOM
+          id: section.id,
+          element: document.getElementById(section.id),
         }))
-        .filter((item) => item.element); // Remove any sections that don't exist in the DOM (null elements)
+        .filter((item) => item.element); // Filter out any missing elements
 
-      // Determine which section is currently in view based on scroll position
       const currentSection = sectionElements.find((section) => {
         if (!section.element) return false;
-        const rect = section.element.getBoundingClientRect(); // Get the position and size of the section relative to the viewport
+        const rect = section.element.getBoundingClientRect();
         return rect.top <= 100 && rect.bottom >= 100;
       });
 
-      // If a section is found that matches the criteria, it is considered the currently active section.
       if (currentSection) {
         setActiveSection(currentSection.id);
       }
     };
 
+    // Listen for scroll
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when screen size changes to desktop
+  // Close mobile menu if resizing to desktop layout
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        // lg breakpoint
         setMobileMenuOpen(false);
       }
     };
 
+    // Listen for resize
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
+    // Navbar wrapper with dynamic background based on scroll position
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
@@ -172,8 +177,9 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
+      {/* Navbar inner container */}
       <div className="mx-auto flex h-16 w-11/12 items-center justify-between">
-        {/* Left Side: Logo and Text */}
+        {/* Left section: Logo and brand name */}
         <a href="#hero" className="group flex items-center">
           <div className="flex items-center rounded-lg p-2">
             <span className="from-emerald to-cyan flex items-center bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tighter text-transparent">
@@ -186,17 +192,17 @@ export default function Navbar() {
           </span>
         </a>
 
-        {/* Navigation dock (desktop only) */}
+        {/* Center: Desktop floating dock navigation */}
         <div className="hidden lg:block">
           <FloatingDock items={sections} activeItem={activeSection} />
         </div>
 
-        {/* Right side: Mode Toggle and Mobile Menu button */}
+        {/* Right section: Theme toggle and mobile menu button */}
         <div className="flex items-center space-x-4">
-          {/* Mode Toggle Component */}
+          {/* Light/Dark mode toggle */}
           <ModeToggle />
 
-          {/* Mobile menu button - only visible on small screens */}
+          {/* Hamburger / Close icon button for mobile menu */}
           <button
             ref={mobileMenuButtonRef}
             className="text-primary block transition-colors hover:text-cyan-500 lg:hidden"
@@ -208,7 +214,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile navigation menu with animation */}
+      {/* Mobile menu rendered conditionally with animation */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -223,6 +229,7 @@ export default function Navbar() {
                 : "bg-opacity-95 bg-white"
             } shadow-lg backdrop-blur-md`}
           >
+            {/* Mobile nav links */}
             <nav className="flex flex-col space-y-1 p-4">
               {sections.map((item) => (
                 <a

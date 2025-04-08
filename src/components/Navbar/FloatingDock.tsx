@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
+// Type definition for individual dock items
 type DockItem = {
   id?: string;
   title: string;
@@ -18,6 +19,7 @@ type DockItem = {
   href: string;
 };
 
+// Props for the main FloatingDock component
 type FloatingDockProps = {
   items: DockItem[];
   activeItem?: string;
@@ -25,6 +27,7 @@ type FloatingDockProps = {
   mobileClassName?: string;
 };
 
+// Main FloatingDock component rendering both desktop and mobile versions
 export const FloatingDock = ({
   items,
   activeItem,
@@ -47,6 +50,7 @@ export const FloatingDock = ({
   );
 };
 
+// Mobile version of the floating dock
 const FloatingDockMobile = ({
   items,
   activeItem,
@@ -58,7 +62,7 @@ const FloatingDockMobile = ({
 }) => {
   const [open, setOpen] = useState(false);
 
-  // Close mobile menu when clicking outside
+  // Close the menu if user clicks outside of the dock area
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (open && !(e.target as Element).closest(".floating-dock-mobile")) {
@@ -71,11 +75,13 @@ const FloatingDockMobile = ({
   }, [open]);
 
   return (
+    // Container for mobile floating dock
     <div
       className={cn("floating-dock-mobile relative block md:hidden", className)}
     >
       <AnimatePresence>
         {open && (
+          // Animated dropdown containing all dock items
           <motion.div
             layoutId="nav"
             className="absolute inset-x-0 bottom-full mb-2 flex flex-col items-center gap-2"
@@ -109,6 +115,7 @@ const FloatingDockMobile = ({
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
+                  {/* Individual mobile dock button */}
                   <a
                     href={item.href}
                     key={item.title}
@@ -122,6 +129,7 @@ const FloatingDockMobile = ({
                     )}
                   >
                     <div className="h-4 w-4">{item.icon}</div>
+                    {/* Label badge on icon */}
                     <span className="absolute -top-1 -right-1 flex h-4 w-max min-w-4 items-center justify-center rounded-full bg-gray-100 px-1 text-[10px] font-semibold dark:bg-neutral-700">
                       {item.title}
                     </span>
@@ -132,6 +140,8 @@ const FloatingDockMobile = ({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Toggle button for mobile dock */}
       <motion.button
         onClick={(e) => {
           e.stopPropagation();
@@ -143,6 +153,7 @@ const FloatingDockMobile = ({
         aria-label="Toggle navigation menu"
         aria-expanded={open}
       >
+        {/* Show close or menu icon based on open state */}
         {open ? (
           <IconX className="h-5 w-5 text-cyan-500" />
         ) : (
@@ -153,6 +164,7 @@ const FloatingDockMobile = ({
   );
 };
 
+// Desktop version of the floating dock
 const FloatingDockDesktop = ({
   items,
   activeItem,
@@ -162,10 +174,11 @@ const FloatingDockDesktop = ({
   activeItem?: string;
   className?: string;
 }) => {
-  let mouseX = useMotionValue(Infinity);
+  let mouseX = useMotionValue(Infinity); // Tracks cursor x position
   const [visibleTooltip, setVisibleTooltip] = useState<string | null>(null);
 
   return (
+    // Horizontal dock container for desktop
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => {
@@ -191,6 +204,7 @@ const FloatingDockDesktop = ({
   );
 };
 
+// Animated icon component used in the desktop dock
 function IconContainer({
   mouseX,
   title,
@@ -210,15 +224,17 @@ function IconContainer({
 }) {
   let ref = useRef<HTMLDivElement>(null);
 
+  // Calculate the distance of the cursor from the icon's center
   let distance = useTransform(mouseX, (val) => {
     let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
 
-  // Make the active item slightly larger by default
+  // Size adjustments based on hover distance
   const baseSize = isActive ? 50 : 40;
   const hoverSize = isActive ? 90 : 80;
 
+  // Animations for icon container scaling
   let widthTransform = useTransform(
     distance,
     [-150, 0, 150],
@@ -230,6 +246,7 @@ function IconContainer({
     [baseSize, hoverSize, baseSize],
   );
 
+  // Animations for icon scaling inside container
   let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
   let heightTransformIcon = useTransform(
     distance,
@@ -237,6 +254,7 @@ function IconContainer({
     [20, 40, 20],
   );
 
+  // Spring transitions for smooth resizing
   let width = useSpring(widthTransform, {
     mass: 0.1,
     stiffness: 150,
@@ -247,7 +265,6 @@ function IconContainer({
     stiffness: 150,
     damping: 12,
   });
-
   let widthIcon = useSpring(widthTransformIcon, {
     mass: 0.1,
     stiffness: 150,
@@ -268,6 +285,7 @@ function IconContainer({
       className="rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
     >
       <div className="relative">
+        {/* Animated circular icon container */}
         <motion.div
           ref={ref}
           style={{ width, height }}
@@ -282,6 +300,7 @@ function IconContainer({
               : "bg-gray-50 hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700",
           )}
         >
+          {/* Icon inside the container */}
           <motion.div
             style={{ width: widthIcon, height: heightIcon }}
             className={cn(
@@ -294,6 +313,7 @@ function IconContainer({
             {icon}
           </motion.div>
 
+          {/* Active indicator dot */}
           {isActive && (
             <motion.div
               className="absolute -bottom-1 left-1/2 h-1 w-1 translate-x-[-50%] rounded-full bg-cyan-500"
@@ -307,6 +327,7 @@ function IconContainer({
           )}
         </motion.div>
 
+        {/* Tooltip showing icon title */}
         <AnimatePresence>
           {showTooltip && (
             <motion.div

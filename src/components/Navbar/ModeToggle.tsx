@@ -7,34 +7,38 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/components/Navbar/ThemeProvider";
 
 export function ModeToggle() {
-  const { theme, setTheme } = useTheme();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const { theme, setTheme } = useTheme(); // Access current theme and setter from custom context
+  const audioRef = useRef<HTMLAudioElement | null>(null); // Reference to the audio element for button sound
+  const [isAnimating, setIsAnimating] = useState(false); // Controls animation state to prevent multiple triggers
 
+  // Handles theme toggling with animation and sound
   const toggleTheme = () => {
-    if (isAnimating) return;
+    if (isAnimating) return; // Prevent toggling during animation
 
-    setIsAnimating(true);
+    setIsAnimating(true); // Set animation state to true
+
+    // Toggle between light and dark themes
     setTheme(theme === "dark" ? "light" : "dark");
 
-    // Play sound if audioRef is available
+    // Play toggle sound effect if available
     if (audioRef.current) {
-      audioRef.current.currentTime = 0; // Reset to start for consecutive clicks
+      audioRef.current.currentTime = 0; // Restart sound for quick consecutive clicks
       audioRef.current
         .play()
         .catch((err) => console.warn("Audio playback prevented:", err));
     }
 
-    // Reset animation state after animation completes
+    // Reset animation state after animation duration
     setTimeout(() => setIsAnimating(false), 600);
   };
 
   return (
+    // Wrapper div to make the entire toggle clickable
     <div className="cursor-pointer">
-      {/* Hidden audio element outside the button */}
+      {/* Hidden audio element used to play sound on toggle */}
       <audio ref={audioRef} src={buttonSound} preload="auto"></audio>
 
-      {/* Theme Toggle Button */}
+      {/* Main button to toggle theme with animation and accessibility features */}
       <Button
         onClick={toggleTheme}
         variant="outline"
@@ -45,7 +49,9 @@ export function ModeToggle() {
           theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
         }
       >
+        {/* Inner container for animated icon and ripple effect */}
         <div className="relative flex items-center justify-center">
+          {/* Animated icon transition between Sun and Moon using framer-motion */}
           <motion.div
             initial={{ scale: 1 }}
             animate={{
@@ -56,13 +62,13 @@ export function ModeToggle() {
             className="absolute"
           >
             {theme === "dark" ? (
-              <Sun className="text-cyan size-5" />
+              <Sun className="text-cyan size-5" /> // Sun icon for dark theme
             ) : (
-              <Moon className="text-cyan size-5" />
+              <Moon className="text-cyan size-5" /> // Moon icon for light theme
             )}
           </motion.div>
 
-          {/* Ripple effect */}
+          {/* Expanding ripple animation on theme toggle */}
           {isAnimating && (
             <motion.div
               initial={{ width: 0, height: 0, opacity: 0.5 }}
