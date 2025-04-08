@@ -1,4 +1,4 @@
-import aboutMeImage from "/public/media/aboutMeImage.jpg";
+import aboutMeImage from "@/assets/media/aboutMeImage.webp";
 import { motion } from "framer-motion";
 import { useTheme } from "@/components/Navbar/ThemeProvider";
 
