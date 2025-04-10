@@ -203,14 +203,20 @@ export default function Navbar() {
           <ModeToggle />
 
           {/* Hamburger / Close icon button for mobile menu */}
-          <button
+          {/* Hamburger / Close icon button for mobile menu with animation */}
+          <motion.button
             ref={mobileMenuButtonRef}
-            className="text-primary block transition-colors hover:text-cyan-500 lg:hidden"
+            className="text-primary block p-1 transition-colors hover:text-cyan-500 lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
+            animate={{
+              rotate: mobileMenuOpen ? 90 : 0,
+              scale: 1,
+            }}
+            transition={{ duration: 0.2, type: "tween" }}
           >
             {mobileMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
-          </button>
+          </motion.button>
         </div>
       </div>
 
@@ -232,19 +238,76 @@ export default function Navbar() {
             {/* Mobile nav links */}
             <nav className="flex flex-col space-y-1 p-4">
               {sections.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  className={`flex items-center rounded-md px-4 py-2 text-sm transition-colors ${
-                    activeSection === item.id
-                      ? "bg-gradient-to-r from-emerald-400/20 to-cyan-500/20 text-cyan-500"
-                      : "text-primary hover:bg-gray-100 dark:hover:bg-gray-800"
-                  }`}
-                  onClick={() => handleMobileNavClick(item.id)}
+                <motion.a
+                key={item.id}
+                href={item.href}
+                className={`flex items-center rounded-md px-4 py-3 text-sm font-medium transition-all ${
+                  activeSection === item.id
+                    ? "bg-gradient-to-r from-emerald-400/20 to-cyan-500/20 text-cyan-500"
+                    : "text-primary hover:bg-gray-100 dark:hover:bg-gray-800"
+                }`}
+                onClick={() => handleMobileNavClick(item.id)}
+                variants={{
+                  hidden: { opacity: 0, y: -10, x: -5 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    x: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 350,
+                      damping: 25
+                    }
+                  }
+                }}
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                whileTap={{ scale: 0.98 }}
+                variants={{
+                  hidden: { opacity: 0, y: -10, x: -5 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    x: 0,
+                    transition: {
+                      type: "spring",
+                      stiffness: 350,
+                      damping: 25
+                    }
+                  },
+                  hover: { 
+                    x: 6, 
+                    backgroundColor: activeSection === item.id 
+                      ? "rgba(6, 182, 212, 0.1)" 
+                      : theme === "dark" 
+                        ? "rgba(31, 41, 55, 0.8)" 
+                        : "rgba(243, 244, 246, 0.8)",
+                    transition: {
+                      type: "tween",
+                      ease: "easeOut",
+                      duration: 0.2
+                    }
+                  }
+                }}
+              >
+                <motion.span 
+                  className="mr-4 flex items-center justify-center"
+                  variants={{
+                    hover: { 
+                      rotate: 5,
+                      transition: {
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 10
+                      }
+                    }
+                  }}
                 >
-                  <span className="mr-3">{item.icon}</span>
-                  {item.title}
-                </a>
+                  {item.icon}
+                </motion.span>
+                <span className="tracking-wide">{item.title}</span>
+              </motion.a>
               ))}
             </nav>
           </motion.div>

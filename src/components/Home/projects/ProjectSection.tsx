@@ -133,7 +133,7 @@ export default function ProjectSection() {
               onClick={() => setActiveProject(index)}
               className={`relative w-fit rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-105 ${
                 activeProject === index
-                  ? "from-emerald to-cyan text-foreground bg-gradient-to-r font-semibold shadow-lg"
+                  ? "from-emerald to-cyan text-background dark:text-foreground bg-gradient-to-r font-semibold shadow-lg"
                   : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
               }`}
             >
