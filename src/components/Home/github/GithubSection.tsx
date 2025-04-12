@@ -84,9 +84,16 @@ export default function GithubSection() {
   if (loading) {
     return (
       <section
-        className="bg-muted/60 dark:bg-muted/20 relative w-full overflow-hidden py-16 md:py-20 lg:py-24"
+        className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32"
         id="github"
       >
+        {/* Decorative gradient background for dark mode */}
+        {theme === "dark" && (
+          <>
+            <div className="absolute -top-20 -left-40 size-96 rounded-full bg-cyan-600/6 blur-3xl filter"></div>
+            <div className="absolute top-60 right-10 h-80 w-80 rounded-full bg-emerald-400/6 blur-3xl filter"></div>
+          </>
+        )}
         <div className="container mx-auto px-4 text-center">
           <p className="text-primary text-lg">Loading GitHub data...</p>
         </div>
@@ -98,13 +105,16 @@ export default function GithubSection() {
   if (error) {
     return (
       <section
-        className="bg-muted/60 dark:bg-muted/20 relative w-full overflow-hidden lg:py-20"
+        className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32"
         id="github"
       >
-        {/* Decorative blurred background elements */}
-        <div className="absolute top-20 -right-64 h-96 w-96 rounded-full bg-red-300/20 blur-3xl filter"></div>
-        <div className="absolute bottom-20 -left-64 h-96 w-96 rounded-full bg-red-300/20 blur-3xl filter"></div>
-
+        {/* Decorative gradient background for dark mode */}
+        {theme === "dark" && (
+          <>
+            <div className="absolute -top-20 -left-40 size-96 rounded-full bg-cyan-600/6 blur-3xl filter"></div>
+            <div className="absolute top-60 right-10 h-80 w-80 rounded-full bg-emerald-400/6 blur-3xl filter"></div>
+          </>
+        )}
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -140,7 +150,7 @@ export default function GithubSection() {
   // Render GitHub profile and contributions section
   return (
     <section
-      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24"
+      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full items-center justify-center overflow-hidden py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32"
       id="github"
     >
       {/* Decorative gradient background for dark mode */}

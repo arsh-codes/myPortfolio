@@ -6,10 +6,25 @@ import { Textarea } from "@/components/Home/contact/Textarea";
 import { cn } from "@/lib/utils";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
+import { z } from "zod";
+
+// Define Zod schema for form validation
+const contactFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address").optional().or(z.literal("")),
+  message: z.string().min(1, "Message is required"),
+});
+
+// Type for form data derived from the schema
+type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export function ContactForm() {
   // State to manage the form submission loading state
   const [loading, setLoading] = useState(false);
+  // State to manage validation errors
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof ContactFormData, string>>
+  >({});
 
   // Ref to access and reset the form after submission
   const formRef = useRef<HTMLFormElement>(null);
@@ -18,35 +33,49 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setErrors({});
 
     const form = e.currentTarget as HTMLFormElement;
 
     // Retrieve and trim input values from the form
-    const name = (
-      form.elements.namedItem("name") as HTMLInputElement
-    )?.value.trim();
-    const email = (
-      form.elements.namedItem("email") as HTMLInputElement
-    )?.value.trim();
-    const message = (
-      form.elements.namedItem("message") as HTMLTextAreaElement
-    )?.value.trim();
+    const formData = {
+      name: (form.elements.namedItem("name") as HTMLInputElement)?.value.trim(),
+      email: (
+        form.elements.namedItem("email") as HTMLInputElement
+      )?.value.trim(),
+      message: (
+        form.elements.namedItem("message") as HTMLTextAreaElement
+      )?.value.trim(),
+    };
+
+    // Validate form data using Zod
+    const result = contactFormSchema.safeParse(formData);
+
+    if (!result.success) {
+      // Format errors for display
+      const formattedErrors: Partial<Record<keyof ContactFormData, string>> =
+        {};
+      result.error.errors.forEach((error) => {
+        const path = error.path[0] as keyof ContactFormData;
+        formattedErrors[path] = error.message;
+      });
+
+      setErrors(formattedErrors);
+      setLoading(false);
+      // Show toast for the first error
+      const firstError = result.error.errors[0];
+      if (firstError) {
+        toast.error(firstError.message);
+      }
+      return;
+    }
 
     // Capture the current date and time
     const time = new Date().toLocaleString();
 
-    // Basic validation: ensure required fields are filled
-    if (!name || !message) {
-      toast.error("Name and message are required.");
-      setLoading(false);
-      return;
-    }
-
     // Prepare email parameters for EmailJS
     const templateParams = {
-      name,
-      email,
-      message,
+      ...formData,
       time,
     };
 
@@ -76,7 +105,7 @@ export function ContactForm() {
 
   return (
     // Contact form container with padding, border, and responsive styling
-    <div className="shadow-input mx-auto flex h-full w-full flex-col justify-between gap-5 rounded-lg border p-6">
+    <div className="shadow-input mx-auto flex h-full w-full flex-col justify-between gap-5 rounded-lg px-10 py-6 lg:border">
       {/* Header Section */}
       <div>
         <h2 className="text-2xl font-bold">Talk nerdy to me 👓</h2>
@@ -100,7 +129,11 @@ export function ContactForm() {
               placeholder="Enter your name (or your secret identity!)"
               type="text"
               required
+              aria-invalid={errors.name ? "true" : "false"}
             />
+            {errors.name && (
+              <p className="text-sm text-red-500">{errors.name}</p>
+            )}
           </LabelInputContainer>
         </div>
 
@@ -112,7 +145,11 @@ export function ContactForm() {
             name="email"
             placeholder="Leave an email if you want to hear back!"
             type="email"
+            aria-invalid={errors.email ? "true" : "false"}
           />
+          {errors.email && (
+            <p className="text-sm text-red-500">{errors.email}</p>
+          )}
         </LabelInputContainer>
 
         {/* Message Field */}
@@ -125,7 +162,11 @@ export function ContactForm() {
             name="message"
             placeholder="Type your message… or just say hi!"
             required
+            aria-invalid={errors.message ? "true" : "false"}
           />
+          {errors.message && (
+            <p className="text-sm text-red-500">{errors.message}</p>
+          )}
         </LabelInputContainer>
 
         {/* Submit Button with loading indicator */}

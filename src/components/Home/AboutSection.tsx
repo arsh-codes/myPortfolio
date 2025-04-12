@@ -8,7 +8,7 @@ export default function AboutSection() {
   return (
     // Main container for the About section
     <div
-      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:flex-row lg:py-24"
+      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:flex-row lg:py-24 xl:py-29"
       id="about"
     >
       <Particles
@@ -58,10 +58,6 @@ export default function AboutSection() {
                 className="w-80 rounded-lg object-cover shadow-lg transition-transform duration-300 hover:scale-105"
               />
             </div>
-
-            {/* Decorative elements around image */}
-            <div className="absolute -right-4 -bottom-4 h-12 w-12 rounded-full bg-cyan-500 opacity-80"></div>
-            <div className="absolute -top-4 -left-4 h-8 w-8 rounded-full bg-emerald-500 opacity-80"></div>
           </div>
         </motion.div>
       </motion.section>
@@ -73,8 +69,10 @@ export default function AboutSection() {
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         {/* Section headline */}
-        <h2 className="text-xl font-bold text-neutral-800 lg:text-4xl dark:text-neutral-200">
-          Powered by Code, Sustained by Coffee, Driven by Curiosity!
+        <h2 className="text-center text-xl sm:2xl font-bold text-neutral-800 lg:text-3xl xl:text-4xl dark:text-neutral-200">
+          <span className="block sm:inline">Powered by Code, </span>
+          <span className="block sm:inline">Sustained by Coffee, </span>
+          <span className="block">Driven by Curiosity! </span>
         </h2>
 
         {/* Paragraph content describing background, skills, and personal interests */}

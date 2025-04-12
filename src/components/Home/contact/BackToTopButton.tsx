@@ -34,13 +34,13 @@ export default function BackToTopButton() {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="absolute right-6 bottom-6 z-50 flex items-center justify-center rounded-full shadow-lg md:right-8 md:bottom-8 lg:right-10 lg:bottom-10"
+          className="absolute right-2 bottom-1 z-50 flex cursor-pointer items-center justify-center rounded-full shadow-2xl"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.2 }}
           aria-label="Scroll to top"
         >
           {/* Inner container with gradient border */}
@@ -64,9 +64,9 @@ export default function BackToTopButton() {
             />
 
             {/* Button content */}
-            <div className="relative flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3 dark:bg-slate-900">
+            <div className="bg-background relative flex items-center justify-center rounded-full p-3 text-sm 2xl:gap-2 2xl:px-3 2xl:py-2">
               <FaArrowUp className="text-emerald-500 dark:text-emerald-400" />
-              <span className="hidden font-medium text-slate-800 md:inline dark:text-white">
+              <span className="hidden font-medium text-slate-800 2xl:inline dark:text-white">
                 Back to top
               </span>
             </div>

@@ -8,7 +8,7 @@ export default function ExperienceSection() {
   return (
     // Wrapper div for the entire Experience section with vertical padding and anchor ID
     <div
-      className="relative h-fit w-full py-16 md:py-20 lg:py-24"
+      className="relative h-fit w-full py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32"
       id="experience"
     >
       {/* Section container to center content and manage layout spacing */}

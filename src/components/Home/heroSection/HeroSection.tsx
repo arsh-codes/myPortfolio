@@ -40,7 +40,7 @@ export default function HeroSection() {
       {/* Background Gradients */}
       <div className="absolute -top-20 -left-20 h-96 w-96 rounded-full blur-3xl filter dark:bg-emerald-400/6"></div>
       <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full blur-3xl filter dark:bg-cyan-400/6"></div>
-      <div className="absolute top-1/2 left-1/3 h-64 w-64 rounded-full border border-red-500 blur-3xl filter dark:bg-purple-400/6"></div>
+      <div className="absolute top-1/2 left-1/3 h-64 w-64 rounded-full blur-3xl filter dark:bg-purple-400/6"></div>
 
       {/* Animated meteor-like background effect */}
       {/* <MeteorsBackground number={20} /> */}

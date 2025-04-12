@@ -91,7 +91,7 @@ export default function ProjectSection() {
   return (
     <section
       id="projects"
-      className="relative h-fit w-full overflow-hidden py-16 md:py-20 lg:py-24"
+      className="relative h-fit w-full overflow-hidden py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32"
     >
       {/* Background gradient elements */}
       {theme === "dark" && (
@@ -245,7 +245,8 @@ export default function ProjectSection() {
                     <motion.div
                       variants={staggerContainer}
                       initial="hidden"
-                      animate="visible"
+                      whileInView="visible"
+                      viewport={{ once: true }}
                       className="mb-6"
                     >
                       <h4 className="mb-2 font-semibold text-gray-900 dark:text-white">

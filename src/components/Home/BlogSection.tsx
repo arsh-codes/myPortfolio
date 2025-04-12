@@ -110,7 +110,7 @@ export default function BlogSection() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
       variants={containerVariants}
-      className="relative flex h-fit w-full items-center justify-center py-16 md:py-20 lg:py-24"
+      className="relative flex h-fit w-full items-center justify-center py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32"
       id="blogs"
     >
       {theme === "dark" && (

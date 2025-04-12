@@ -36,7 +36,7 @@ export default function SkillSection() {
 
   return (
     <div
-      className="bg-muted/60 dark:bg-muted/20 relative h-fit w-full py-16 md:py-20 lg:py-24"
+      className="bg-muted/60 dark:bg-muted/20 relative h-fit w-full py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32"
       id="skills"
     >
       {/* Background gradient elements */}
@@ -47,7 +47,7 @@ export default function SkillSection() {
         </>
       )}
 
-      <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly lg:items-center">
+      <section className="mx-auto flex h-full w-11/12 flex-col items-start justify-evenly lg:items-center xl:gap-10">
         {/* Heading */}
         <motion.div
           initial="hidden"
@@ -57,7 +57,7 @@ export default function SkillSection() {
           className="flex flex-col items-start gap-4 text-left lg:items-center lg:justify-center lg:text-center"
         >
           <div className="relative">
-            <h1 className="relative z-10 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+            <h1 className="relative z-10 text-3xl font-bold tracking-tight md:text-4xl xl:text-5xl">
               <span className="from-emerald to-cyan bg-gradient-to-r bg-clip-text text-transparent">
                 The Stack That Gets Things Done
               </span>
@@ -82,7 +82,7 @@ export default function SkillSection() {
         </motion.div>
 
         {/* Skills Grid and IconCloud */}
-        <div className="relative flex flex-col-reverse items-center lg:flex-row">
+        <div className="relative flex flex-col-reverse items-center xl:flex-row">
           {/* Skill Cards */}
           <motion.ul
             variants={containerStagger}
@@ -148,7 +148,7 @@ export default function SkillSection() {
                                         style={{ color: skill.color }}
                                       />
                                     )}
-                                    <p className="text-black dark:text-neutral-400">
+                                    <p className="text-left text-black dark:text-neutral-400">
                                       {skill.name}
                                     </p>
                                   </div>

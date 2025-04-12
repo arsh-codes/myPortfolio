@@ -1,12 +1,7 @@
 // Importing necessary icons from react-icons
-import {
-  FaArrowUp,
-  FaDiscord,
-  FaEnvelope,
-  FaGithub,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaDiscord, FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
+import BackToTopButton from "./BackToTopButton";
 // Importing custom components
 import { ContactForm } from "./ContactForm";
 import { SlidingNumberClock } from "./SlidingNumberClock";
@@ -43,17 +38,12 @@ export default function ContactSection() {
     },
   ];
 
-  // Smooth scroll-to-top functionality for the "Back to top" button
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const { theme } = useTheme(); // Access current theme (light or dark)
 
   return (
     // Main contact section with padding and responsive layout
     <section
-      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center py-16 md:py-20 lg:py-24"
+      className="bg-muted/60 dark:bg-muted/20 relative flex h-fit w-full flex-col items-center justify-center pt-16 md:pt-20 lg:py-24 xl:py-28 2xl:py-36"
       id="contact"
     >
       {/* Decorative blurred background blobs (only in dark mode) */}
@@ -282,19 +272,7 @@ export default function ContactSection() {
       </motion.div>
 
       {/* Floating "Back to top" button at the bottom of the section */}
-      <motion.button
-        onClick={scrollToTop}
-        className="bg-secondary hover:bg-opacity-90 text-primary absolute right-6 bottom-1.5 z-50 flex cursor-pointer items-center justify-center rounded-full p-3 text-sm shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl md:right-1.5 lg:right-10 lg:bottom-2 lg:text-base"
-        aria-label="Go to top"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      >
-        <FaArrowUp className="lg:text-lg" />
-        <span className="ml-2 hidden lg:inline">Back to top</span>
-      </motion.button>
+      <BackToTopButton />
     </section>
   );
 }
