@@ -1,5 +1,6 @@
 import { Particles } from "../ui/ParticlesBackground";
-import aboutMeImage from "@/assets/media/aboutMeImage.webp";
+import darkAboutMeImage from "@/assets/media/darkAboutMeImage.webp";
+import lightAboutMeImage from "@/assets/media/lightAboutMeImage.webp";
 import { motion } from "framer-motion";
 import { useTheme } from "@/components/Navbar/ThemeProvider";
 export default function AboutSection() {
@@ -52,11 +53,19 @@ export default function AboutSection() {
 
             {/* Image with enhanced container */}
             <div className="relative rounded-lg bg-white p-2 dark:bg-gray-800">
-              <img
-                src={aboutMeImage}
-                alt="Arshdeep Singh"
-                className="w-80 rounded-lg object-cover shadow-lg transition-transform duration-300 hover:scale-105"
-              />
+              {theme === "dark" ? (
+                <img
+                  src={darkAboutMeImage} // Use the imported variable
+                  alt="Arshdeep Singh"
+                  className="w-80 rounded-lg object-cover shadow-lg transition-transform duration-300 hover:scale-105"
+                />
+              ) : (
+                <img
+                  src={lightAboutMeImage} // Use the imported variable
+                  alt="Arshdeep Singh"
+                  className="w-80 rounded-lg object-cover shadow-lg transition-transform duration-300 hover:scale-105"
+                />
+              )}
             </div>
           </div>
         </motion.div>
@@ -69,7 +78,7 @@ export default function AboutSection() {
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         {/* Section headline */}
-        <h2 className="text-center text-xl sm:2xl font-bold text-neutral-800 lg:text-3xl xl:text-4xl dark:text-neutral-200">
+        <h2 className="sm:2xl text-center text-xl font-bold text-neutral-800 lg:text-3xl xl:text-4xl dark:text-neutral-200">
           <span className="block sm:inline">Powered by Code, </span>
           <span className="block sm:inline">Sustained by Coffee, </span>
           <span className="block">Driven by Curiosity! </span>
