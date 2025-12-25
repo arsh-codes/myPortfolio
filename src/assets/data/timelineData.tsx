@@ -77,7 +77,7 @@ const timelineData: TimelineEntry[] = [
       </div>
     ),
   },
-  {
+  <!-- {
     title: "Master of Computer Applications",
     date: "2023 – 2025",
     icon: <FaGraduationCap className="text-cyan h-6 w-6" />,
@@ -148,7 +148,7 @@ const timelineData: TimelineEntry[] = [
         </div>
       </div>
     ),
-  },
+  }, -->
   {
     title: "Front-end Developer",
     date: "Dec 2022 – June 2024",
